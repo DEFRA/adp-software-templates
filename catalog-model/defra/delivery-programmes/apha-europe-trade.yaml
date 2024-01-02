@@ -13,4 +13,6 @@ kind: Location
 metadata:
   name: eutd-projects
   description: Projects delivered by the Europe & Trade programme.
-spec: {}
+spec: 
+  targets:
+    - ../projects/eutd-exports.yaml

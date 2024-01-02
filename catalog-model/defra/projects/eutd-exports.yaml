@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: eutd-exports
+  description: EUTD Exports
+spec:
+  type: team
+  profile:
+    displayName: EUTD Exports
+    picture: https://avatars.githubusercontent.com/u/5528822?s=200&v=4
+  parent: europe-trade
+  children: []
