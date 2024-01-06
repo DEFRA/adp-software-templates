@@ -1,0 +1,4 @@
+{{- include "adp-aso-helm-library.flexible-servers-db" (list . "${{ values.project_name }}.flexible-servers-db") -}}
+
+{{- define "${{ values.project_name }}.flexible-servers-db" }}
+{{ end -}}

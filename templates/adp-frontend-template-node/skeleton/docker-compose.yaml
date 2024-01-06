@@ -1,0 +1,10 @@
+services:
+  ${{ values.project_name }}:
+    build:
+      context: .
+      target: production
+    image: ${{ values.project_name }}
+    container_name: ${{ values.project_name }}
+    environment:
+      APPINSIGHTS_CLOUDROLE: ${{ values.project_name }}-local
+      APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}
