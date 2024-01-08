@@ -5,4 +5,5 @@ metadata:
   description: Software templates available to the Backstage scaffolder.
 spec:
   targets:
-    - ../templates/ffc-template-node/template.yaml
+    - ../templates/adp-frontend-template-node/template.yaml
+    - ../templates/adp-backend-template-node/template.yaml
