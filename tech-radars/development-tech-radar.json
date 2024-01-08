@@ -1,0 +1,1407 @@
+{
+  "title": "Development Technology Radar for Defra's Azure Developer Platform",
+  "quadrants": [
+    {
+      "id": "observability",
+      "name": "Observability"
+    },
+    {
+      "id": "infrastructure",
+      "name": "Infrastructure"
+    },
+    {
+      "id": "languagesAndFrameworks",
+      "name": "Languages & Frameworks"
+    },
+    {
+      "id": "tooling",
+      "name": "Tooling"
+    }
+  ],
+  "rings": [
+    {
+      "id": "adopt",
+      "name": "ADOPT",
+      "color": "#5BA300",
+      "description": "This technology is recommended for use by the majority of teams with a specific use case."
+    },
+    {
+      "id": "trial",
+      "name": "TRIAL",
+      "color": "#009EB0",
+      "description": "This technology has been evaluated for specific use cases and has showed clear benefits. Some teams adopt it in production, although it should be limited to low-impact projects as it might incur a higher risk."
+    },
+    {
+      "id": "assess",
+      "name": "ASSESS",
+      "color": "#C7BA00",
+      "description": "This technology has the potential to be beneficial for the company. Some teams are evaluating it and using it in experimental projects. Using it in production comes with a high cost and risk due to lack of in-house knowledge, maintenance, and support."
+    },
+    {
+      "id": "hold",
+      "name": "HOLD",
+      "color": "#E09B96",
+      "description": "We don't want to further invest in this technology or we evaluated it and we don't see it as beneficial for the company. Teams should not use it in new projects and should plan on migrating to a supported alternative if they use it for historical reasons. For broadly adopted technologies, the Radar should refer to a migration path to a supported alternative."
+    }
+  ],
+  "entries": [
+    {
+      "id": "typescript",
+      "title": "Typescript",
+      "description": "TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.",
+      "key": "typescript",
+      "url": "#typescript",
+      "quadrant": "languagesAndFrameworks",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Typescript",
+          "url": "https://www.typescriptlang.org/"
+        }
+      ]
+    },
+    {
+      "id": "javacript",
+      "title": "Javascript",
+      "description": "JavaScript is a versatile and widely-used programming language that is primarily employed for web development. ",
+      "key": "javascript",
+      "url": "#javascript",
+      "quadrant": "languagesAndFrameworks",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ]
+    },
+    {
+      "id": "dotnet",
+      "title": ".NET",
+      "description": ".NET is a free, cross-platform, open source developer platform for building many different types of applications. With .NET, you can use multiple languages, editors, and libraries to build for web, mobile, desktop, games, IoT, and more.",
+      "key": "dotnet",
+      "url": "#dotnet",
+      "quadrant": "languagesAndFrameworks",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to .NET",
+          "url": "https://dotnet.microsoft.com/"
+        }
+      ]
+    },
+    {
+      "id": "node",
+      "title": "Node.js",
+      "description": "Node.js is an open-source, cross-platform JavaScript runtime environment.",
+      "key": "node",
+      "url": "#node",
+      "quadrant": "languagesAndFrameworks",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Node.js",
+          "url": "https://nodejs.org/en/about"
+        }
+      ]
+    },
+    {
+      "id": "hapi",
+      "title": "Hapi.js",
+      "description": "Provides true extensibility and customization safely and predictably.",
+      "key": "hapi",
+      "url": "#hapi",
+      "quadrant": "languagesAndFrameworks",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Hapi.js",
+          "url": "https://hapi.dev/"
+        }
+      ]
+    },
+    {
+      "id": "npm",
+      "title": "NPM",
+      "description": "NPM is the world's largest software registry. Open source developers from every continent use npm to share and borrow packages, and many organizations use npm to manage private development as well.",
+      "key": "npm",
+      "url": "#npm",
+      "quadrant": "languagesAndFrameworks",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to NPM",
+          "url": "https://www.npmjs.com/"
+        }
+      ]
+    },
+    {
+      "id": "python",
+      "title": "Python",
+      "description": "Python is a programming language that lets you work quickly and integrate systems more effectively.",
+      "key": "python",
+      "url": "#python",
+      "quadrant": "languagesAndFrameworks",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "assess",
+          "date": "2024-01-01",
+          "description": "This technology has the potential to be beneficial for the organisation. Some teams are evaluating it and using it in experimental projects. Using it in production comes with a high cost and risk due to lack of in-house knowledge, maintenance, and support."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Python",
+          "url": "https://www.python.org/"
+        }
+      ]
+    },
+    {
+      "id": "nuget",
+      "title": "NuGet",
+      "description": "NuGet is the package manager for .NET. The NuGet client tools provide the ability to produce and consume packages. The NuGet Gallery is the central package repository used by all package authors and consumers.",
+      "key": "nuget",
+      "url": "#nuget",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Nuget",
+          "url": "https://www.nuget.org/"
+        }
+      ]
+    },
+    {
+      "id": "docker",
+      "title": "Docker",
+      "description": "Docker provides a suite of development tools, services, trusted content, and automations, used individually or together, to accelerate the delivery of secure applications.",
+      "key": "docker",
+      "url": "#docker",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Docker",
+          "url": "https://www.docker.com/"
+        }
+      ]
+    },
+    {
+      "id": "dockerCompose",
+      "title": "Docker Compose",
+      "description": "Compose is a tool for defining and running multi-container Docker applications.",
+      "key": "dockerCompose",
+      "url": "#dockerCompose",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Docker Compose",
+          "url": "https://docs.docker.com/compose/"
+        }
+      ]
+    },
+    {
+      "id": "helm",
+      "title": "Helm",
+      "description": "Helm is the best way to find, share, and use software built for Kubernetes.",
+      "key": "helm",
+      "url": "#helm",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Helm",
+          "url": "https://helm.sh/"
+        }
+      ]
+    },
+    {
+      "id": "bicep",
+      "title": "Bicep",
+      "description": "Bicep is a domain-specific language (DSL) that uses declarative syntax to deploy Azure resources. ",
+      "key": "bicep",
+      "url": "#bicep",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Bicep",
+          "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?tabs=bicep"
+        }
+      ]
+    },
+    {
+      "id": "azureCLI",
+      "title": "Azure CLI",
+      "description": "The Azure command-line interface (Azure CLI) is a set of commands used to create and manage Azure resources.",
+      "key": "azureCLI",
+      "url": "#azureCLI",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure CLI",
+          "url": "https://learn.microsoft.com/en-us/cli/azure/"
+        }
+      ]
+    },
+    {
+      "id": "powershell",
+      "title": "Powershell",
+      "description": "PowerShell is a cross-platform task automation solution made up of a command-line shell, a scripting language, and a configuration management framework. PowerShell runs on Windows, Linux, and macOS.",
+      "key": "powershell",
+      "url": "#powershell",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Powershell",
+          "url": "https://learn.microsoft.com/en-us/powershell/"
+        }
+      ]
+    },
+    {
+      "id": "azureBoards",
+      "title": "Azure Boards",
+      "description": "Plan, track, and discuss work across your teams.",
+      "key": "azureBoards",
+      "url": "#azureBoards",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Boards",
+          "url": "https://azure.microsoft.com/en-gb/products/devops/boards"
+        }
+      ]
+    },
+    {
+      "id": "azurePipelines",
+      "title": "Azure Pipelines",
+      "description": "Continuously build, test, and deploy to any platform and cloud.",
+      "key": "azurePipelines",
+      "url": "#azurePipelines",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Pipelines",
+          "url": "https://azure.microsoft.com/en-gb/products/devops/pipelines"
+        }
+      ]
+    },
+    {
+      "id": "jest",
+      "title": "Jest",
+      "description": "Jest is a JavaScript Testing Framework.",
+      "key": "jest",
+      "url": "#jest",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Jest",
+          "url": "https://jestjs.io/"
+        }
+      ]
+    },
+    {
+      "id": "nUnit",
+      "title": "nUnit",
+      "description": "NUnit is a unit-testing framework for all .Net languages.",
+      "key": "nUnit",
+      "url": "#nUnit",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to nUnit",
+          "url": "https://nunit.org/"
+        }
+      ]
+    },
+    {
+      "id": "pactBroker",
+      "title": "Pact Broker",
+      "description": "The Pact Broker is an application for sharing consumer driven contracts and verification results.",
+      "key": "pactBroker",
+      "url": "#pactBroker",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Pact Broker",
+          "url": "https://docs.pact.io/pact_broker"
+        }
+      ]
+    },
+    {
+      "id": "webDriverIO",
+      "title": "Web Driver IO",
+      "description": "WebdriverIO is an all in one framework for your web app development. It enables you to run small and lightweight component tests as well as running e2e test scenarios in the browser or on a mobile device. This guarantees that you to do the testing in an environment used by your users.",
+      "key": "webDriverIO",
+      "url": "#webDriverIO",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Web Driver IO",
+          "url": "https://webdriver.io/"
+        }
+      ]
+    },
+    {
+      "id": "cucumber",
+      "title": "Cucumber",
+      "description": "Define the feature files with all your stakeholders using Behavior-Driven Development (BDD). Automatically create documentation that’s up to date and easily shareable.",
+      "key": "cucumber",
+      "url": "#cucumber",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Cucumber",
+          "url": "https://cucumber.io/"
+        }
+      ]
+    },
+    {
+      "id": "selenium",
+      "title": "Selenium",
+      "description": "Primarily it is for automating web applications for testing purposes, but is certainly not limited to just that.",
+      "key": "selenium",
+      "url": "#selenium",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Selenium",
+          "url": "https://www.selenium.dev/"
+        }
+      ]
+    },
+    {
+      "id": "browserStack",
+      "title": "BrowserStack",
+      "description": "App & Browser Testing.",
+      "key": "browserStack",
+      "url": "#browserStack",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to BrowserStack",
+          "url": "https://www.browserstack.com/"
+        }
+      ]
+    },
+    {
+      "id": "jMeter",
+      "title": "JMeter",
+      "description": "The Apache JMeter™ application is open source software, a 100% pure Java application designed to load test functional behavior and measure performance.",
+      "key": "jMeter",
+      "url": "#jMeter",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to JMeter",
+          "url": "https://jmeter.apache.org/"
+        }
+      ]
+    },
+    {
+      "id": "snyk",
+      "title": "Snyk",
+      "description": "Find and automatically fix vulnerabilities in your code, open source dependencies, containers, and IaC — powered by Snyk’s industry-leading security intelligence and DeepCode AI.",
+      "key": "snyk",
+      "url": "#snyk",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Snyk",
+          "url": "https://snyk.io/?utm_medium=paid-search&utm_source=google&utm_campaign=gs_sn:-brand-bmax&utm_content=br_security&utm_term=snyk%20security&gclid=CjwKCAiAg9urBhB_EiwAgw88mYUSBVR0yS6X99Ks2GO1ZlWLIpxwA9cNkJsny5oCuJYalgs_uJXKJxoCQOYQAvD_BwE"
+        }
+      ]
+    },
+    {
+      "id": "owaspZap",
+      "title": "OWASP Zap",
+      "description": "Zed Attack Policy (ZAP) is a free and open source web scanner. OWASP Benchmark is a Java test suite designed to verify the speed and accuracy of vulnerability detection tools.",
+      "key": "owaspZap",
+      "url": "#owaspZap",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to OWASP Zap",
+          "url": "https://www.zaproxy.org/"
+        }
+      ]
+    },
+    {
+      "id": "axe",
+      "title": "AXE",
+      "description": "Axe is used to help make websites, mobile apps and digital content accessible.",
+      "key": "axe",
+      "url": "#axe",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to AXE",
+          "url": "https://www.deque.com/axe/"
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "title": "WAVE",
+      "description": "WAVE® is a suite of evaluation tools that helps authors make their web content more accessible to individuals with disabilities.",
+      "key": "wave",
+      "url": "#wave",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to WAVE",
+          "url": "https://wave.webaim.org/"
+        }
+      ]
+    },
+    {
+      "id": "anchorEngine",
+      "title": "Anchor Engine",
+      "description": "The Anchore Engine is an open source project that provides a centralized service for inspection, analysis and certification of container images.",
+      "key": "anchorEngine",
+      "url": "#anchorEngine",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Anchor Engine",
+          "url": "https://anchore.com/blog/anchore-engine/"
+        }
+      ]
+    },
+    {
+      "id": "github",
+      "title": "GitHub",
+      "description": "GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.",
+      "key": "github",
+      "url": "#github",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to GitHub",
+          "url": "https://github.com/"
+        }
+      ]
+    },
+    {
+      "id": "sonarCloud",
+      "title": "SonarCloud",
+      "description": "Enables your team to deliver clean code consistently and efficiently with a code review tool that easily integrates into the cloud DevOps platforms and extend your CI/CD workflow.",
+      "key": "sonarCloud",
+      "url": "#sonarCloud",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to SonarCloud",
+          "url": "https://www.sonarsource.com/products/sonarcloud/?gads_campaign=SC-Hroi-PMax&gads_ad_group=Global&gads_keyword=&gad_source=1&gclid=CjwKCAiAg9urBhB_EiwAgw88mWDuTsq5WxEd1pP2fZSvqpNAp2au3DDAdNcO_KIR0YeTHhFHoajSnxoC0_4QAvD_BwE"
+        }
+      ]
+    },
+    {
+      "id": "dockerDesktop",
+      "title": "Docker Desktop",
+      "description": "Docker Desktop is secure, out-of-the-box containerization software offering developers and teams a robust, hybrid toolkit to build, share, and run applications anywhere.",
+      "key": "dockerDesktop",
+      "url": "#dockerDesktop",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Docker Desktop",
+          "url": "https://www.docker.com/products/docker-desktop/"
+        }
+      ]
+    },
+    {
+      "id": "visualStudio",
+      "title": "Visual Studio 2022",
+      "description": "The most comprehensive IDE for .NET and C++ developers on Windows. Fully packed with a sweet array of tools and features to elevate and enhance every stage of software development.",
+      "key": "visualStudio",
+      "url": "#visualStudio",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Visual Studio 2022",
+          "url": "https://visualstudio.microsoft.com/"
+        }
+      ]
+    },
+    {
+      "id": "visualStudioCode",
+      "title": "Visual Studio Code",
+      "description": "Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux.",
+      "key": "visualStudioCode",
+      "url": "#visualStudioCode",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Visual Studio Code",
+          "url": "https://code.visualstudio.com/"
+        }
+      ]
+    },
+    {
+      "id": "appReg's",
+      "title": "App Reg's",
+      "description": "Registering your application establishes a trust relationship between your app and the Microsoft identity platform. ",
+      "key": "appReg's",
+      "url": "#appReg's",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to App Reg's",
+          "url": "https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app"
+        }
+      ]
+    },
+    {
+      "id": "azureSQL",
+      "title": "Azure Cosmos DB (SQL)",
+      "description": "Fully managed, distributed NoSQL & relational database for modern app development. High performance, high availability, and support for open-source PostgreSQL, MongoDB, and Apache Cassandra.",
+      "key": "azureSQL",
+      "url": "#azureSQL",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Cosmos DB (SQL)",
+          "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/"
+        }
+      ]
+    },
+    {
+      "id": "azureMongo",
+      "title": "Azure Cosmos DB (Mongo)",
+      "description": "Azure Cosmos DB is a fully managed NoSQL and relational database for modern app development. Azure Cosmos DB for MongoDB makes it easy to use Azure Cosmos DB as if it were a MongoDB database. ",
+      "key": "azureMongo",
+      "url": "#azureMongo",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Cosmos DB (Mongo)",
+          "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/mongodb/introduction"
+        }
+      ]
+    },
+    {
+      "id": "xUnit",
+      "title": "xUnit",
+      "description": "xUnit.net is a free, open source, community-focused unit testing tool for the .NET Framework.",
+      "key": "xUnit",
+      "url": "#xUnit",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "assess",
+          "date": "2024-01-01",
+          "description": "This technology has the potential to be beneficial for the organisation. Some teams are evaluating it and using it in experimental projects. Using it in production comes with a high cost and risk due to lack of in-house knowledge, maintenance, and support."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to xUnit",
+          "url": "https://xunit.net/"
+        }
+      ]
+    },
+    {
+      "id": "jenkins",
+      "title": "Jenkins",
+      "description": "Jenkins provides hundreds of plugins to support building, deploying and automating any project.",
+      "key": "jenkins",
+      "url": "#jenkins",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "hold",
+          "date": "2024-01-01",
+          "description": "We don't want to further invest in this technology or we evaluated it and we don't see it as beneficial for the organisation. Teams should not use it in new projects and should plan on migrating to a supported alternative if they use it for historical reasons. For broadly adopted technologies, the Radar should refer to a migration path to a supported alternative."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Jenkins",
+          "url": "https://www.jenkins.io/"
+        }
+      ]
+    },
+    {
+      "id": "azureRepos",
+      "title": "Azure Repos",
+      "description": "Free private Git repositories, pull requests, and code search.",
+      "key": "azureRepos",
+      "url": "#azureRepos",
+      "quadrant": "tooling",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "hold",
+          "date": "2024-01-01",
+          "description": "We don't want to further invest in this technology or we evaluated it and we don't see it as beneficial for the organisation. Teams should not use it in new projects and should plan on migrating to a supported alternative if they use it for historical reasons. For broadly adopted technologies, the Radar should refer to a migration path to a supported alternative."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Repos",
+          "url": "https://azure.microsoft.com/en-gb/products/devops/repos"
+        }
+      ]
+    },
+    {
+      "id": "azureKubernetesService",
+      "title": "Azure Kubernetes Service",
+      "description": "Azure Kubernetes Service (AKS) simplifies deploying a managed Kubernetes cluster in Azure by offloading the operational overhead to Azure.",
+      "key": "azureKubernetesService",
+      "url": "#azureKubernetesService",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Kubernetes Service",
+          "url": "https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes"
+        }
+      ]
+    },
+    {
+      "id": "FluxCD",
+      "title": "Flux CD",
+      "description": "Flux is a set of continuous and progressive delivery solutions for Kubernetes that are open and extensible.",
+      "key": "FluxCD",
+      "url": "#FluxCD",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Flux CD",
+          "url": "https://fluxcd.io/"
+        }
+      ]
+    },
+    {
+      "id": "azureServiceOperator",
+      "title": "Azure Service Operator",
+      "description": "Azure Service Operator (ASO) allows you to deploy and maintain a wide variety of Azure Resources using the Kubernetes tooling you already know and use.",
+      "key": "azureServiceOperator",
+      "url": "#azureServiceOperator",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Service Operator",
+          "url": "https://azure.github.io/azure-service-operator/"
+        }
+      ]
+    },
+    {
+      "id": "azureContainerRegistry",
+      "title": "Azure Container Registry",
+      "description": "A registry of Docker and Open Container Initiative (OCI) images, with support for all OCI artifacts.",
+      "key": "azureContainerRegistry",
+      "url": "#azureContainerRegistry",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Container Registry",
+          "url": "https://azure.microsoft.com/en-gb/products/container-registry"
+        }
+      ]
+    },
+    {
+      "id": "AzurePostgreSQL",
+      "title": "Azure PostgreSQL (Flexible Server)",
+      "description": "A registry of Docker and Open Container Initiative (OCI) images, with support for all OCI artifacts.",
+      "key": "AzurePostgreSQL",
+      "url": "#AzurePostgreSQL",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure PostgreSQL (Flexible Server)",
+          "url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/overview"
+        }
+      ]
+    },
+    {
+      "id": "azureServiceBus",
+      "title": "Azure Service Bus",
+      "description": "Azure Service Bus is a fully managed enterprise message broker with message queues and publish-subscribe topics (in a namespace).",
+      "key": "azureServiceBus",
+      "url": "#azureServiceBus",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Service Bus",
+          "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview"
+        }
+      ]
+    },
+    {
+      "id": "azureAppConfiguration",
+      "title": "Azure App Configuration",
+      "description": "Azure App Configuration provides a service to centrally manage application settings and feature flags.  ",
+      "key": "azureAppConfiguration",
+      "url": "#azureAppConfiguration",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure App Configuration",
+          "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/overview"
+        }
+      ]
+    },
+    {
+      "id": "azureKeyVault",
+      "title": "Azure Key Vault",
+      "description": "Azure Key Vault is a cloud service for securely storing and accessing secrets.",
+      "key": "azureKeyVault",
+      "url": "#azureKeyVault",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Key Vault",
+          "url": "https://learn.microsoft.com/en-us/azure/key-vault/"
+        }
+      ]
+    },
+    {
+      "id": "azureStorage",
+      "title": "Azure Storage",
+      "description": "The Azure Storage platform is Microsoft's cloud storage solution for modern data storage scenarios. Azure Storage offers highly available, massively scalable, durable, and secure storage for a variety of data objects in the cloud.",
+      "key": "azureStorage",
+      "url": "#azureStorage",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Storage",
+          "url": "https://learn.microsoft.com/en-us/azure/storage/"
+        }
+      ]
+    },
+    {
+      "id": "entraworkloadIdentity",
+      "title": "Microsoft Entra Workload ID",
+      "description": "Workload identities are identities granted to apps or services that need to access and communicate with other services.",
+      "key": "entraworkloadIdentity",
+      "url": "#entraworkloadIdentity",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Microsoft Entra Workload ID",
+          "url": "https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview?tabs=dotnet"
+        }
+      ]
+    },
+    {
+      "id": "azureEventHubs",
+      "title": "Azure Event Hubs",
+      "description": "Azure Event Hubs is a cloud native data streaming service that can stream millions of events per second, with low latency, from any source to any destination.",
+      "key": "azureEventHubs",
+      "url": "#azureEventHubs",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "assess",
+          "date": "2024-01-01",
+          "description": "This technology has the potential to be beneficial for the organisation. Some teams are evaluating it and using it in experimental projects. Using it in production comes with a high cost and risk due to lack of in-house knowledge, maintenance, and support."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Event Hubs",
+          "url": "https://learn.microsoft.com/en-us/azure/event-hubs/"
+        }
+      ]
+    },
+    {
+      "id": "AzureAIStudio",
+      "title": "Azure AI Studio",
+      "description": "Build, evaluate, and deploy your AI solutions all within one space.",
+      "key": "AzureAIStudio",
+      "url": "#AzureAIStudio",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "assess",
+          "date": "2024-01-01",
+          "description": "This technology has the potential to be beneficial for the organisation. Some teams are evaluating it and using it in experimental projects. Using it in production comes with a high cost and risk due to lack of in-house knowledge, maintenance, and support."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure AI Studio",
+          "url": "https://ai.azure.com/"
+        }
+      ]
+    },
+    {
+      "id": "azureMachineLearning",
+      "title": "Azure Machine Learning",
+      "description": "Azure Machine Learning empowers data scientists and developers to build, deploy, and manage high-quality models faster and with confidence.",
+      "key": "azureMachineLearning",
+      "url": "#azureMachineLearning",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "assess",
+          "date": "2024-01-01",
+          "description": "This technology has the potential to be beneficial for the organisation. Some teams are evaluating it and using it in experimental projects. Using it in production comes with a high cost and risk due to lack of in-house knowledge, maintenance, and support."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Machine Learning",
+          "url": "https://azure.microsoft.com/en-gb/products/machine-learning"
+        }
+      ]
+    },
+    {
+      "id": "azureCognitiveServices",
+      "title": "Azure Cognitive Services",
+      "description": "Azure Cognitive Services is a set of cloud-based APIs that you can use in AI applications and data flows.",
+      "key": "azureCognitiveServices",
+      "url": "#azureCognitiveServices",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "assess",
+          "date": "2024-01-01",
+          "description": "This technology has the potential to be beneficial for the organisation. Some teams are evaluating it and using it in experimental projects. Using it in production comes with a high cost and risk due to lack of in-house knowledge, maintenance, and support."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Cognitive Services",
+          "url": "https://learn.microsoft.com/en-us/azure/architecture/data-guide/technology-choices/cognitive-services"
+        }
+      ]
+    },
+    {
+      "id": "azureAISearch",
+      "title": "Azure AI Search",
+      "description": "Azure AI Search provides secure information retrieval at scale over user-owned content in traditional and conversational search applications.",
+      "key": "azureAISearch",
+      "url": "#azureAISearch",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "assess",
+          "date": "2024-01-01",
+          "description": "This technology has the potential to be beneficial for the organisation. Some teams are evaluating it and using it in experimental projects. Using it in production comes with a high cost and risk due to lack of in-house knowledge, maintenance, and support."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure AI Search",
+          "url": "https://learn.microsoft.com/en-us/azure/search/"
+        }
+      ]
+    },
+    {
+      "id": "azurePromptFlow",
+      "title": "Azure Prompt Flow",
+      "description": "In Azure Machine Learning prompt flow, users have the capability to develop a LLM-based AI application by engaging in the stages of developing, testing, tuning, and deploying a flow.",
+      "key": "azurePromptFlow",
+      "url": "#azurePromptFlow",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "assess",
+          "date": "2024-01-01",
+          "description": "This technology has the potential to be beneficial for the organisation. Some teams are evaluating it and using it in experimental projects. Using it in production comes with a high cost and risk due to lack of in-house knowledge, maintenance, and support."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Prompt Flow",
+          "url": "https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/concept-flows?view=azureml-api-2"
+        }
+      ]
+    },
+    {
+      "id": "azureFunctions",
+      "title": "Azure Functions",
+      "description": "Azure Functions is a serverless solution that allows you to write less code, maintain less infrastructure, and save on costs.",
+      "key": "azureFunctions",
+      "url": "#azureFunctions",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "hold",
+          "date": "2024-01-01",
+          "description": "We don't want to further invest in this technology or we evaluated it and we don't see it as beneficial for the organisation. Teams should not use it in new projects and should plan on migrating to a supported alternative if they use it for historical reasons. For broadly adopted technologies, the Radar should refer to a migration path to a supported alternative."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Functions",
+          "url": "https://learn.microsoft.com/en-us/azure/azure-functions/"
+        }
+      ]
+    },
+    {
+      "id": "applicationInsights",
+      "title": "Application Insights",
+      "description": "Azure Monitor Application Insights, a feature of Azure Monitor, excels in Application Performance Management (APM) for live web applications.",
+      "key": "applicationInsights",
+      "url": "#applicationInsights",
+      "quadrant": "observability",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Application Insights",
+          "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"
+        }
+      ]
+    },
+    {
+      "id": "googleAnalytics",
+      "title": "Google Analytics",
+      "description": "Google Analytics is an analytics service that enables you to measure traffic and engagement across your websites and apps.",
+      "key": "googleAnalytics",
+      "url": "#googleAnalytics",
+      "quadrant": "observability",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Google Analytics",
+          "url": "https://developers.google.com/analytics"
+        }
+      ]
+    },
+    {
+      "id": "prometheus",
+      "title": "Prometheus",
+      "description": "Prometheus is an open-source systems monitoring and alerting toolkit.",
+      "key": "prometheus",
+      "url": "#prometheus",
+      "quadrant": "observability",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Prometheuss",
+          "url": "https://prometheus.io/"
+        }
+      ]
+    },
+    {
+      "id": "grafana",
+      "title": "Grafana",
+      "description": "Grafana is the open source analytics & monitoring solution for every database.",
+      "key": "grafana",
+      "url": "#grafana",
+      "quadrant": "observability",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Grafana",
+          "url": "https://grafana.com/"
+        }
+      ]
+    },
+    {
+      "id": "azureMonitor",
+      "title": "Azure Monitor",
+      "description": "Azure Monitor is a comprehensive monitoring solution for collecting, analyzing, and responding to monitoring data from your cloud and on-premises environments. ",
+      "key": "azureMonitor",
+      "url": "#azureMonitor",
+      "quadrant": "observability",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-01-01",
+          "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Monitor",
+          "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/"
+        }
+      ]
+    }
+  ]
+}
