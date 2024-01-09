@@ -4,7 +4,6 @@ parameters:
   type: boolean
   default: false
 
-
 pr:
   branches:
     include:
@@ -50,6 +49,7 @@ extends:
       testFilePath: "./docker-compose.test.yaml"
     appDeployConfig:
       filepath: "./appConfig"  
+      filetype: "yaml"
       variableGroups: 
         - ${{ values.project_name }}-snd1
         - ${{ values.project_name }}-snd2
