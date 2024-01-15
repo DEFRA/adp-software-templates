@@ -39,7 +39,7 @@ extends:
   parameters:
     projectName: "${{ values.project_name }}"
     serviceName: "${{ values.project_name }}"
-    deployFromFeature: ${{ parameters.deployFromFeature }}
+    deployFromFeature: {% raw %}${{ parameters.deployFromFeature }}{% endraw %}
     appBuildConfig:
       appFrameworkType: "nodejs"    
       projectPath: "./package.json"
