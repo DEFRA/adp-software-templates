@@ -1,7 +1,0 @@
-{{- include "adp-helm-library.container-config-map" (list . "${{ values.project_name }}.config-map") -}}
-{{- define "${{ values.project_name }}.config-map" -}}
-data:
-  NODE_ENV: {{ quote .Values.environment }}
-  PORT: {{ quote .Values.container.port }}
-  APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
-{{- end -}}

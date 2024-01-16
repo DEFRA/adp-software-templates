@@ -1,3 +1,0 @@
-services:
-  ${{ values.project_name }}:
-    command: npm run start:debug

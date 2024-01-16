@@ -1,3 +1,0 @@
-{{- include "adp-helm-library.cluster-ip-service" (list . "${{ values.project_name }}.cluster-ip-service") -}}
-{{- define "${{ values.project_name }}.cluster-ip-service" -}}
-{{- end -}}
