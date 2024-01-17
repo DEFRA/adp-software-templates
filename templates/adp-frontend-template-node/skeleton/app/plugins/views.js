@@ -32,8 +32,8 @@ module.exports = {
       appVersion: pkg.version,
       assetPath: '/static',
       govukAssetPath: '/assets',
-      serviceName: 'FFC FFD Frontend POC',
-      pageTitle: 'FFC FFD Frontend POC - GOV.UK'
+      serviceName: '${{ values.project_name }}',
+      pageTitle: '${{ values.project_name }} - GOV.UK'
     }
   }
 }
