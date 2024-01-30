@@ -2,15 +2,16 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: adp-frontend-template-node
-  title: "ADP Frontend Template Node"
-  description: "Template to support rapid delivery of microservices for ADP Platform. It contains the configuration needed to deploy a simple Hapi Node server to the Azure Kubernetes Platform."
+  title: ADP Frontend Template Node
+  description: Template to support rapid delivery of microservices for ADP Platform. It contains the configuration needed to deploy a simple Hapi Node server to the Azure Kubernetes Platform.
   tags:
     - node
     - hapi
     - aks
+    - frontend
 spec:
   owner: adp
-  type: service
+  type: frontend
 
   parameters:
     - title: Component Information
@@ -19,7 +20,6 @@ spec:
         - component_id
         - description
         - owner
-        - component_type
         - component_lifecycle
       properties:
         component_id:
@@ -32,34 +32,22 @@ spec:
         description:
           title: Description
           type: string
-          description: Describe what this component does
+          description: Describe what this component does. This description will be used in the component's README and package.json.
 
         system:
           title: System
           type: string
-          description: Select the system that this component will be a part of
+          description: Select the system that this component will be a part of. Systems are a collection of related components and resources.
           ui:field: EntityPicker
           ui:options:
             allowArbitraryValues: false
             catalogFilter:
               - kind: System
 
-        component_type:
-          title: Component Type
-          type: string
-          description: Select the type of this component. Allowed values - Backend API (a backend service or API), Frontend UI (a web application)
-          default: backend
-          enum:
-            - backend
-            - frontend
-          enumNames:
-            - Backend API
-            - Frontend UI
-
         component_lifecycle:
-          title: Component Lifecycle
+          title: Project Phase
           type: string
-          description: Select this component's lifecycle. These are aligned to GDS project phases.
+          description: Select the project phase which suits this component. Refer to the [GDS service manual](https://www.gov.uk/service-manual/agile-delivery) for more information.
           default: alpha
           enum:
             - discovery
@@ -81,25 +69,78 @@ spec:
                 spec.type: team
 
     - title: Git Repository
-      description: To encourage coding in the open the repository will be public by default. Refer to the [GDS service manual](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable) for more information.
+      description: |
+        To encourage coding in the open the repository will be public by default. Refer to the [GDS service manual](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable) for more information.
+
+        The scaffolder will create a new repository and an associated team with write permissions.
       required:
-        - repoUrl
+        - repo_url
+        - github_team_name
+        - github_team_users
+        - github_team_visibility
       properties:
-        repoUrl:
+        repo_url:
           title: Repository Location
           type: string
           ui:field: RepoUrlPicker
           ui:options:
             allowedHosts:
               - github.com
-            allowedOrganizations:
-              - defra-adp-sandpit
+            allowedOwners:
               - defra
-            requestUserCredentials:
-              secretsKey: USER_OAUTH_TOKEN
-              additionalScopes:
-                github:
-                  - workflow
+              - defra-adp-sandpit
+
+        github_team_name:
+          title: GitHub Team Name
+          type: string
+          description: This team will be granted Write access to the repository.
+
+        github_team_description:
+          title: GitHub Team Description
+          type: string
+          description: An optional description of the team.
+
+        github_team_users:
+          title: GitHub Team Members
+          type: string
+          description: Comma-separated list of GitHub usernames to be added to the team.
+
+        github_team_visibility:
+          title: GitHub Team Visibility
+          type: string
+          description: The privacy level this team should have. *Visible* teams can be seen by all members in the organization. *Secret* teams can only be seen by the organization owners and team members.
+          default: closed
+          enum:
+            - closed
+            - secret
+          enumNames:
+            - Visible
+            - Secret
+
+    - title: CI/CD
+      description: CI/CD pipelines will be created in Azure DevOps
+      required:
+        - ado_organization
+        - ado_project
+        - service_connection_name
+        - pipeline_folder
+      properties:
+        ado_organization:
+          title: Azure DevOps Organization
+          type: string
+          default: defragovuk
+        ado_project:
+          title: Azure DevOps Project
+          type: string
+        service_connection_name:
+          title: Service Connection Name
+          type: string
+          description: Name of the Service Connection used to connect to GitHub.
+        pipeline_folder:
+          title: Pipeline Folder
+          type: string
+          description: Folder path where the pipeline will be created
+          default: /
 
   steps:
     - id: template
@@ -113,9 +154,8 @@ spec:
           description: ${{ parameters.description }}
           owner: ${{ parameters.owner }}
           workstream: ${{ parameters.owner | parseEntityRef | pick('name') }}
-          repo_url: ${{ parameters.repoUrl }}
-          repo_project_slug: ${{ parameters.repoUrl | projectSlug }}
-          component_type: ${{ parameters.component_type }}
+          repo_url: ${{ parameters.repo_url }}
+          repo_project_slug: ${{ parameters.repo_url | projectSlug }}
           component_lifecycle: ${{ parameters.component_lifecycle }}
           system: ${{ parameters.system }}
 
@@ -125,8 +165,7 @@ spec:
       input:
         allowedHosts: ["github.com"]
         description: ${{ parameters.description }}
-        repoUrl: ${{ parameters.repoUrl }}
-        token: ${{ secrets.USER_OAUTH_TOKEN }}
+        repoUrl: ${{ parameters.repo_url }}
         requireCodeOwnerReviews: true
         dismissStaleReviews: true
         requiredConversationResolution: true
@@ -136,6 +175,97 @@ spec:
         gitAuthorEmail: ${{ user.entity.spec.profile.email }}
         gitAuthorName: ${{ user.entity.metadata.name }}
         requiredCommitSigning: true
+
+    - id: createGitHubTeam
+      name: Create GitHub Team
+      action: adp:github:team:create
+      input:
+        githubTeamName: ${{ parameters.github_team_name }}
+        githubTeamDescription: ${{ parameters.github_team_description }}
+        orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+        users: ${{ parameters.github_team_users }}
+        visibility: ${{ parameters.github_team_visibility }}
+
+    - id: addGitHubTeam
+      name: Add GitHub Team to Repository
+      action: adp:github:team:add
+      input:
+        teamNames: ${{ parameters.github_team_name }}
+        repoName: ${{ parameters.repo_url | parseRepoUrl | pick('repo') }}
+        orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+        owner: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+        permission: push
+
+    - id: getServiceConnection
+      name: Get ADO Service Connection
+      action: adp:azure:serviceconnection:get
+      input:
+        organization: ${{ parameters.ado_organization }}
+        project: ${{ parameters.ado_project }}
+        serviceConnectionName: ${{ parameters.service_connection_name }}
+
+    - id: createPipeline
+      name: Create CI Pipeline
+      action: adp:azure:pipeline:create
+      input:
+        organization: ${{ parameters.ado_organization }}
+        project: ${{ parameters.ado_project }}
+        folder: ${{ parameters.pipeline_folder }}
+        repositoryName: ${{ parameters.repo_url | projectSlug }}
+        yamlPath: .azuredevops/build.yaml
+        serviceConnectionId: ${{ steps.getServiceConnection.output.serviceConnectionId }}
+        pipelineName: ${{ parameters.component_id }}
+
+    - id: permitResources
+      name: Permit Pipeline Resources
+      action: adp:azure:pipeline:permit
+      input:
+        organization: ${{ parameters.ado_organization }}
+        project: ${{ parameters.ado_project }}
+        pipelineId: ${{ steps.createPipeline.output.pipelineId }}
+        resources:
+          # Snyk
+          - resourceId: 663a60df-6aaa-4c2c-9fcd-ac4251732e87
+            resourceType: endpoint
+            authorized: true
+
+            # SSV3
+          - resourceId: 8e5ae2d4-31c5-4031-9ca8-54cc7b4f22d9
+            resourceType: endpoint
+            authorized: true
+
+            # SND1
+          - resourceId: dacc3c71-9384-4a93-b26d-a34d690a9a43
+            resourceType: endpoint
+            authorized: true
+
+            # GitHub
+          - resourceId: c7b55e44-8406-4bb3-bf47-c03c3bebe452
+            resourceType: endpoint
+            authorized: true
+
+            # SonarCloud
+          - resourceId: bbcf902e-d4d5-42ab-b175-f0f05954c528
+            resourceType: endpoint
+            authorized: true
+
+            # Variable Group - NodeJSAppBuild
+          - resourceId: "449"
+            resourceType: variablegroup
+            authorized: true
+
+          # Agent group
+          - resourceId: "3072"
+            resourceType: queue
+            authorized: true
+
+    - id: runPipeline
+      name: Run CI Pipeline
+      action: adp:azure:pipeline:run
+      input:
+        organization: ${{ parameters.ado_organization }}
+        pipelineId: ${{ steps.createPipeline.output.pipelineId }}
+        project: ${{ parameters.ado_project }}
 
     - id: register
       name: Register
@@ -151,3 +281,6 @@ spec:
       - title: Open in catalog
         icon: catalog
         entityRef: ${{ steps.register.output.entityRef }}
+      - title: CI Pipeline
+        url: ${{ steps.createPipeline.output.pipelineUrl }}
+        icon: rocketlaunch
