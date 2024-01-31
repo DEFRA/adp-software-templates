@@ -165,6 +165,7 @@ spec:
           component_id: ${{ parameters.component_id }}
           project_name: ${{ parameters.component_id }}
           description: ${{ parameters.description }}
+          component_type: ${{ parameters.component_type}}
           owner: ${{ parameters.owner }}
           workstream: ${{ parameters.owner | parseEntityRef | pick('name') }}
           repo_url: ${{ parameters.repo_url }}
