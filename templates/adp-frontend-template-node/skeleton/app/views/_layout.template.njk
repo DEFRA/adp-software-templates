@@ -21,6 +21,8 @@
 {% endblock %}
 
 {% block header %}
+{% endraw %}
+
   {# Conditional rendering of header based on the frontend UI type selected in backstage portal #}
   {% if values.component_type == 'internal' %}
     <header class="govuk-header " role="banner" data-module="govuk-header">
@@ -49,6 +51,8 @@
       serviceUrl: "/"
     }) }}
   {% endif %}
+
+{% raw %}
 {% endblock %}
 
 {% block pageTitle %}
@@ -60,6 +64,8 @@
 {% endblock %}
 
 {% block footer %}
+{% endraw %}
+
   {% if values.component_type == 'internal' %}
     <footer class="govuk-footer " role="contentinfo">
       <div class="govuk-width-container ">
@@ -84,6 +90,8 @@
   {% if values.component_type == 'external' %}
     {{ govukFooter() }}
   {% endif %}
+
+{% raw %}
 {% endblock %}
 
 {% block bodyEnd %}
