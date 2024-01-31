@@ -136,6 +136,7 @@ spec:
           title: Service Connection Name
           type: string
           description: Name of the Service Connection used to connect to GitHub.
+          default: DEFRA
         pipeline_folder:
           title: Pipeline Folder
           type: string
