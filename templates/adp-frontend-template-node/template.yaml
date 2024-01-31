@@ -130,30 +130,30 @@ spec:
             - Visible
             - Secret
 
-    # - title: CI/CD
-    #   description: CI/CD pipelines will be created in Azure DevOps
-    #   required:
-    #     - ado_organization
-    #     - ado_project
-    #     - service_connection_name
-    #     - pipeline_folder
-    #   properties:
-    #     ado_organization:
-    #       title: Azure DevOps Organization
-    #       type: string
-    #       default: defragovuk
-    #     ado_project:
-    #       title: Azure DevOps Project
-    #       type: string
-    #     service_connection_name:
-    #       title: Service Connection Name
-    #       type: string
-    #       description: Name of the Service Connection used to connect to GitHub.
-    #     pipeline_folder:
-    #       title: Pipeline Folder
-    #       type: string
-    #       description: Folder path where the pipeline will be created
-    #       default: /
+    - title: CI/CD
+      description: CI/CD pipelines will be created in Azure DevOps
+      required:
+        - ado_organization
+        - ado_project
+        - service_connection_name
+        - pipeline_folder
+      properties:
+        ado_organization:
+          title: Azure DevOps Organization
+          type: string
+          default: defragovuk
+        ado_project:
+          title: Azure DevOps Project
+          type: string
+        service_connection_name:
+          title: Service Connection Name
+          type: string
+          description: Name of the Service Connection used to connect to GitHub.
+        pipeline_folder:
+          title: Pipeline Folder
+          type: string
+          description: Folder path where the pipeline will be created
+          default: /
 
   steps:
     - id: template
@@ -210,76 +210,76 @@ spec:
         owner: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
         permission: push
 
-    # - id: getServiceConnection
-    #   name: Get ADO Service Connection
-    #   action: adp:azure:serviceconnection:get
-    #   input:
-    #     organization: ${{ parameters.ado_organization }}
-    #     project: ${{ parameters.ado_project }}
-    #     serviceConnectionName: ${{ parameters.service_connection_name }}
+    - id: getServiceConnection
+      name: Get ADO Service Connection
+      action: adp:azure:serviceconnection:get
+      input:
+        organization: ${{ parameters.ado_organization }}
+        project: ${{ parameters.ado_project }}
+        serviceConnectionName: ${{ parameters.service_connection_name }}
 
-    # - id: createPipeline
-    #   name: Create CI Pipeline
-    #   action: adp:azure:pipeline:create
-    #   input:
-    #     organization: ${{ parameters.ado_organization }}
-    #     project: ${{ parameters.ado_project }}
-    #     folder: ${{ parameters.pipeline_folder }}
-    #     repositoryName: ${{ parameters.repo_url | projectSlug }}
-    #     yamlPath: .azuredevops/build.yaml
-    #     serviceConnectionId: ${{ steps.getServiceConnection.output.serviceConnectionId }}
-    #     pipelineName: ${{ parameters.component_id }}
+    - id: createPipeline
+      name: Create CI Pipeline
+      action: adp:azure:pipeline:create
+      input:
+        organization: ${{ parameters.ado_organization }}
+        project: ${{ parameters.ado_project }}
+        folder: ${{ parameters.pipeline_folder }}
+        repositoryName: ${{ parameters.repo_url | projectSlug }}
+        yamlPath: .azuredevops/build.yaml
+        serviceConnectionId: ${{ steps.getServiceConnection.output.serviceConnectionId }}
+        pipelineName: ${{ parameters.component_id }}
 
-    # - id: permitResources
-    #   name: Permit Pipeline Resources
-    #   action: adp:azure:pipeline:permit
-    #   input:
-    #     organization: ${{ parameters.ado_organization }}
-    #     project: ${{ parameters.ado_project }}
-    #     pipelineId: ${{ steps.createPipeline.output.pipelineId }}
-    #     resources:
-    #       # Snyk
-    #       - resourceId: 663a60df-6aaa-4c2c-9fcd-ac4251732e87
-    #         resourceType: endpoint
-    #         authorized: true
+    - id: permitResources
+      name: Permit Pipeline Resources
+      action: adp:azure:pipeline:permit
+      input:
+        organization: ${{ parameters.ado_organization }}
+        project: ${{ parameters.ado_project }}
+        pipelineId: ${{ steps.createPipeline.output.pipelineId }}
+        resources:
+          # Snyk
+          - resourceId: 663a60df-6aaa-4c2c-9fcd-ac4251732e87
+            resourceType: endpoint
+            authorized: true
 
-    #         # SSV3
-    #       - resourceId: 8e5ae2d4-31c5-4031-9ca8-54cc7b4f22d9
-    #         resourceType: endpoint
-    #         authorized: true
+            # SSV3
+          - resourceId: 8e5ae2d4-31c5-4031-9ca8-54cc7b4f22d9
+            resourceType: endpoint
+            authorized: true
 
-    #         # SND1
-    #       - resourceId: dacc3c71-9384-4a93-b26d-a34d690a9a43
-    #         resourceType: endpoint
-    #         authorized: true
+            # SND1
+          - resourceId: dacc3c71-9384-4a93-b26d-a34d690a9a43
+            resourceType: endpoint
+            authorized: true
 
-    #         # GitHub
-    #       - resourceId: c7b55e44-8406-4bb3-bf47-c03c3bebe452
-    #         resourceType: endpoint
-    #         authorized: true
+            # GitHub
+          - resourceId: c7b55e44-8406-4bb3-bf47-c03c3bebe452
+            resourceType: endpoint
+            authorized: true
 
-    #         # SonarCloud
-    #       - resourceId: bbcf902e-d4d5-42ab-b175-f0f05954c528
-    #         resourceType: endpoint
-    #         authorized: true
+            # SonarCloud
+          - resourceId: bbcf902e-d4d5-42ab-b175-f0f05954c528
+            resourceType: endpoint
+            authorized: true
 
-    #         # Variable Group - NodeJSAppBuild
-    #       - resourceId: "449"
-    #         resourceType: variablegroup
-    #         authorized: true
+            # Variable Group - NodeJSAppBuild
+          - resourceId: "449"
+            resourceType: variablegroup
+            authorized: true
 
-    #       # Agent group
-    #       - resourceId: "3072"
-    #         resourceType: queue
-    #         authorized: true
+          # Agent group
+          - resourceId: "3072"
+            resourceType: queue
+            authorized: true
 
-    # - id: runPipeline
-    #   name: Run CI Pipeline
-    #   action: adp:azure:pipeline:run
-    #   input:
-    #     organization: ${{ parameters.ado_organization }}
-    #     pipelineId: ${{ steps.createPipeline.output.pipelineId }}
-    #     project: ${{ parameters.ado_project }}
+    - id: runPipeline
+      name: Run CI Pipeline
+      action: adp:azure:pipeline:run
+      input:
+        organization: ${{ parameters.ado_organization }}
+        pipelineId: ${{ steps.createPipeline.output.pipelineId }}
+        project: ${{ parameters.ado_project }}
 
     - id: register
       name: Register
