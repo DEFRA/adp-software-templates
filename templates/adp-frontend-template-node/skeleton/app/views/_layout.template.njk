@@ -22,7 +22,7 @@
 
 {% block header %}
 {% endraw %}
-
+  
   {# Conditional rendering of header based on the frontend UI type selected in backstage portal #}
   {% if values.component_type == 'internal' %}
     <header class="govuk-header " role="banner" data-module="govuk-header">
@@ -65,7 +65,7 @@
 
 {% block footer %}
 {% endraw %}
-
+  
   {% if values.component_type == 'internal' %}
     <footer class="govuk-footer " role="contentinfo">
       <div class="govuk-width-container ">

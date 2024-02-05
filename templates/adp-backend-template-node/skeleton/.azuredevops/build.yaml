@@ -50,7 +50,7 @@ extends:
     appDeployConfig:
       filepath: "./appConfig"  
       filetype: "yaml"
-
+      
       # TO BE ADDED IF THERE ARE ANY KEYVAULT REFERENCES IN APP CONFIG
       # variableGroups: 
       #   - ${{ values.project_name }}-snd1
