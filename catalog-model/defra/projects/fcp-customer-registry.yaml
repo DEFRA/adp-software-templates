@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: fcp-customer-registry
+  description: FCP Customer Registry
+spec:
+  type: team
+  profile:
+    displayName: FCP Customer Registry
+    picture: https://avatars.githubusercontent.com/u/5528822?s=200&v=4
+  parent: farming-countryside-programme
+  children: []
