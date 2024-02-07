@@ -1,12 +1,12 @@
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: fcp-customer-registry
-  description: FCP Customer Registry
+  name: fcp-data-access-layer
+  description: FCP Data Access Layer
 spec:
   type: team
   profile:
-    displayName: FCP Customer Registry
+    displayName: FCP Data Access Layer
     picture: https://avatars.githubusercontent.com/u/5528822?s=200&v=4
   parent: farming-countryside-programme
   children: []
