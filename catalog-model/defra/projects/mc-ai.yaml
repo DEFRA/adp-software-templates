@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: mc-ai
+  description: Ministerial Correspondence AI
+spec:
+  type: team
+  profile:
+    displayName: Ministerial Correspondence AI
+    picture: https://avatars.githubusercontent.com/u/5528822?s=200&v=4
+  parent: ministerial-correspondence
+  children: []

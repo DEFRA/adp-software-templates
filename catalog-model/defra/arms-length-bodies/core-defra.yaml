@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: core-defra
+  title: DEFRA
+  description: UK government department responsible for safeguarding our natural environment, supporting our food & farming industry, and sustaining a thriving rural economy.
+  links:
+    - url: https://www.gov.uk/government/organisations/department-for-environment-food-rural-affairs/
+      title: Website
+spec:
+  type: arms-length-body
+  parent: defra
+  children: [ministerial-correspondence]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: core-defra-programmes
+  description: Delivery programmes managed by Core Defra.
+spec:
+  targets:
+    - ../delivery-programmes/defra-ministerial-correspondence.yaml
