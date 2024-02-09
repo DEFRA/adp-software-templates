@@ -21,3 +21,4 @@ spec:
     - ../projects/fcp-documents.yaml
     - ../projects/fcp-vet-visits.yaml
     - ../projects/fcp-demo.yaml
+    - ../projects/fcp-find.yaml
