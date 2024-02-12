@@ -5,6 +5,15 @@ services:
       target: production
     image: ${{ values.project_name }}
     container_name: ${{ values.project_name }}
+    depends_on:
+      - ${{ values.project_name }}-postgres
     environment:
       APPINSIGHTS_CLOUDROLE: ${{ values.project_name }}-local
       APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}
+
+  ${{ values.project_name }}-postgres:
+    image: postgres:11.4-alpine
+    environment:
+      POSTGRES_DB: ${{ values.project_name }}
+      POSTGRES_PASSWORD: ppp
+      POSTGRES_USERNAME: postgres
