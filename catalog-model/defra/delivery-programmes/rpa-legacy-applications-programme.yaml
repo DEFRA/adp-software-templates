@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: legacy-applications-programme
+  title: Legacy Applications Programme (LAP)
+spec:
+  type: delivery-programme
+  parent: rural-payments-agency
+  children: [lap-mit]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: lap-projects
+  description: Projects delivered by the Legacy Applications Programme.
+spec:
+  targets:
+    - ../projects/lap-mit.yaml

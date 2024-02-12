@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: lap-mit
+  description: RPA Manual Invoice Template
+spec:
+  type: team
+  profile:
+    displayName: MIT
+    picture: https://avatars.githubusercontent.com/u/5528822?s=200&v=4
+  parent: legacy-applications-programme
+  children: []

@@ -10,7 +10,7 @@ metadata:
 spec:
   type: arms-length-body
   parent: defra
-  children: [farming-countryside-programme]
+  children: [farming-countryside-programme, legacy-applications-programme]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Location
@@ -20,3 +20,4 @@ metadata:
 spec:
   targets:
     - ../delivery-programmes/rpa-farming-countryside-programme.yaml
+    - ../delivery-programmes/rpa-legacy-applications-programme.yaml
