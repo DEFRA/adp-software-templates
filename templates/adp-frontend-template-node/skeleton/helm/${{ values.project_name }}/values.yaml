@@ -1,5 +1,3 @@
-environment: development
-environmentCode:
 name: ${{ values.project_name }}
 namespace: ${{ values.workstream }}
 workstream: ${{ values.workstream }}
@@ -8,17 +6,8 @@ image: ${{ values.project_name }}
 labels:
   component: web
 
-appInsights:
-  connectionString:
-
-deployment: {}
-
 container:
-  requestMemory: 100Mi
-  requestCpu: 100m
-  limitMemory: 100Mi
-  limitCpu: 100m
-  port: 3000
+  memCpuTier: L
 
 livenessProbe:
   path: /healthz
@@ -35,12 +24,8 @@ readinessProbe:
   periodSeconds: 10
   failureThreshold: 3
   timeoutSeconds: 5
-
-service:
-  port: 80
-  type: ClusterIP
-
+  
 ingress:
   class: nginx
   endpoint: ${{ values.project_name }}
-  server: example.com
+  server: ${{ values.project_name }}.{ENVIRONMENT}.adp.defra.gov.uk
