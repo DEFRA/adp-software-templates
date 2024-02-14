@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: lap-mit
+  description: Everything within the LAP MIT domain
+  title: LAP MIT
+spec:
+  owner: "group:default/lap-mit"

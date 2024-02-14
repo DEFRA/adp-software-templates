@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: lap-mit-system
+  title: LAP Manual Invoice Template
+  description: Components and resources that make up the MIT system.
+spec:
+  owner: "group:default/lap-mit"
+  domain: "domain:default/lap-mit"

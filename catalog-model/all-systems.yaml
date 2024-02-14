@@ -10,3 +10,4 @@ spec:
     - ./systems/fcp-ffd-system.yaml
     - ./systems/fcp-find-system.yaml
     - ./systems/mc-ai-system.yaml
+    - ./systems/lap-mit-system.yaml

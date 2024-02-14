@@ -11,3 +11,4 @@ spec:
     - ./domains/fcp-ffd-domain.yaml
     - ./domains/fcp-find-domain.yaml
     - ./domains/mc-domain.yaml
+    - ./domains/lap-mit-domain.yaml
