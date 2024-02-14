@@ -6,4 +6,4 @@ metadata:
   description: Components and resources that make up the FCP FIND system.
 spec:
   owner: "group:default/fcp-find"
-  domain: fcp-demo
+  domain: "domain:default/fcp-find"
