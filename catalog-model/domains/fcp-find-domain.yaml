@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: fcp-find
+  description: Everything related to FCP FIND
+  title: FCP FIND
+spec:
+  owner: "group:default/fcp-find"
