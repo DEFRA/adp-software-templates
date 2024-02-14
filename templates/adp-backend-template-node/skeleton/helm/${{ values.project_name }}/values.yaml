@@ -1,24 +1,13 @@
-environment: development
-environmentCode:
 name: ${{ values.project_name }}
 namespace: ${{ values.workstream }}
 workstream: ${{ values.workstream }}
 image: ${{ values.project_name }}
 
 labels:
-  component: web
-
-appInsights:
-  connectionString:
-
-deployment: {}
+  component: backend
 
 container:
-  requestMemory: 100Mi
-  requestCpu: 100m
-  limitMemory: 100Mi
-  limitCpu: 100m
-  port: 3000
+  memCpuTier: M
 
 livenessProbe:
   path: /healthz
