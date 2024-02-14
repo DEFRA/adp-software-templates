@@ -7,7 +7,7 @@ labels:
   component: backend
 
 container:
-  memCpuTier: M
+  memCpuTier: L
 
 livenessProbe:
   path: /healthz
