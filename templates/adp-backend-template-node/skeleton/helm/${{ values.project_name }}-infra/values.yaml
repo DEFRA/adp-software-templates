@@ -1,7 +1,5 @@
-namespace: ${{ values.workstream }}
 namespaceQueues:
   - name: backend
-    owner: 'no'
     roleAssignments:
       - roleName: 'QueueReceiver'
 
