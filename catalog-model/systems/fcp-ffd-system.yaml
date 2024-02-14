@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: fcp-ffd-system
+  description: Components and resources that make up the FCP Farming Front Door system.
+spec:
+  owner: "group:default/fcp-ffd"
+  domain: "domain:default/fcp-ffd"

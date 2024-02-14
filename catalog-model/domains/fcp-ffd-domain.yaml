@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: fcp-ffd
+  description: Everything within the FCP Farming Front Door domain
+  title: FCP FFD
+spec:
+  owner: "group:default/fcp-ffd"

@@ -23,3 +23,4 @@ spec:
     - ../projects/fcp-demo.yaml
     - ../projects/fcp-data-access-layer.yaml
     - ../projects/fcp-find.yaml
+    - ../projects/fcp-ffd.yaml

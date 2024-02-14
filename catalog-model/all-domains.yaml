@@ -8,3 +8,5 @@ spec:
     - ./domains/fcp-demo-domain.yaml
     - ./domains/fcp-grants-domain.yaml
     - ./domains/fcp-payments-domain.yaml
+    - ./domains/fcp-ffd-domain.yaml
+    - ./domains/fcp-find-domain.yaml
