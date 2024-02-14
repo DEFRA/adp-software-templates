@@ -10,3 +10,4 @@ spec:
     - ./domains/fcp-payments-domain.yaml
     - ./domains/fcp-ffd-domain.yaml
     - ./domains/fcp-find-domain.yaml
+    - ./domains/mc-domain.yaml

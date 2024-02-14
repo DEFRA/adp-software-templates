@@ -1,7 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: fcp-demo-service
+  name: fcp-find-system
+  title: FCP FIND
   description: Components and resources that make up the FCP FIND system.
 spec:
   owner: "group:default/fcp-find"

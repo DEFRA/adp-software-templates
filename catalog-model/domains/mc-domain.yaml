@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: ministerial-correspondence
+  description: Everything within the Ministerial Correspondence domain
+  title: Ministerial Correspondence
+spec:
+  owner: "group:default/ministerial-correspondence"
