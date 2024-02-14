@@ -4,11 +4,5 @@ metadata:
   name: fcp-grants
   description: Everything related to grants
   title: FCP Grants
-  links:
-    - url: http://example.com/domain/grants/
-      title: Domain Readme
-    - url: http://example.com/domains/grants/dashboard
-      title: Domain Metrics Dashboard
-      icon: dashboard
 spec:
   owner: "group:default/fcp-grants"

@@ -4,11 +4,5 @@ metadata:
   name: fcp-payments
   description: Everything related to Payments
   title: FCP Payments
-  links:
-    - url: http://example.com/domain/payments/
-      title: Domain Readme
-    - url: http://example.com/domains/orders/dashboard
-      title: Domain Metrics Dashboard
-      icon: dashboard
 spec:
   owner: "group:default/fcp-payments"
