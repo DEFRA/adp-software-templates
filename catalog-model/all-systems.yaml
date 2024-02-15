@@ -11,3 +11,4 @@ spec:
     - ./systems/fcp-find-system.yaml
     - ./systems/mc-ai-system.yaml
     - ./systems/lap-mit-system.yaml
+    - ./systems/fcp-data-access-layer.yaml

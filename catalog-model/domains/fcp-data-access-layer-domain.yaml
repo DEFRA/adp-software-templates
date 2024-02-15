@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: fcp-data-access-layer
+  description: Everything within the FCP Data Access Layer domain
+  title: FCP Data Access Layer
+spec:
+  owner: "group:default/fcp-data-access-layer"

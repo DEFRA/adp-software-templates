@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: fcp-data-access-layer-system
+  description: Components and resources that make up the FCP Data Access Layer system.
+spec:
+  owner: "group:default/fcp-data-access-layer"
+  domain: "domain:default/fcp-data-access-layer"
