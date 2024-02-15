@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: mc-ai
+  name: mcu-ai
   description: Ministerial Correspondence AI
 spec:
   type: team

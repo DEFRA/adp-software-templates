@@ -6,7 +6,7 @@ metadata:
 spec:
   type: delivery-programme
   parent: core-defra
-  children: [mc-ai]
+  children: [mcu-ai]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Location
@@ -15,4 +15,4 @@ metadata:
   description: Projects delivered by the Ministerial Correspondence programme.
 spec: 
   targets:
-    - ../projects/mc-ai.yaml
+    - ../projects/mcu-ai.yaml

@@ -19,4 +19,4 @@ metadata:
   description: Delivery programmes managed by Core Defra.
 spec:
   targets:
-    - ../delivery-programmes/defra-ministerial-correspondence.yaml
+    - ../delivery-programmes/core-ministerial-correspondence.yaml

@@ -1,9 +1,9 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: mc-ai-system
+  name: core-mcu-ai-system
   title: Ministerial Correspondence AI
   description: Components and resources that make up the Ministerial Correspondence AI system.
 spec:
-  owner: "group:default/mc-ai"
+  owner: "group:default/mcu-ai"
   domain: "domain:default/ministerial-correspondence"
