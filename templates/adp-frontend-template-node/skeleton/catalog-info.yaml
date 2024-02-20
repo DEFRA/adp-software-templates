@@ -31,10 +31,6 @@ metadata:
     - url: https://portal.azure.com/Defra.onmicrosoft.com
       title: Azure Portal - Defra
       icon: cloud
-    - url: https://${{values.project_name}}.snd1.adp.defra.gov.uk/
-      title: SND1
-    - url: https://${{values.project_name}}.snd2.adp.defra.gov.uk/
-      title: SND2
     - url: https://${{values.project_name}}.snd3.adp.defra.gov.uk/
       title: SND3
     - url: https://${{values.project_name}}.dev1.adp.defra.gov.uk/
