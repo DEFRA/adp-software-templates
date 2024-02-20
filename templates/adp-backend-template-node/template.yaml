@@ -152,6 +152,7 @@ spec:
         values:
           component_id: ${{ parameters.component_id }}
           project_name: ${{ parameters.component_id }}
+          ado_project_name: ${{ parameters.ado_project }}
           description: ${{ parameters.description }}
           owner: ${{ parameters.owner }}
           workstream: ${{ parameters.owner | parseEntityRef | pick('name') }}
@@ -240,7 +241,12 @@ spec:
             resourceType: endpoint
             authorized: true
 
-            # GitHub
+            # GitHub - Defra-ADP-Github
+          - resourceId: c275835f-49eb-4718-b00a-14abe324b6bc
+            resourceType: endpoint
+            authorized: true
+
+            # GitHub - DEFRA
           - resourceId: c7b55e44-8406-4bb3-bf47-c03c3bebe452
             resourceType: endpoint
             authorized: true
@@ -279,9 +285,10 @@ spec:
     links:
       - title: Repository
         url: ${{ steps.publish.output.remoteUrl }}
+        icon: github
       - title: Open in catalog
         icon: catalog
         entityRef: ${{ steps.register.output.entityRef }}
       - title: CI Pipeline
         url: ${{ steps.createPipeline.output.pipelineUrl }}
-        icon: rocketlaunch
+        icon: pipeline
