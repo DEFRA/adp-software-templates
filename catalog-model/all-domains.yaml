@@ -10,6 +10,6 @@ spec:
     - ./domains/fcp-payments-domain.yaml
     - ./domains/fcp-ffd-domain.yaml
     - ./domains/fcp-find-domain.yaml
-    - ./domains/core-mcu-ai-domain.yaml
+    - ./domains/coreai-mcu-ai-domain.yaml
     - ./domains/lap-mit-domain.yaml
     - ./domains/fcp-data-access-layer-domain.yaml

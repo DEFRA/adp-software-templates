@@ -1,18 +1,18 @@
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: core-ai
+  name: coreai
   title: Core AI
 spec:
   type: delivery-programme
   parent: core-defra
-  children: [mcu-ai]
+  children: [coreai-mcu-ai]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
-  name: core-ai-projects
+  name: coreai-projects
   description: Projects delivered by the Core AI programme.
 spec: 
   targets:
-    - ../projects/mcu-ai.yaml
+    - ../projects/coreai-mcu-ai.yaml
