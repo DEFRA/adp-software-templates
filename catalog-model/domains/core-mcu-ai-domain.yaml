@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: ministerial-correspondence-ai
+  description: Everything within the Ministerial Correspondence AI domain
+  title: Ministerial Correspondence AI
+spec:
+  owner: "group:default/mcu-ai"

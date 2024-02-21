@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: ministerial-correspondence
-  title: Ministerial Correspondence
+  name: core-ai
+  title: Core AI
 spec:
   type: delivery-programme
   parent: core-defra
@@ -11,8 +11,8 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
-  name: mc-projects
-  description: Projects delivered by the Ministerial Correspondence programme.
+  name: core-ai-projects
+  description: Projects delivered by the Core AI programme.
 spec: 
   targets:
     - ../projects/mcu-ai.yaml

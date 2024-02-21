@@ -6,4 +6,4 @@ metadata:
   description: Components and resources that make up the Ministerial Correspondence AI system.
 spec:
   owner: "group:default/mcu-ai"
-  domain: "domain:default/ministerial-correspondence"
+  domain: "domain:default/ministerial-correspondence-ai"

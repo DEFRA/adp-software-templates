@@ -8,5 +8,5 @@ spec:
   profile:
     displayName: Ministerial Correspondence AI
     picture: https://avatars.githubusercontent.com/u/5528822?s=200&v=4
-  parent: ministerial-correspondence
+  parent: core-ai
   children: []
