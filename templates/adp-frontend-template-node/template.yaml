@@ -244,14 +244,13 @@ spec:
           - AZD-ADP-PRE1
           - AZD-ADP-SNYK
           - Defra-ADP-Github
-          - DEFRA SonarCloud
-          - DEFRA
+          - DEFRA-ADP-SonarCloud
           agentPools:
           - DEFRA-ADP-SND1-ubuntu2204
           - DEFRA-ADP-SND3-ubuntu2204
           - DEFRA-ADP-DEV1-ubuntu2204
           - DEFRA-ADP-TST1-ubuntu2204
-          #- DEFRA-ADP-PRE1-ubuntu2204
+          - DEFRA-ADP-PRE1-ubuntu2204
           variableGroups:
           - name: ${{ parameters.component_id }}-snd3
             description: Variables for the ${{ parameters.component_id }} service

@@ -50,11 +50,7 @@ extends:
     appDeployConfig:
       filepath: "./appConfig"  
       filetype: "yaml"
-      
-      # TO BE ADDED IF THERE ARE ANY KEYVAULT REFERENCES IN APP CONFIG
-      # variableGroups: 
-      #   - ${{ values.project_name }}-snd1
-      #   - ${{ values.project_name }}-snd2
-      #   - ${{ values.project_name }}-snd3
-      # variables:
-      #   - ${{ values.project_name }}-APPINSIGHTS-CONNECTIONSTRING
+      variableGroups:
+        - ${{ values.project_name }}-<environment>
+      variables:
+        - ${{ values.project_name }}-APPINSIGHTS-CONNECTIONSTRING

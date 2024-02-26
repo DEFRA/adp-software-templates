@@ -230,8 +230,7 @@ spec:
           - AZD-ADP-PRE1
           - AZD-ADP-SNYK
           - Defra-ADP-Github
-          - DEFRA SonarCloud
-          - DEFRA
+          - DEFRA-ADP-SonarCloud
           agentPools:
           - DEFRA-ADP-SND1-ubuntu2204
           - DEFRA-ADP-SND3-ubuntu2204
