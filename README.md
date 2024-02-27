@@ -4,6 +4,8 @@ Software templates and catalog entities for the [ADP portal](https://github.com/
 ## What are ADP Software Templates used for?
 This repository contains the full structures to scaffold an entire application business application/microservice, including 'hello world' code examples in either NodeJS or C#. These templates include GDS styling, mock UI or backend, CI & CD pipelines, tests, docker files HELM charts, etc. The platform currently has a scaffolder for NodeJs frontends (UI) and backends / APIs. 
 
+Any updates to the scaffolded applications via backstage should be made here and will be applied to every newly scaffolded and deployed microservice. 
+
 ## Repository structure
 The repository contains YAML files which define the entities loaded into the software catalog. The [Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format) describes the fields which are required in the entities. The repository is organised as follows:
 
