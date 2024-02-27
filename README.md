@@ -2,7 +2,7 @@
 Software templates and catalog entities for the [ADP portal](https://github.com/defra-adp-sandpit/adp-portal). The templates and entities in this repository are referenced as catalog locations in the adp-portal project.
 
 ## What are ADP Software Templates used for?
-This repository contains the full structures to scaffold an entire application business application/microservice, including 'hello world' code examples in either NodeJS or C#. These templates include GDS styling, mock UI or backend, CI & CD pipelines, tests, docker files HELM charts, etc. The platform currently has a scaffolder for NodeJs frontends (UI) and backends / APIs. 
+This repository contains the full structures (templates) to scaffold an entire application business application/microservice, including 'hello world' code examples in either NodeJS or C#. These templates include GDS styling, mock UI or backend, CI & CD pipelines, tests, docker files HELM charts, etc. The platform currently has a scaffolder for NodeJs frontends (UI) and backends / APIs. 
 
 Any updates to the scaffolded applications via backstage should be made here and will be applied to every newly scaffolded and deployed microservice. 
 
