@@ -292,6 +292,7 @@ spec:
     - id: getServiceConnection
       name: Get ADO Service Connection
       action: adp:azure:serviceconnection:get
+      if: ${{ steps.configureAdoProject.output.code == 204 }}
       input:
         organization: ${{ parameters.ado_organization }}
         project: ${{ parameters.ado_project }}
@@ -300,6 +301,7 @@ spec:
     - id: createPipeline
       name: Create CI Pipeline
       action: adp:azure:pipeline:create
+      if: ${{ steps.configureAdoProject.output.code == 204 }}
       input:
         organization: ${{ parameters.ado_organization }}
         project: ${{ parameters.ado_project }}
@@ -312,6 +314,7 @@ spec:
     - id: permitResources
       name: Permit Pipeline Resources
       action: adp:azure:pipeline:permit
+      if: ${{ steps.configureAdoProject.output.code == 204 }}
       input:
         organization: ${{ parameters.ado_organization }}
         project: ${{ parameters.ado_project }}
@@ -342,8 +345,8 @@ spec:
             resourceType: endpoint
             authorized: true
 
-            # SonarCloud
-          - resourceId: bbcf902e-d4d5-42ab-b175-f0f05954c528
+            # SonarCloud - DEFRA-ADP-SonarCloud
+          - resourceId: ee6f72f7-4a3c-4c83-a7fe-4bd75045570f
             resourceType: endpoint
             authorized: true
 
@@ -360,6 +363,7 @@ spec:
     - id: runPipeline
       name: Run CI Pipeline
       action: adp:azure:pipeline:run
+      if: ${{ steps.configureAdoProject.output.code == 204 }}
       input:
         organization: ${{ parameters.ado_organization }}
         pipelineId: ${{ steps.createPipeline.output.pipelineId }}

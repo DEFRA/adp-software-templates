@@ -278,6 +278,7 @@ spec:
     - id: getServiceConnection
       name: Get ADO Service Connection
       action: adp:azure:serviceconnection:get
+      if: ${{ steps.configureAdoProject.output.code == 204 }}
       input:
         organization: ${{ parameters.ado_organization }}
         project: ${{ parameters.ado_project }}
@@ -286,6 +287,7 @@ spec:
     - id: createPipeline
       name: Create CI Pipeline
       action: adp:azure:pipeline:create
+      if: ${{ steps.configureAdoProject.output.code == 204 }}
       input:
         organization: ${{ parameters.ado_organization }}
         project: ${{ parameters.ado_project }}
@@ -298,6 +300,7 @@ spec:
     - id: permitResources
       name: Permit Pipeline Resources
       action: adp:azure:pipeline:permit
+      if: ${{ steps.configureAdoProject.output.code == 204 }}
       input:
         organization: ${{ parameters.ado_organization }}
         project: ${{ parameters.ado_project }}
@@ -346,6 +349,7 @@ spec:
     - id: runPipeline
       name: Run CI Pipeline
       action: adp:azure:pipeline:run
+      if: ${{ steps.configureAdoProject.output.code == 204 }}
       input:
         organization: ${{ parameters.ado_organization }}
         pipelineId: ${{ steps.createPipeline.output.pipelineId }}
