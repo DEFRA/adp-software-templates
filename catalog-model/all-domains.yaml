@@ -13,3 +13,4 @@ spec:
     - ./domains/coreai-mcu-ai-domain.yaml
     - ./domains/lap-mit-domain.yaml
     - ./domains/fcp-data-access-layer-domain.yaml
+    - ./domains/fcp-sfd-domain.yaml

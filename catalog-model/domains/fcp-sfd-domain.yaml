@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: fcp-sfd
+  description: Everything within the FCP Single Front Door domain
+  title: FCP SFD
+spec:
+  owner: "group:default/fcp-sfd"

@@ -12,3 +12,4 @@ spec:
     - ./systems/coreai-mcu-ai-system.yaml
     - ./systems/lap-mit-system.yaml
     - ./systems/fcp-data-access-layer.yaml
+    - ./systems/fcp-sfd-system.yaml
