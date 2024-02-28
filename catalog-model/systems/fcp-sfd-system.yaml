@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: fcp-sfd-system
+  description: Components and resources that make up the FCP Single Front Door system.
+spec:
+  owner: "group:default/fcp-sfd"
+  domain: "domain:default/fcp-sfd"

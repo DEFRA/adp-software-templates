@@ -6,7 +6,7 @@ metadata:
 spec:
   type: delivery-programme
   parent: rural-payments-agency
-  children: [fcp-grants, fcp-payments, fcp-documents, fcp-vet-visits, fcp-demo]
+  children: [fcp-grants, fcp-payments, fcp-documents, fcp-vet-visits, fcp-demo, fcp-sfd]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Location
@@ -24,3 +24,4 @@ spec:
     - ../projects/fcp-data-access-layer.yaml
     - ../projects/fcp-find.yaml
     - ../projects/fcp-ffd.yaml
+    - ../projects/fcp-sfd.yaml
