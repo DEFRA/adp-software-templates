@@ -331,8 +331,8 @@ spec:
             resourceType: endpoint
             authorized: true
 
-            # SonarCloud
-          - resourceId: bbcf902e-d4d5-42ab-b175-f0f05954c528
+            # SonarCloud - DEFRA-ADP-SonarCloud
+          - resourceId: ee6f72f7-4a3c-4c83-a7fe-4bd75045570f
             resourceType: endpoint
             authorized: true
 
