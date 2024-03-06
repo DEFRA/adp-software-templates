@@ -73,7 +73,7 @@ spec:
         app_infra_service_bus_check:
           title: Do you need an Azure Service Bus Queue or Topic?
           type: string
-          description: Select the resource you need to get started. If not, select none.
+          description: Select the resource you need to get started. If not, select none. (These resources are just to get started. More resources can be added later to code by developers.)
           default: none
           enum:
             - queue
@@ -85,9 +85,9 @@ spec:
             - None
         
         app_infra_postgres_db_check:
-          title: Do you need an Azure Postgres FlexibleServer Database?
+          title: Do you need an Azure Postgres FlexibleServer Database? 
           type: string
-          description: Select if a database is required.
+          description: Select if a database is required. (These resources are just to get started. More resources can be added later to code by developers.)
           default: no
           enum:
             - yes
