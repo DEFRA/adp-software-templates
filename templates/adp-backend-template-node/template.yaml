@@ -255,6 +255,11 @@ spec:
           repo_project_slug: ${{ parameters.repo_url | projectSlug }}
           component_lifecycle: ${{ parameters.component_lifecycle }}
           system: ${{ parameters.system }}
+          app_infra_service_bus_check: ${{ parameters.app_infra_service_bus_check }}
+          app_infra_service_bus_resource_name: ${{ parameters.app_infra_service_bus_resource_name }}
+          app_infra_service_bus_resource_type: ${{ parameters.app_infra_service_bus_resource_type }}
+          app_infra_postgres_db_check: ${{ parameters.app_infra_postgres_db_check }}
+          app_infra_postgres_db_resource_name: ${{ parameters.app_infra_postgres_db_resource_name }}
 
     - id: publish
       name: Publish
