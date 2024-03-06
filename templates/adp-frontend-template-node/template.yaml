@@ -1,8 +1,8 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: adp-frontend-template-node-test
-  title: Test Template
+  name: adp-frontend-template-node
+  title: ADP Frontend Template Node
   description: Template to support rapid delivery of microservices for ADP Platform. It contains the configuration needed to deploy a simple Hapi Node server to the Azure Kubernetes Platform.
   tags:
     - node
