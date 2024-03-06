@@ -93,13 +93,36 @@ spec:
             - none
           enumNames:
             - Queue
-            - Topic1
+            - Topic
             - None
 
       dependencies:
         app_infra_service_bus_check:
           allOf:
-            
+            - if:
+                properties:
+                  app_infra_service_bus_check:
+                    const: queue
+              then:
+                properties:
+                  app_infra_service_bus_resource_name:
+                    title: Azure Service Bus Queue Name
+                    type: string
+                    description: Provide the Azure Service Bus Queue name.
+                  app_infra_service_bus_resource_type:
+                    title: Queue Pub-Sub Type
+                    type: string
+                    description: Select if the queue is a publisher or subscriber.
+                    default: none
+                    enum:
+                      - publisher
+                      - subscriber
+                    enumNames:
+                      - Publisher
+                      - Subscriber
+                required:
+                - app_infra_service_bus_resource_name
+                - app_infra_service_bus_resource_type
             - if:
                 properties:
                   app_infra_service_bus_check:
@@ -107,7 +130,7 @@ spec:
               then:
                 properties:
                   app_infra_service_bus_resource_name:
-                    title: Azure Service Bus Topic Name -1
+                    title: Azure Service Bus Topic Name
                     type: string
                     description: Provide the Azure Service Bus Topic name.
                   app_infra_service_bus_resource_type:
