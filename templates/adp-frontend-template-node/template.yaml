@@ -98,7 +98,7 @@ spec:
 
       dependencies:
         app_infra_service_bus_check:
-          allOf:
+          oneOf:
             - if:
                 properties:
                   app_infra_service_bus_check:
