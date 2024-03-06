@@ -98,7 +98,7 @@ spec:
 
       dependencies:
         app_infra_service_bus_check:
-          oneOf:
+          allOf:
             - if:
                 properties:
                   app_infra_service_bus_check:
@@ -110,9 +110,9 @@ spec:
                     type: string
                     description: Provide the Azure Service Bus Queue name.
                   app_infra_service_bus_resource_type:
-                    title: Pub-Sub Type
+                    title: Queue Pub-Sub Type
                     type: string
-                    description: Select if it is a publisher or subscriber.
+                    description: Select if the queue is a publisher or subscriber.
                     default: none
                     enum:
                       - publisher
@@ -134,9 +134,9 @@ spec:
                     type: string
                     description: Provide the Azure Service Bus Topic name.
                   app_infra_service_bus_resource_type:
-                    title: Pub-Sub Type
+                    title: Topic Pub-Sub Type
                     type: string
-                    description: Select if it is a publisher or subscriber.
+                    description: Select if the topic is a publisher or subscriber.
                     default: none
                     enum:
                       - publisher
