@@ -4,14 +4,14 @@
 {% if values.app_infra_service_bus_check == 'queue' %}
 namespaceQueues:
   - name: ${{ values.app_infra_service_bus_resource_name }}
-    {% if values.app_infra_service_bus_resource_type == 'receiver' %}
+    {% if values.app_infra_service_bus_resource_type == 'subscriber' %}
     owner: 'no'
     {% endif %}
     roleAssignments:
       {% if values.app_infra_service_bus_resource_type == 'publisher' %}
       - roleName: 'QueueSender'
       {% endif %}
-      {% if values.app_infra_service_bus_resource_type == 'receiver' %}
+      {% if values.app_infra_service_bus_resource_type == 'subscriber' %}
       - roleName: 'QueueReceiver'
       {% endif %}
 {% endif %}
@@ -19,14 +19,14 @@ namespaceQueues:
 {% if values.app_infra_service_bus_check == 'topic' %}
 namespaceTopics:
   - name: ${{ values.app_infra_service_bus_resource_name }}
-    {% if values.app_infra_service_bus_resource_type == 'receiver' %}
+    {% if values.app_infra_service_bus_resource_type == 'subscriber' %}
     owner: 'no'
     {% endif %}
     roleAssignments:
       {% if values.app_infra_service_bus_resource_type == 'publisher' %}
       - roleName: 'TopicSender'
       {% endif %}
-      {% if values.app_infra_service_bus_resource_type == 'receiver' %}
+      {% if values.app_infra_service_bus_resource_type == 'subscriber' %}
       - roleName: 'TopicReceiver'
       {% endif %}
 {% endif %}
