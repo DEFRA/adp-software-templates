@@ -93,7 +93,7 @@ spec:
             - none
           enumNames:
             - Queue
-            - Topic
+            - Topic1
             - None
 
       dependencies:
@@ -107,7 +107,7 @@ spec:
               then:
                 properties:
                   app_infra_service_bus_resource_name:
-                    title: Azure Service Bus Topic Name
+                    title: Azure Service Bus Topic Name -1
                     type: string
                     description: Provide the Azure Service Bus Topic name.
                   app_infra_service_bus_resource_type:
