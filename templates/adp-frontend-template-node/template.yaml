@@ -22,6 +22,7 @@ spec:
         - component_type
         - owner
         - component_lifecycle
+        - app_infra_service_bus_check
       properties:
         component_id:
           title: Component Name
@@ -80,6 +81,72 @@ spec:
             catalogFilter:
               - kind: Group
                 spec.type: team
+
+        app_infra_service_bus_check:
+          title: Do you need an Azure Service Bus Queue or Topic?
+          type: string
+          description: Select the resource you need to get started. If not, select none. (These resources are just to get started. More resources can be added later to code by developers.)
+          default: none
+          enum:
+            - queue
+            - topic
+            - none
+          enumNames:
+            - Queue
+            - Topic
+            - None
+
+      dependencies:
+        app_infra_service_bus_check:
+          allOf:
+            - if:
+                properties:
+                  app_infra_service_bus_check:
+                    const: queue
+              then:
+                properties:
+                  app_infra_service_bus_resource_name:
+                    title: Azure Service Bus Queue Name
+                    type: string
+                    description: Provide the Azure Service Bus Queue name.
+                  app_infra_service_bus_resource_type:
+                    title: Queue Pub-Sub Type
+                    type: string
+                    description: Select if the queue is a publisher or subscriber.
+                    default: none
+                    enum:
+                      - publisher
+                      - subscriber
+                    enumNames:
+                      - Publisher
+                      - Subscriber
+                required:
+                - app_infra_service_bus_resource_name
+                - app_infra_service_bus_resource_type
+            - if:
+                properties:
+                  app_infra_service_bus_check:
+                    const: topic
+              then:
+                properties:
+                  app_infra_service_bus_resource_name:
+                    title: Azure Service Bus Topic Name
+                    type: string
+                    description: Provide the Azure Service Bus Topic name.
+                  app_infra_service_bus_resource_type:
+                    title: Topic Pub-Sub Type
+                    type: string
+                    description: Select if the topic is a publisher or subscriber.
+                    default: none
+                    enum:
+                      - publisher
+                      - subscriber
+                    enumNames:
+                      - Publisher
+                      - Subscriber
+                required:
+                - app_infra_service_bus_resource_name
+                - app_infra_service_bus_resource_type
 
     - title: Git Repository
       description: |
@@ -174,6 +241,9 @@ spec:
           repo_project_slug: ${{ parameters.repo_url | projectSlug }}
           component_lifecycle: ${{ parameters.component_lifecycle }}
           system: ${{ parameters.system }}
+          app_infra_service_bus_check: ${{ parameters.app_infra_service_bus_check }}
+          app_infra_service_bus_resource_name: ${{ parameters.app_infra_service_bus_resource_name }}
+          app_infra_service_bus_resource_type: ${{ parameters.app_infra_service_bus_resource_type }}
 
     - id: publish
       name: Publish

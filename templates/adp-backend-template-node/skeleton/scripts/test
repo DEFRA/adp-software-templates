@@ -56,11 +56,15 @@ compose() {
 
  # Guarantee clean environment
   compose down -v
+  {%- if values.app_infra_postgres_db_check == 'yes' %}
   docker-compose -f docker-compose.migrate.yaml -p "${service}-test" down -v
-
+  {%- endif %}
+  
   # Ensure container images are up to date
   compose build
+  {%- if values.app_infra_postgres_db_check == 'yes' %}
   docker-compose -f docker-compose.migrate.yaml -p "${service}-test" run --rm database-up
+  {%- endif %}
 
   # Run tests
   if [ "${debug}" = "true" ]; then

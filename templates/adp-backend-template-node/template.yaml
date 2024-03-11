@@ -21,6 +21,8 @@ spec:
         - description
         - owner
         - component_lifecycle
+        - app_infra_service_bus_check
+        - app_infra_postgres_db_check
       properties:
         component_id:
           title: Component Name
@@ -67,6 +69,99 @@ spec:
             catalogFilter:
               - kind: Group
                 spec.type: team
+
+        app_infra_service_bus_check:
+          title: Do you need an Azure Service Bus Queue or Topic?
+          type: string
+          description: Select the resource you need to get started. If not, select none. (These resources are just to get started. More resources can be added later to code by developers.)
+          default: none
+          enum:
+            - queue
+            - topic
+            - none
+          enumNames:
+            - Queue
+            - Topic
+            - None
+        
+        app_infra_postgres_db_check:
+          title: Do you need an Azure Postgres FlexibleServer Database? 
+          type: string
+          description: Select if a database is required. (These resources are just to get started. More resources can be added later to code by developers.)
+          default: no
+          enum:
+            - yes
+            - no
+          enumNames:
+            - Yes
+            - No
+
+      dependencies:
+        app_infra_service_bus_check:
+          allOf:
+            - if:
+                properties:
+                  app_infra_service_bus_check:
+                    const: queue
+              then:
+                properties:
+                  app_infra_service_bus_resource_name:
+                    title: Azure Service Bus Queue Name
+                    type: string
+                    description: Provide the Azure Service Bus Queue name.
+                  app_infra_service_bus_resource_type:
+                    title: Pub-Sub Type
+                    type: string
+                    description: Select if it is a publisher or subscriber.
+                    default: none
+                    enum:
+                      - publisher
+                      - subscriber
+                    enumNames:
+                      - Publisher
+                      - Subscriber
+                required:
+                - app_infra_service_bus_resource_name
+                - app_infra_service_bus_resource_type
+            - if:
+                properties:
+                  app_infra_service_bus_check:
+                    const: topic
+              then:
+                properties:
+                  app_infra_service_bus_resource_name:
+                    title: Azure Service Bus Topic Name
+                    type: string
+                    description: Provide the Azure Service Bus Topic name.
+                  app_infra_service_bus_resource_type:
+                    title: Pub-Sub Type
+                    type: string
+                    description: Select if it is a publisher or subscriber.
+                    default: none
+                    enum:
+                      - publisher
+                      - subscriber
+                    enumNames:
+                      - Publisher
+                      - Subscriber
+                required:
+                - app_infra_service_bus_resource_name
+                - app_infra_service_bus_resource_type
+
+        app_infra_postgres_db_check:
+          allOf:
+            - if:
+                properties:
+                  app_infra_postgres_db_check:
+                    const: yes
+              then:
+                properties:
+                  app_infra_postgres_db_resource_name:
+                    title: Database Name
+                    type: string
+                    description: Provide the database name.
+                required:
+                - app_infra_postgres_db_resource_name
 
     - title: Git Repository
       description: |
@@ -160,6 +255,11 @@ spec:
           repo_project_slug: ${{ parameters.repo_url | projectSlug }}
           component_lifecycle: ${{ parameters.component_lifecycle }}
           system: ${{ parameters.system }}
+          app_infra_service_bus_check: ${{ parameters.app_infra_service_bus_check }}
+          app_infra_service_bus_resource_name: ${{ parameters.app_infra_service_bus_resource_name }}
+          app_infra_service_bus_resource_type: ${{ parameters.app_infra_service_bus_resource_type }}
+          app_infra_postgres_db_check: ${{ parameters.app_infra_postgres_db_check }}
+          app_infra_postgres_db_resource_name: ${{ parameters.app_infra_postgres_db_resource_name }}
 
     - id: publish
       name: Publish
