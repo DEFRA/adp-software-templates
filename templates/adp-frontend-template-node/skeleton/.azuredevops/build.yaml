@@ -3,6 +3,10 @@ parameters:
   displayName: "Deploy from Feature Branch"
   type: boolean
   default: false
+- name: deployConfigOnly
+  displayName: "Deploy App Config only"
+  type: boolean
+  default: false
 
 pr:
   branches:
@@ -40,6 +44,7 @@ extends:
     projectName: "${{ values.project_name }}"
     serviceName: "${{ values.project_name }}"
     deployFromFeature: {% raw %}${{ parameters.deployFromFeature }}{% endraw %}
+    deployConfigOnly: {% raw %${{ parameters.deployConfigOnly }}{% endraw %}
     appBuildConfig:
       appFrameworkType: "nodejs"    
       projectPath: "./package.json"
@@ -52,5 +57,3 @@ extends:
       filetype: "yaml"
       variableGroups:
         - ${{ values.project_name }}-<environment>
-      variables:
-        - ${{ values.project_name }}-APPINSIGHTS-CONNECTIONSTRING
