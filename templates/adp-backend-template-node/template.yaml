@@ -375,6 +375,14 @@ spec:
               value: TEST
               isSecret: true
 
+    - id: logConfigureAdoProjectReponse
+      name: Log Azure DevOps Project Configuration
+      action: debug:log
+      input:
+        message: |
+          Response Code: ${{ steps.configureAdoProject.output.code }}
+          Response: ${{ steps.configureAdoProject.output.body | dump }}
+
     - id: getServiceConnection
       name: Get ADO Service Connection
       action: adp:azure:serviceconnection:get
