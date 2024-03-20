@@ -13,18 +13,20 @@ spec:
   profile:
     displayName: DEFRA
     picture: https://avatars.githubusercontent.com/u/5528822?s=200&v=4
-  children: [environment-agency, animal-plant-health-agency, rural-payments-agency, natural-england, marine-management-organisation, core-defra]
+  children: []
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
-  name: defra-arms-length-bodies
-  description: Arms Length Bodies under the DEFRA organisation.
+  name: defra-delivery-programmes
+  description: All delivery programmes within the Defra organization.
 spec:
   targets:
-    - ./arms-length-bodies/environment-agency.yaml
-    - ./arms-length-bodies/animal-plant-health-agency.yaml
-    - ./arms-length-bodies/rural-payments-agency.yaml
-    - ./arms-length-bodies/natural-england.yaml
-    - ./arms-length-bodies/marine-management-organisation.yaml
-    - ./arms-length-bodies/core-defra.yaml
+    - ./delivery-programmes/apha-europe-trade.yaml
+    - ./delivery-programmes/coreai.yaml
+    - ./delivery-programmes/ea-extended-producer-responsibility.yaml
+    - ./delivery-programmes/mmo-fisheries.yaml
+    - ./delivery-programmes/ne-biodiversity-net-gains.yaml
+    - ./delivery-programmes/rpa-farming-countryside-programme.yaml
+    - ./delivery-programmes/rpa-legacy-applications-programme.yaml
+
