@@ -44,7 +44,7 @@ extends:
     projectName: "${{ values.project_name }}"
     serviceName: "${{ values.project_name }}"
     deployFromFeature: {% raw %}${{ parameters.deployFromFeature }}{% endraw %}
-    deployConfigOnly: {% raw %${{ parameters.deployConfigOnly }}{% endraw %}
+    deployConfigOnly: {% raw %}${{ parameters.deployConfigOnly }}{% endraw %}
     appBuildConfig:
       appFrameworkType: "nodejs"    
       projectPath: "./package.json"
