@@ -7,3 +7,4 @@ spec:
   targets:
     - ../templates/adp-frontend-template-node/template.yaml
     - ../templates/adp-backend-template-node/template.yaml
+    - ../templates/adp-empty-project-template/template.yaml
