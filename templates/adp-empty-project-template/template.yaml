@@ -1,0 +1,207 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: adp-empty-project-template-node
+  title: ADP Empty Project Template
+  description: Template to support rapid delivery of microservices for ADP Platform. It is used to scaffold an empty project (that only contains README.md, pull_request_template.md and catalog.yaml files).
+  tags:
+    - empty project
+    - repository
+spec:
+  owner: adp
+  type: empty-project
+
+  parameters:
+    - title: Component Information
+      description: Enter properties describing this component.
+      required:
+        - component_id
+        - description
+        - component_type
+        - owner
+        - system
+        - component_lifecycle
+      properties:
+        component_id:
+          title: Component Name
+          type: string
+          description: Unique name of the component which will be used for the repository, package, and image names. This should be in the format <program>-<workstream>-<repo>. Maximum 64 characters.
+          ui:field: EntityNamePicker
+          ui:autofocus: true
+
+        description:
+          title: Description
+          type: string
+          description: Describe what this component does. This description will be used in the component's README and package.json.
+       
+        component_type:
+          title: Component Type
+          type: string
+          description: Select the type of this frontend app. Allowed values - Frontend, Backend, Library, Website, Other
+          default: frontend
+          enum:
+            - frontend
+            - backend
+            - library
+            - website
+            - Other
+          enumNames:
+            - Frontend
+            - Backend
+            - Library
+            - Website
+            - Other
+       
+        owner:
+          title: Owner
+          type: string
+          description: Select the team who will own this component
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              - kind: Group
+                spec.type: team
+        
+        system:
+          title: System
+          type: string
+          description: Select the system that this component will be a part of. Systems are a collection of related components and resources.
+          ui:field: EntityPicker
+          ui:options:
+            allowArbitraryValues: false
+            catalogFilter:
+              - kind: System
+
+        component_lifecycle:
+          title: Project Phase
+          type: string
+          description: Select the project phase which suits this component. Refer to the [GDS service manual](https://www.gov.uk/service-manual/agile-delivery) for more information.
+          default: alpha
+          enum:
+            - discovery
+            - alpha
+            - beta
+          enumNames:
+            - Discovery
+            - Alpha
+            - Beta
+
+
+    - title: Git Repository
+      description: |
+        To encourage coding in the open the repository will be public by default. Refer to the [GDS service manual](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable) for more information.
+
+        The scaffolder will create a new repository and an associated team with write permissions.
+      required:
+        - repo_url
+        - github_team_name
+        - github_team_users
+        - github_team_visibility
+      properties:
+        repo_url:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - defra
+              - defra-adp-sandpit
+
+        github_team_name:
+          title: GitHub Team Name
+          type: string
+          description: This team will be granted Write access to the repository.
+
+        github_team_description:
+          title: GitHub Team Description
+          type: string
+          description: An optional description of the team.
+
+        github_team_users:
+          title: GitHub Team Members
+          type: string
+          description: Comma-separated list of GitHub usernames to be added to the team.
+
+        github_team_visibility:
+          title: GitHub Team Visibility
+          type: string
+          description: The privacy level this team should have. *Visible* teams can be seen by all members in the organization. *Secret* teams can only be seen by the organization owners and team members.
+          default: closed
+          enum:
+            - closed
+            - secret
+          enumNames:
+            - Visible
+            - Secret
+
+  steps:
+    - id: template
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          component_id: ${{ parameters.component_id }}
+          project_name: ${{ parameters.component_id }}
+          description: ${{ parameters.description }}
+          component_type: ${{ parameters.component_type}}
+          owner: ${{ parameters.owner }}
+          repo_url: ${{ parameters.repo_url }}
+          repo_project_slug: ${{ parameters.repo_url | projectSlug }}
+          component_lifecycle: ${{ parameters.component_lifecycle }}
+
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ["github.com"]
+        description: ${{ parameters.description }}
+        repoUrl: ${{ parameters.repo_url }}
+        requireCodeOwnerReviews: true
+        dismissStaleReviews: true
+        requiredConversationResolution: true
+        requiredStatusCheckContexts: []
+        repoVisibility: public
+        defaultBranch: main
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        requiredCommitSigning: true
+
+    - id: createGitHubTeam
+      name: Create GitHub Team
+      action: adp:github:team:create
+      input:
+        githubTeamName: ${{ parameters.github_team_name }}
+        githubTeamDescription: ${{ parameters.github_team_description }}
+        orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+        users: ${{ parameters.github_team_users }}
+        visibility: ${{ parameters.github_team_visibility }}
+
+    - id: addGitHubTeam
+      name: Add GitHub Team to Repository
+      action: adp:github:team:add
+      input:
+        teamNames: ${{ parameters.github_team_name }}
+        repoName: ${{ parameters.repo_url | parseRepoUrl | pick('repo') }}
+        orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+        owner: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+        permission: push
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: "/catalog-info.yaml"
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps.publish.output.remoteUrl }}
+        icon: github
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}
+
