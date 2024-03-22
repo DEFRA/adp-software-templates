@@ -1,11 +1,11 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: adp-empty-project-template-node
+  name: adp-empty-project-template
   title: ADP Empty Project Template
   description: Template to support rapid delivery of microservices for ADP Platform. It is used to scaffold an empty project (that only contains README.md, pull_request_template.md and catalog.yaml files).
   tags:
-    - empty project
+    - empty-project
     - repository
 spec:
   owner: adp
