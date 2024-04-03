@@ -298,6 +298,15 @@ spec:
         owner: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
         permission: push
 
+    - id: generateFluxManifests
+      name: Generate Flux Manifests
+      action: http:backstage:request
+      input:
+        method: POST
+        path: /proxy/adp-portal-api/FluxConfig/generate/${{ parameters.owner | parseEntityRef | pick('name') }}/${{ parameters.component_id }}
+        headers:
+          content-type: 'application/json'
+
     - id: configureAdoProject
       name: Configure Azure DevOps Project
       action: http:backstage:request
