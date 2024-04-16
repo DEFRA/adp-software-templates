@@ -193,7 +193,7 @@ spec:
       action: http:backstage:request
       input:
         method: POST
-        path: /proxy/adp-portal-api/TeamFluxConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/services
+        path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/services
         headers:
           content-type: "application/json"
         body:
