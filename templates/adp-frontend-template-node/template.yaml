@@ -300,7 +300,7 @@ spec:
             - TST2
             - PRE1
             - PRD1
-          configVariables:
+          configVariables: {}
 
     - id: configureAdoProject
       name: Configure Azure DevOps Project
