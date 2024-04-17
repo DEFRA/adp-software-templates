@@ -1,5 +1,6 @@
-# ffc-demo-ingress
+# ${{ values.project_name }}
 
+${{ values.project_description }}
 
 ## Local Development
 

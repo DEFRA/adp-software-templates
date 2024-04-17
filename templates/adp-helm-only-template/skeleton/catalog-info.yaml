@@ -1,20 +1,34 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: ffc-demo-ingress
-  
-  description: ffc-demo-ingress
-  
+  name: ${{values.component_id}}
+  {% if values.description %}
+  description: ${{values.description}}
+  {% endif %}
   annotations:
-    github.com/project-slug: defra/ffc-demo-ingress
+    github.com/project-slug: ${{values.repo_project_slug}}
     backstage.io/techdocs-ref: dir:.
+    dev.azure.com/project: ${{ values.ado_project_name }}
+    dev.azure.com/build-definition: ${{values.project_name}}
   links:
-    - url: https://github.com/defra/ffc-demo-ingress
+    - url: https://github.com/${{values.repo_project_slug}}
       title: GitHub Repository
       icon: github
+    - url: https://dev.azure.com/defragovuk/${{ values.ado_project_name }}/
+      title: Azure DevOps Project
+      icon: project
+    - url: https://portal.azure.com/defradev.onmicrosoft.com
+      title: Azure Portal - Defra Dev
+      icon: cloud
+    - url: https://portal.azure.com/Defra.onmicrosoft.com
+      title: Azure Portal - Defra
+      icon: cloud
 
 spec:
   type: Other
-  lifecycle: alpha
-  owner: "group:default/fcp-demo"
+  lifecycle: ${{ values.component_lifecycle }}
+  owner: ${{values.owner | dump}}
+  {% if values.system %}
+  system: ${{ values.system }}
+  {% endif %}
   

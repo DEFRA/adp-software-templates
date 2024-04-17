@@ -27,11 +27,11 @@ extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
   parameters:
     programmeName: "ffc"
-    serviceName: "ffc-demo-ingress"
-    deployFromFeature: ${{ parameters.deployFromFeature }}  
-    includePlatformEnvs: true  
+    serviceName: "${{values.project_name}}"
+    deployFromFeature: {% raw %}${{ parameters.deployFromFeature }}{% endraw %}
+    includePlatformEnvs: true
     appBuildConfig:
-      appFrameworkType: "helm"  
-      projectPath: "helm/ffc-demo-ingress/Chart.yaml"
-      imageRepoName: "ffc-demo-ingress"     
+      appFrameworkType: "helm"
+      projectPath: "helm/${{values.project_name}}/Chart.yaml"
+      imageRepoName: "${{values.project_name}}"
   

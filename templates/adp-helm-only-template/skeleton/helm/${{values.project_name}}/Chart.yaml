@@ -1,8 +1,8 @@
 apiVersion: v2
-description: A Helm Chart to deploy the sfd-helm-ingress application to Kubernetes
-name: ffc-demo-ingress
+description: A Helm Chart to deploy the ${{values.component_id}} application to Kubernetes
+name: ${{values.component_id}}
 # this version is automatically updated in the build pipeline
-version: 1.0.8
+version: 1.0.0
 dependencies:
 - name: adp-helm-library
   version: ^1.0.0
