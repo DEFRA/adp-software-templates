@@ -121,8 +121,8 @@ spec:
                       - Publisher
                       - Subscriber
                 required:
-                  - app_infra_service_bus_resource_name
-                  - app_infra_service_bus_resource_type
+                - app_infra_service_bus_resource_name
+                - app_infra_service_bus_resource_type
             - if:
                 properties:
                   app_infra_service_bus_check:
@@ -145,8 +145,8 @@ spec:
                       - Publisher
                       - Subscriber
                 required:
-                  - app_infra_service_bus_resource_name
-                  - app_infra_service_bus_resource_type
+                - app_infra_service_bus_resource_name
+                - app_infra_service_bus_resource_type
 
     - title: Git Repository
       description: |
@@ -282,26 +282,6 @@ spec:
         owner: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
         permission: push
 
-    - id: registerFluxService
-      name: Register Service in Flux config
-      action: http:backstage:request
-      input:
-        method: POST
-        path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/services
-        headers:
-          content-type: "application/json"
-        body:
-          name: ${{ parameters.component_id }}
-          isFrontEnd: true
-          environments:
-            - SND3
-            - DEV1
-            - TST1
-            - TST2
-            - PRE1
-            - PRD1
-          configVariables: {}
-
     - id: configureAdoProject
       name: Configure Azure DevOps Project
       action: http:backstage:request
@@ -309,75 +289,75 @@ spec:
         method: PATCH
         path: /proxy/adp-portal-api/AdoProject/${{ parameters.ado_project }}/onboard
         headers:
-          content-type: "application/json"
+          content-type: 'application/json'
         body:
           environments:
-            - name: SND3
-              description: SND environment
-            - name: DEV1
-              description: DEV1 environment
-            - name: TST1
-              description: TST1 environment
-            - name: TST2
-              description: TST2 environment
-            - name: PRE1
-              description: PRE1 environment
-            - name: PRD1
-              description: PRD1 environment
+          - name: SND3
+            description: SND environment
+          - name: DEV1
+            description: DEV1 environment
+          - name: TST1
+            description: TST1 environment
+          - name: TST2
+            description: TST2 environment
+          - name: PRE1
+            description: PRE1 environment
+          - name: PRD1
+            description: PRD1 environment
           serviceConnections:
-            - AZD-ADP-SND1
-            - AZD-ADP-SND2
-            - AZD-ADP-SND3
-            - AZD-ADP-SSV3
-            - AZR-ADP-DEV1
-            - AZR-ADP-TST1
-            - AZR-ADP-PRE1
-            - AZD-ADP-SNYK
-            - Defra-ADP-Github
-            - DEFRA-ADP-SonarCloud
+          - AZD-ADP-SND1
+          - AZD-ADP-SND2
+          - AZD-ADP-SND3
+          - AZD-ADP-SSV3
+          - AZR-ADP-DEV1
+          - AZR-ADP-TST1
+          - AZR-ADP-PRE1
+          - AZD-ADP-SNYK
+          - Defra-ADP-Github
+          - DEFRA-ADP-SonarCloud
           agentPools:
-            - DEFRA-ADP-SND1-ubuntu2204
-            - DEFRA-ADP-SND3-ubuntu2204
-            - DEFRA-ADP-DEV1-ubuntu2204
-            - DEFRA-ADP-TST1-ubuntu2204
-            - DEFRA-ADP-PRE1-ubuntu2204
+          - DEFRA-ADP-SND1-ubuntu2204
+          - DEFRA-ADP-SND3-ubuntu2204
+          - DEFRA-ADP-DEV1-ubuntu2204
+          - DEFRA-ADP-TST1-ubuntu2204
+          - DEFRA-ADP-PRE1-ubuntu2204
           variableGroups:
-            - name: ${{ parameters.component_id }}-snd3
-              description: Variables for the ${{ parameters.component_id }} service
-              variables:
-                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
-                  value: TEST
-                  isSecret: true
-            - name: ${{ parameters.component_id }}-dev1
-              description: Variables for the ${{ parameters.component_id }} service
-              variables:
-                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
-                  value: TEST
-                  isSecret: true
-            - name: ${{ parameters.component_id }}-tst1
-              description: Variables for the ${{ parameters.component_id }} service
-              variables:
-                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
-                  value: TEST
-                  isSecret: true
-            - name: ${{ parameters.component_id }}-tst2
-              description: Variables for the ${{ parameters.component_id }} service
-              variables:
-                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
-                  value: TEST
-                  isSecret: true
-            - name: ${{ parameters.component_id }}-pre1
-              description: Variables for the ${{ parameters.component_id }} service
-              variables:
-                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
-                  value: TEST
-                  isSecret: true
-            - name: ${{ parameters.component_id }}-prd1
-              description: Variables for the ${{ parameters.component_id }} service
-              variables:
-                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
-                  value: TEST
-                  isSecret: true
+          - name: ${{ parameters.component_id }}-snd3
+            description: Variables for the ${{ parameters.component_id }} service
+            variables:
+            - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+              value: TEST
+              isSecret: true
+          - name: ${{ parameters.component_id }}-dev1
+            description: Variables for the ${{ parameters.component_id }} service
+            variables:
+            - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+              value: TEST
+              isSecret: true
+          - name: ${{ parameters.component_id }}-tst1
+            description: Variables for the ${{ parameters.component_id }} service
+            variables:
+            - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+              value: TEST
+              isSecret: true
+          - name: ${{ parameters.component_id }}-tst2
+            description: Variables for the ${{ parameters.component_id }} service
+            variables:
+            - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+              value: TEST
+              isSecret: true
+          - name: ${{ parameters.component_id }}-pre1
+            description: Variables for the ${{ parameters.component_id }} service
+            variables:
+            - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+              value: TEST
+              isSecret: true
+          - name: ${{ parameters.component_id }}-prd1
+            description: Variables for the ${{ parameters.component_id }} service
+            variables:
+            - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+              value: TEST
+              isSecret: true
 
     - id: logConfigureAdoProjectReponse
       name: Log Azure DevOps Project Configuration
