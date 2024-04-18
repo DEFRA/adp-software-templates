@@ -26,8 +26,8 @@ resources:
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
   parameters:
-    programmeName: "ffc"
-    serviceName: "${{values.project_name}}"
+    projectName: "${{ values.project_name }}"
+    serviceName: "${{ values.project_name }}"
     deployFromFeature: {% raw %}${{ parameters.deployFromFeature }}{% endraw %}
     includePlatformEnvs: true
     appBuildConfig:

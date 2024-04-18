@@ -2,9 +2,9 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: ${{values.component_id}}
-  {% if values.description %}
+  {% if values.description -%}
   description: ${{values.description}}
-  {% endif %}
+  {%- endif %}
   annotations:
     github.com/project-slug: ${{values.repo_project_slug}}
     dev.azure.com/project: ${{ values.ado_project_name }}
@@ -35,6 +35,6 @@ spec:
   type: backend
   lifecycle: ${{ values.component_lifecycle }}
   owner: ${{values.owner | dump}}
-  {% if values.system %}
+  {% if values.system -%}
   system: ${{ values.system }}
-  {% endif %}
+  {%- endif %}
