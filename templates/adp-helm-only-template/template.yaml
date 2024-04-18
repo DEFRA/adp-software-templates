@@ -1,0 +1,362 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: adp-helm-only-template
+  title: ADP Helm Only Template
+  description: Deploy a HELM Only repository for micro-frontends and mergeable ingresses. This creates a HELM only repository with some basic configuration and a pipeline without any app code. This allows you to use a single URL for multiple different frontend repositories
+  tags:
+    - helm
+spec:
+  owner: adp
+  type: helm
+  parameters:
+    - title: Component Information
+      description: Enter properties describing this component.
+      required:
+        - component_id
+        - description
+        - component_type
+        - owner
+        - component_lifecycle
+        - app_infra_service_bus_check
+      properties:
+        component_id:
+          title: Component Name
+          type: string
+          description: Unique name of the component which will be used for the repository and Helm Chart name. This should be in the format <program>-<workstream>-<repo>. Maximum 64 characters.
+          ui:field: EntityNamePicker
+          ui:autofocus: true
+
+        description:
+          title: Description
+          type: string
+          description: Describe what this component does. This description will be used in the component's README.
+
+        system:
+          title: System
+          type: string
+          description: Select the system that this component will be a part of. Systems are a collection of related components and resources.
+          ui:field: EntityPicker
+          ui:options:
+            allowArbitraryValues: false
+            catalogFilter:
+              - kind: System
+
+        component_lifecycle:
+          title: Project Phase
+          type: string
+          description: Select the project phase which suits this component. Refer to the [GDS service manual](https://www.gov.uk/service-manual/agile-delivery) for more information.
+          default: alpha
+          enum:
+            - discovery
+            - alpha
+            - beta
+          enumNames:
+            - Discovery
+            - Alpha
+            - Beta
+
+        owner:
+          title: Owner
+          type: string
+          description: Select the team who will own this component
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              - kind: Group
+                spec.type: team
+
+        endpoint:
+          title: Endpoint
+          type: string
+          description: This is a helm chart only repository. Please specify your applications Endpoint value for the master ingress. This will be the main ingress endpoint for your other micro-frontends which are the minions. If this field is left empty the Component Name will be used.
+
+        defaultPath:
+          title: Default Path
+          type: string
+          description: Please specify your defaultPath in the URL. All requests to this URL will be redirected to this path. This field is optional and can be left empty. Must start with a slash.
+          default: /
+          pattern: ^\/.*$
+
+    - title: Git Repository
+      description: |
+        To encourage coding in the open the repository will be public by default. Refer to the [GDS service manual](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable) for more information.
+
+        The scaffolder will create a new repository and an associated team with write permissions.
+      required:
+        - repo_url
+        - github_team_name
+        - github_team_users
+        - github_team_visibility
+      properties:
+        repo_url:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - defra
+              - defra-adp-sandpit
+
+        github_team_name:
+          title: GitHub Team Name
+          type: string
+          description: This team will be granted Write access to the repository.
+
+        github_team_description:
+          title: GitHub Team Description
+          type: string
+          description: An optional description of the team.
+
+        github_team_users:
+          title: GitHub Team Members
+          type: string
+          description: Comma-separated list of GitHub usernames to be added to the team.
+
+        github_team_visibility:
+          title: GitHub Team Visibility
+          type: string
+          description: The privacy level this team should have. *Visible* teams can be seen by all members in the organization. *Secret* teams can only be seen by the organization owners and team members.
+          default: closed
+          enum:
+            - closed
+            - secret
+          enumNames:
+            - Visible
+            - Secret
+
+    - title: CI/CD
+      description: CI/CD pipelines will be created in Azure DevOps
+      required:
+        - ado_organization
+        - ado_project
+        - service_connection_name
+        - pipeline_folder
+      properties:
+        ado_organization:
+          title: Azure DevOps Organization
+          type: string
+          default: defragovuk
+        ado_project:
+          title: Azure DevOps Project
+          type: string
+        service_connection_name:
+          title: Service Connection Name
+          type: string
+          description: Name of the Service Connection used to connect to GitHub.
+          default: DEFRA
+        pipeline_folder:
+          title: Pipeline Folder
+          type: string
+          description: Folder path where the pipeline will be created
+          default: /
+
+  steps:
+    - id: template
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          component_id: ${{ parameters.component_id }}
+          project_name: ${{ parameters.component_id }}
+          ado_project_name: ${{ parameters.ado_project }}
+          description: ${{ parameters.description }}
+          component_type: ${{ parameters.component_type}}
+          owner: ${{ parameters.owner }}
+          workstream: ${{ parameters.owner | parseEntityRef | pick('name') }}
+          repo_url: ${{ parameters.repo_url }}
+          repo_project_slug: ${{ parameters.repo_url | projectSlug }}
+          component_lifecycle: ${{ parameters.component_lifecycle }}
+          system: ${{ parameters.system }}
+          endpoint: ${{ parameters.endpoint }}
+          default_path: ${{ parameters.defaultPath }}
+
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ["github.com"]
+        description: ${{ parameters.description }}
+        repoUrl: ${{ parameters.repo_url }}
+        requireCodeOwnerReviews: true
+        dismissStaleReviews: true
+        requiredConversationResolution: true
+        requiredStatusCheckContexts: []
+        repoVisibility: public
+        defaultBranch: main
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        requiredCommitSigning: true
+
+    - id: createGitHubTeam
+      name: Create GitHub Team
+      action: adp:github:team:create
+      input:
+        githubTeamName: ${{ parameters.github_team_name }}
+        githubTeamDescription: ${{ parameters.github_team_description }}
+        orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+        users: ${{ parameters.github_team_users }}
+        visibility: ${{ parameters.github_team_visibility }}
+
+    - id: addGitHubTeam
+      name: Add GitHub Team to Repository
+      action: adp:github:team:add
+      input:
+        teamNames: ${{ parameters.github_team_name }}
+        repoName: ${{ parameters.repo_url | parseRepoUrl | pick('repo') }}
+        orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+        owner: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+        permission: push
+
+    - id: configureAdoProject
+      name: Configure Azure DevOps Project
+      action: http:backstage:request
+      input:
+        method: PATCH
+        path: /proxy/adp-portal-api/AdoProject/${{ parameters.ado_project }}/onboard
+        headers:
+          content-type: 'application/json'
+        body:
+          environments:
+          - name: SND1
+            description: SND1 environment
+          - name: SND2
+            description: SND2 environment
+          - name: SND3
+            description: SND3 environment
+          - name: DEV1
+            description: DEV1 environment
+          - name: TST1
+            description: TST1 environment
+          - name: TST2
+            description: TST2 environment
+          - name: PRE1
+            description: PRE1 environment
+          - name: PRD1
+            description: PRD1 environment
+          serviceConnections:
+          - AZD-ADP-SND1
+          - AZD-ADP-SND2
+          - AZD-ADP-SND3
+          - AZD-ADP-SSV3
+          - AZR-ADP-DEV1
+          - AZR-ADP-TST1
+          - AZR-ADP-PRE1
+          - AZD-ADP-SNYK
+          - Defra-ADP-Github
+          - DEFRA-ADP-SonarCloud
+          agentPools:
+          - DEFRA-ADP-SND1-ubuntu2204
+          - DEFRA-ADP-SND2-ubuntu2204
+          - DEFRA-ADP-SND3-ubuntu2204
+          - DEFRA-ADP-DEV1-ubuntu2204
+          - DEFRA-ADP-TST1-ubuntu2204
+          - DEFRA-ADP-PRE1-ubuntu2204
+          variableGroups:
+          - name: ${{ parameters.component_id }}-snd3
+            description: Variables for the ${{ parameters.component_id }} service
+            variables:
+            - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+              value: TEST
+              isSecret: true
+          - name: ${{ parameters.component_id }}-dev1
+            description: Variables for the ${{ parameters.component_id }} service
+            variables:
+            - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+              value: TEST
+              isSecret: true
+          - name: ${{ parameters.component_id }}-tst1
+            description: Variables for the ${{ parameters.component_id }} service
+            variables:
+            - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+              value: TEST
+              isSecret: true
+          - name: ${{ parameters.component_id }}-tst2
+            description: Variables for the ${{ parameters.component_id }} service
+            variables:
+            - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+              value: TEST
+              isSecret: true
+          - name: ${{ parameters.component_id }}-pre1
+            description: Variables for the ${{ parameters.component_id }} service
+            variables:
+            - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+              value: TEST
+              isSecret: true
+          - name: ${{ parameters.component_id }}-prd1
+            description: Variables for the ${{ parameters.component_id }} service
+            variables:
+            - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+              value: TEST
+              isSecret: true
+
+    - id: logConfigureAdoProjectReponse
+      name: Log Azure DevOps Project Configuration
+      action: debug:log
+      input:
+        message: |
+          Response Code: ${{ steps.configureAdoProject.output.code }}
+          Response: ${{ steps.configureAdoProject.output.body | dump }}
+
+    - id: getServiceConnection
+      name: Get ADO Service Connection
+      action: adp:azure:serviceconnection:get
+      if: ${{ steps.configureAdoProject.output.code == 200 }}
+      input:
+        organization: ${{ parameters.ado_organization }}
+        project: ${{ parameters.ado_project }}
+        serviceConnectionName: ${{ parameters.service_connection_name }}
+
+    - id: createPipeline
+      name: Create CI Pipeline
+      action: adp:azure:pipeline:create
+      if: ${{ steps.configureAdoProject.output.code == 200 }}
+      input:
+        organization: ${{ parameters.ado_organization }}
+        project: ${{ parameters.ado_project }}
+        folder: ${{ parameters.pipeline_folder }}
+        repositoryName: ${{ parameters.repo_url | projectSlug }}
+        yamlPath: .azuredevops/ingress-helm-publish.yaml
+        serviceConnectionId: ${{ steps.getServiceConnection.output.serviceConnectionId }}
+        pipelineName: ${{ parameters.component_id }}
+
+    - id: permitResources
+      name: Permit Pipeline Resources
+      action: adp:azure:pipeline:permit
+      if: ${{ steps.configureAdoProject.output.code == 200 }}
+      input:
+        organization: ${{ parameters.ado_organization }}
+        project: ${{ parameters.ado_project }}
+        pipelineId: ${{ steps.createPipeline.output.pipelineId }}
+        resources: ${{ steps.configureAdoProject.output.body }}
+
+    - id: runPipeline
+      name: Run CI Pipeline
+      action: adp:azure:pipeline:run
+      if: ${{ steps.configureAdoProject.output.code == 200 }}
+      input:
+        organization: ${{ parameters.ado_organization }}
+        pipelineId: ${{ steps.createPipeline.output.pipelineId }}
+        project: ${{ parameters.ado_project }}
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: "/catalog-info.yaml"
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps.publish.output.remoteUrl }}
+        icon: github
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}
+      - title: CI Pipeline
+        url: ${{ steps.createPipeline.output.pipelineUrl }}
+        icon: pipeline
