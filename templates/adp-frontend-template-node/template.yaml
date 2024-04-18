@@ -302,12 +302,12 @@ spec:
             - PRD1
           configVariables: {}
 
-    - id: generateFluxManifests
-      name: Generate Flux Manifests
+    - id: generateServiceManifests
+      name: Generate Service (Flux) Manifests
       action: http:backstage:request
       input:
         method: POST
-        path: /proxy/adp-portal-api/FluxConfig/generate/${{ parameters.owner | parseEntityRef | pick('name') }}/${{ parameters.component_id }}
+        path: /proxy/adp-portal-api/FluxTeamConfig/generate/${{ parameters.owner | parseEntityRef | pick('name') }}/${{ parameters.component_id }}
         headers:
           content-type: 'application/json'
 

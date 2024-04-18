@@ -318,8 +318,8 @@ spec:
             - PRD1
           configVariables: {}
          
-    - id: generateFluxManifests
-      name: Generate Flux Manifests
+    - id: generateServiceManifests
+      name: Generate Service (Flux) Manifests
       action: http:backstage:request
       input:
         method: POST
