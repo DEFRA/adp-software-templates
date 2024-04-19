@@ -221,10 +221,6 @@ spec:
           content-type: 'application/json'
         body:
           environments:
-          - name: SND1
-            description: SND1 environment
-          - name: SND2
-            description: SND2 environment
           - name: SND3
             description: SND3 environment
           - name: DEV1
@@ -238,8 +234,6 @@ spec:
           - name: PRD1
             description: PRD1 environment
           serviceConnections:
-          - AZD-ADP-SND1
-          - AZD-ADP-SND2
           - AZD-ADP-SND3
           - AZD-ADP-SSV3
           - AZR-ADP-DEV1
@@ -249,8 +243,6 @@ spec:
           - Defra-ADP-Github
           - DEFRA-ADP-SonarCloud
           agentPools:
-          - DEFRA-ADP-SND1-ubuntu2204
-          - DEFRA-ADP-SND2-ubuntu2204
           - DEFRA-ADP-SND3-ubuntu2204
           - DEFRA-ADP-DEV1-ubuntu2204
           - DEFRA-ADP-TST1-ubuntu2204
