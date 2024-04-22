@@ -1,9 +1,9 @@
 module.exports = {
-  method: 'GET',
-  path: '/',
+  method: "GET",
+  path: "/",
   options: {
     handler: (request, h) => {
-      return h.view('home')
-    }
-  }
-}
+      return h.view("home");
+    },
+  },
+};

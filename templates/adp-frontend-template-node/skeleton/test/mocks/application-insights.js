@@ -1,26 +1,26 @@
 const mockDefaultClient = {
   context: {
     keys: {
-      cloudRole: ''
+      cloudRole: "",
     },
-    tags: {}
-  }
-}
+    tags: {},
+  },
+};
 
-const mockStart = jest.fn()
+const mockStart = jest.fn();
 const mockSetup = jest.fn(() => {
   return {
-    start: mockStart
-  }
-})
+    start: mockStart,
+  };
+});
 
 const mockApplicationInsights = {
   defaultClient: mockDefaultClient,
-  setup: mockSetup
-}
+  setup: mockSetup,
+};
 
-jest.mock('applicationinsights', () => {
-  return mockApplicationInsights
-})
+jest.mock("applicationinsights", () => {
+  return mockApplicationInsights;
+});
 
-module.exports = mockApplicationInsights
+module.exports = mockApplicationInsights;
