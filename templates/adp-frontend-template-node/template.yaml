@@ -80,7 +80,7 @@ spec:
           ui:options:
             catalogFilter:
               - kind: Group
-                spec.type: team
+                spec.type: delivery-project
 
         app_infra_service_bus_check:
           title: Do you need an Azure Service Bus Queue or Topic?

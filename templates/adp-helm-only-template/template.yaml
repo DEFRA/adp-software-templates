@@ -64,7 +64,7 @@ spec:
           ui:options:
             catalogFilter:
               - kind: Group
-                spec.type: team
+                spec.type: delivery-project
 
         endpoint:
           title: Endpoint
