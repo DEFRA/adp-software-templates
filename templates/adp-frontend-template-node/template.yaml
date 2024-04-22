@@ -307,7 +307,7 @@ spec:
       action: http:backstage:request
       input:
         method: POST
-        path: /proxy/adp-portal-api/FluxTeamConfig/generate/${{ parameters.owner | parseEntityRef | pick('name') }}/${{ parameters.component_id }}
+        path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/generate?serviceName=${{ parameters.component_id }}
         headers:
           content-type: 'application/json'
 
