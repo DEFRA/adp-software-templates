@@ -185,33 +185,6 @@ spec:
               - defra
               - defra-adp-sandpit
 
-        github_team_name:
-          title: GitHub Team Name
-          type: string
-          description: This team will be granted Write access to the repository.
-
-        github_team_description:
-          title: GitHub Team Description
-          type: string
-          description: An optional description of the team.
-
-        github_team_users:
-          title: GitHub Team Members
-          type: string
-          description: Comma-separated list of GitHub usernames to be added to the team.
-
-        github_team_visibility:
-          title: GitHub Team Visibility
-          type: string
-          description: The privacy level this team should have. *Visible* teams can be seen by all members in the organization. *Secret* teams can only be seen by the organization owners and team members.
-          default: closed
-          enum:
-            - closed
-            - secret
-          enumNames:
-            - Visible
-            - Secret
-
     - title: CI/CD
       description: CI/CD pipelines will be created in Azure DevOps
       required:
@@ -278,25 +251,14 @@ spec:
         gitAuthorName: ${{ user.entity.metadata.name }}
         requiredCommitSigning: true
 
-    - id: createGitHubTeam
-      name: Create GitHub Team
-      action: adp:github:team:create
-      input:
-        githubTeamName: ${{ parameters.github_team_name }}
-        githubTeamDescription: ${{ parameters.github_team_description }}
-        orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
-        users: ${{ parameters.github_team_users }}
-        visibility: ${{ parameters.github_team_visibility }}
-
     - id: addGitHubTeam
-      name: Add GitHub Team to Repository
-      action: adp:github:team:add
+      name: Add GitHub Teams to Repository
+      action: adp:github:team:add:deliveryproject
       input:
-        teamNames: ${{ parameters.github_team_name }}
+        projectName: ${{ parameters.owner | parseEntityRef | pick('name') }}
         repoName: ${{ parameters.repo_url | parseRepoUrl | pick('repo') }}
         orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
         owner: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
-        permission: push
 
     - id: registerFluxService
       name: Register Service in Flux config
@@ -317,7 +279,7 @@ spec:
             - PRE1
             - PRD1
           configVariables: {}
-         
+
     - id: generateServiceManifests
       name: Generate Service (Flux) Manifests
       action: http:backstage:request
@@ -325,7 +287,7 @@ spec:
         method: POST
         path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/generate?serviceName=${{ parameters.component_id }}
         headers:
-          content-type: 'application/json'
+          content-type: "application/json"
 
     - id: configureAdoProject
       name: Configure Azure DevOps Project
