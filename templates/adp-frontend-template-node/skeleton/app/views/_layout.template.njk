@@ -24,7 +24,7 @@
 {% endraw %}
 
   {# Conditional rendering of header based on the frontend UI type selected in backstage portal #}
-  {% if values.component_type == 'internal' %}
+  {% if values.component_type == 'internal'-%}
     <header class="govuk-header " role="banner" data-module="govuk-header">
     <div class="govuk-header__container govuk-width-container">
       <div class="govuk-header__logo">
@@ -41,16 +41,16 @@
       </div>
     </div>
   </header>
-  {% endif %}
+  {%- endif %}
 
-  {% if values.component_type == 'external' %}
+  {% if values.component_type == 'external' -%}
   {{ govukHeader({
       homepageUrl: "https://www.gov.uk/",
       containerClasses: "govuk-width-container",
       serviceName: serviceName,
       serviceUrl: "/"
     }) }}
-  {% endif %}
+  {%- endif %}
 
 {% raw %}
 {% endblock %}
@@ -66,7 +66,7 @@
 {% block footer %}
 {% endraw %}
 
-  {% if values.component_type == 'internal' %}
+  {% if values.component_type == 'internal'-%}
     <footer class="govuk-footer " role="contentinfo">
       <div class="govuk-width-container ">
         <div class="govuk-footer__meta">
@@ -86,10 +86,10 @@
         </div>
       </div>
     </footer>
-  {% endif %}
-  {% if values.component_type == 'external' %}
+  {%- endif %}
+  {% if values.component_type == 'external' -%}
     {{ govukFooter() }}
-  {% endif %}
+  {%- endif %}
 
 {% raw %}
 {% endblock %}
