@@ -34,4 +34,4 @@ extends:
       appFrameworkType: "helm"
       projectPath: "helm/${{values.project_name}}/Chart.yaml"
       imageRepoName: "${{values.project_name}}"
-  
+

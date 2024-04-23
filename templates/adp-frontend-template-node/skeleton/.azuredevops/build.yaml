@@ -46,14 +46,14 @@ extends:
     deployFromFeature: {% raw %}${{ parameters.deployFromFeature }}{% endraw %}
     deployConfigOnly: {% raw %}${{ parameters.deployConfigOnly }}{% endraw %}
     appBuildConfig:
-      appFrameworkType: "nodejs"    
+      appFrameworkType: "nodejs"
       projectPath: "./package.json"
       manifestPath: "./package.json"
       imageRepoName: "${{ values.project_name }}"
     appTestConfig:
       testFilePath: "./docker-compose.test.yaml"
     appDeployConfig:
-      filepath: "./appConfig"  
+      filepath: "./appConfig"
       filetype: "yaml"
       variableGroups:
         - ${{ values.project_name }}-<environment>

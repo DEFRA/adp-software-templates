@@ -317,7 +317,7 @@ spec:
             - PRE1
             - PRD1
           configVariables: {}
-         
+
     - id: generateServiceManifests
       name: Generate Service (Flux) Manifests
       action: http:backstage:request

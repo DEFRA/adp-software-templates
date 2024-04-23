@@ -16,7 +16,7 @@ services:
       - ./test:/home/node/test
       - ./scripts:/home/node/scripts
       - ./package.json:/home/node/package.json
-  
+
   ${{ values.project_name }}-postgres:
     ports:
       - "5432:5432"

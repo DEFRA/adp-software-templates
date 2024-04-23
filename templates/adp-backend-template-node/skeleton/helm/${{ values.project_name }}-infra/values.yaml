@@ -34,7 +34,7 @@ namespaceTopics:
 {%- if values.app_infra_postgres_db_check == 'yes' %}
 postgres:
   db:
-    name: ${{ values.app_infra_postgres_db_resource_name }} 
+    name: ${{ values.app_infra_postgres_db_resource_name }}
     charset: UTF8
     collation: en_US.utf8
 {%- endif %}

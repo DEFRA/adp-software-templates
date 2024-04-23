@@ -9,7 +9,7 @@ docker-compose*
 .snyk
 .pre-commit-config.yaml
 LICENCE
-README.md 
+README.md
 jsconfig.json
 .vscode
 .gitignore
