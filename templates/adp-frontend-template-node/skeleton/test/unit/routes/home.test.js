@@ -1,17 +1,17 @@
-const home = require("../../../app/routes/home");
+const home = require('../../../app/routes/home')
 
-describe("/home", () => {
+describe('/home', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-  });
-  test("should return success", async () => {
-    const mockRequest = {};
+    jest.clearAllMocks()
+  })
+  test('should return success', async () => {
+    const mockRequest = {}
     const mockH = {
-      view: jest.fn(),
-    };
+      view: jest.fn()
+    }
 
-    await home.options.handler(mockRequest, mockH);
+    await home.options.handler(mockRequest, mockH)
 
-    expect(mockH.view).toHaveBeenCalled();
-  });
-});
+    expect(mockH.view).toHaveBeenCalled()
+  })
+})
