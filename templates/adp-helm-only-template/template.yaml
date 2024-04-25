@@ -85,9 +85,6 @@ spec:
         The scaffolder will create a new repository and an associated team with write permissions.
       required:
         - repo_url
-        - github_team_name
-        - github_team_users
-        - github_team_visibility
       properties:
         repo_url:
           title: Repository Location
