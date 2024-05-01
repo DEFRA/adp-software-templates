@@ -170,6 +170,36 @@ spec:
         orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
         owner: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
 
+    - id: registerFluxService
+      name: Register Service in Flux config
+      action: http:backstage:request
+      input:
+        method: POST
+        path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/services
+        headers:
+          content-type: "application/json"
+        body:
+          name: ${{ parameters.component_id }}
+          isFrontEnd: true
+          isHelmOnly: true
+          environments:
+            - SND3
+            - DEV1
+            - TST1
+            - TST2
+            - PRE1
+            - PRD1
+          configVariables: {}
+
+    - id: generateServiceManifests
+      name: Generate Service (Flux) Manifests
+      action: http:backstage:request
+      input:
+        method: POST
+        path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/generate?serviceName=${{ parameters.component_id }}
+        headers:
+          content-type: "application/json"
+
     - id: configureAdoProject
       name: Configure Azure DevOps Project
       action: http:backstage:request
