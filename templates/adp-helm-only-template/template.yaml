@@ -186,7 +186,9 @@ spec:
             - TST2
             - PRE1
             - PRD1
-          configVariables: {}
+          configVariables:
+            - key: INGRESS_ENDPOINT
+              value: ${{ parameters.endpoint }}/${{ parameters.defaultPath }}
 
     - id: generateServiceManifests
       name: Generate Service (Flux) Manifests
