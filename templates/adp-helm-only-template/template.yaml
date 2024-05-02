@@ -15,7 +15,6 @@ spec:
       required:
         - component_id
         - description
-        - component_type
         - owner
         - component_lifecycle
       properties:
