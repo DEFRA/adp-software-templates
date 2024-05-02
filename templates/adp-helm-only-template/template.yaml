@@ -18,7 +18,6 @@ spec:
         - component_type
         - owner
         - component_lifecycle
-        - app_infra_service_bus_check
       properties:
         component_id:
           title: Component Name
@@ -134,7 +133,6 @@ spec:
           project_name: ${{ parameters.component_id }}
           ado_project_name: ${{ parameters.ado_project }}
           description: ${{ parameters.description }}
-          component_type: ${{ parameters.component_type}}
           owner: ${{ parameters.owner }}
           workstream: ${{ parameters.owner | parseEntityRef | pick('name') }}
           repo_url: ${{ parameters.repo_url }}
