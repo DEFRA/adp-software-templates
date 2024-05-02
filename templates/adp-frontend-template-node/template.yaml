@@ -253,12 +253,12 @@ spec:
           name: ${{ parameters.component_id }}
           isFrontEnd: true
           environments:
-            - SND3
-            - DEV1
-            - TST1
-            - TST2
-            - PRE1
-            - PRD1
+            - snd3
+            - dev1
+            - tst1
+            - tst2
+            - pre1
+            - prd1
           configVariables: {}
 
     - id: generateServiceManifests
