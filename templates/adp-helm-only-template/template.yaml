@@ -187,8 +187,7 @@ spec:
             - PRE1
             - PRD1
           configVariables:
-            - key: INGRESS_ENDPOINT
-              value: ${{ parameters.endpoint }}/${{ parameters.defaultPath }}
+            INGRESS_ENDPOINT: ${{ parameters.endpoint }}/${{ parameters.defaultPath }}
 
     - id: generateServiceManifests
       name: Generate Service (Flux) Manifests
