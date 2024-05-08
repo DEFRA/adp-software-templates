@@ -226,6 +226,7 @@ spec:
             - AZR-ADP-DEV1
             - AZR-ADP-TST1
             - AZR-ADP-PRE1
+            - AZR-ADP-PRD1
             - AZD-ADP-SNYK
             - Defra-ADP-Github
             - DEFRA-ADP-SonarCloud
@@ -234,6 +235,7 @@ spec:
             - DEFRA-ADP-DEV1-ubuntu2204
             - DEFRA-ADP-TST1-ubuntu2204
             - DEFRA-ADP-PRE1-ubuntu2204
+            - DEFRA-ADP-PRD1-ubuntu2204
           variableGroups:
             - name: ${{ parameters.component_id }}-snd3
               description: Variables for the ${{ parameters.component_id }} service
