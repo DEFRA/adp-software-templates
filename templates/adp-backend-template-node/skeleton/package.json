@@ -1,8 +1,8 @@
 {
-  "name": "${{ values.project_name }}",
+  "name": "${{ values.service_name }}",
   "version": "0.1.0",
   "description": "${{ values.project_description }}",
-  "homepage": "github.com?owner=defra&repo=${{ values.project_name }}&organization=defra",
+  "homepage": "github.com?owner=defra&repo=${{ values.service_name }}&organization=defra",
   "main": "app/index.js",
   "scripts": {
     "pretest": "npm run test:lint",

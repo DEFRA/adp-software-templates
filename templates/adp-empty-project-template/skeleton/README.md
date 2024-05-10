@@ -1,4 +1,4 @@
-# ${{ values.project_name }}
+# ${{ values.service_name }}
 ${{ values.project_description }}
 
 ## Local Development

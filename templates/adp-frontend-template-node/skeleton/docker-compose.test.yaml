@@ -2,11 +2,11 @@
 # that test output is saved to the host
 
 services:
-  ${{ values.project_name }}:
+  ${{ values.service_name }}:
     build:
       target: development
-    image: ${{ values.project_name }}-development
-    container_name: ${{ values.project_name }}-test
+    image: ${{ values.service_name }}-development
+    container_name: ${{ values.service_name }}-test
     command: npm run test
     volumes:
       - ./app:/home/node/app

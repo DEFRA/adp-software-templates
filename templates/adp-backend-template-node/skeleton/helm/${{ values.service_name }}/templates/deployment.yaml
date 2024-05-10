@@ -1,0 +1,8 @@
+{{- include "adp-helm-library.deployment" (list . "${{ values.service_name }}.deployment") -}}
+{{- define "${{ values.service_name }}.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+      - {{ include "adp-helm-library.container" (list . "${{ values.service_name }}.container") }}
+{{- end -}}

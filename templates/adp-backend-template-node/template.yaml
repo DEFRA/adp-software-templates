@@ -216,7 +216,8 @@ spec:
         url: ./skeleton
         values:
           component_id: ${{ parameters.component_id }}
-          project_name: ${{ parameters.component_id }}
+          service_name: ${{ parameters.component_id }}
+          project_name: ${{ parameters.owner | parseEntityRef | pick('name') }}
           ado_project_name: ${{ parameters.ado_project }}
           description: ${{ parameters.description }}
           owner: ${{ parameters.owner }}

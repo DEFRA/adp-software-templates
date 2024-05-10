@@ -113,7 +113,8 @@ spec:
         url: ./skeleton
         values:
           component_id: ${{ parameters.component_id }}
-          project_name: ${{ parameters.component_id }}
+          service_name: ${{ parameters.component_id }}
+          project_name: ${{ parameters.owner | parseEntityRef | pick('name') }}
           description: ${{ parameters.description }}
           component_type: ${{ parameters.component_type}}
           owner: ${{ parameters.owner }}

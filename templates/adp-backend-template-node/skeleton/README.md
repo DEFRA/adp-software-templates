@@ -1,4 +1,4 @@
-# ${{ values.project_name }}
+# ${{ values.service_name }}
 ${{ values.project_description }}
 ## Prerequisites
 
@@ -77,11 +77,11 @@ If the application uses `keyvault references` in `appConfig.env.yaml`, please ma
 
 ```
 variableGroups:
-    - ${{ values.project_name }}-snd1
-    - ${{ values.project_name }}-snd2
-    - ${{ values.project_name }}-snd3
+    - ${{ values.service_name }}-snd1
+    - ${{ values.service_name }}-snd2
+    - ${{ values.service_name }}-snd3
 variables:
-    - ${{ values.project_name }}-APPINSIGHTS-CONNECTIONSTRING
+    - ${{ values.service_name }}-APPINSIGHTS-CONNECTIONSTRING
 ```
 
 ## Licence

@@ -1,19 +1,19 @@
 services:
-  ${{ values.project_name }}:
+  ${{ values.service_name }}:
     build:
       context: .
       target: production
-    image: ${{ values.project_name }}
-    container_name: ${{ values.project_name }}
+    image: ${{ values.service_name }}
+    container_name: ${{ values.service_name }}
     depends_on:
-      - ${{ values.project_name }}-postgres
+      - ${{ values.service_name }}-postgres
     environment:
-      APPINSIGHTS_CLOUDROLE: ${{ values.project_name }}-local
+      APPINSIGHTS_CLOUDROLE: ${{ values.service_name }}-local
       APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}
 
-  ${{ values.project_name }}-postgres:
+  ${{ values.service_name }}-postgres:
     image: postgres:11.4-alpine
     environment:
-      POSTGRES_DB: ${{ values.project_name }}
+      POSTGRES_DB: ${{ values.service_name }}
       POSTGRES_PASSWORD: ppp
       POSTGRES_USERNAME: postgres

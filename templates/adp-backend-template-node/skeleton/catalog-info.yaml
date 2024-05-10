@@ -8,10 +8,10 @@ metadata:
   annotations:
     github.com/project-slug: ${{values.repo_project_slug}}
     dev.azure.com/project: ${{ values.ado_project_name }}
-    dev.azure.com/build-definition: ${{values.project_name}}
-    sonarqube.org/project-key: ${{values.project_name}}
+    dev.azure.com/build-definition: ${{values.service_name}}
+    sonarqube.org/project-key: ${{values.service_name}}
     grafana/dashboard-selector: "folderTitle == 'Managed Prometheus'"
-    backstage.io/kubernetes-id: ${{values.project_name}}
+    backstage.io/kubernetes-id: ${{values.service_name}}
   links:
     - url: https://github.com/${{values.repo_project_slug}}
       title: GitHub Repository
@@ -19,10 +19,10 @@ metadata:
     - url: https://dev.azure.com/defragovuk/${{ values.ado_project_name }}/
       title: Azure DevOps Project
       icon: project
-    - url: https://sonarcloud.io/project/overview?id=${{values.project_name}}
+    - url: https://sonarcloud.io/project/overview?id=${{values.service_name}}
       title: SonarCloud Analysis
       icon: check
-    - url: https://snyk.io/test/github/DEFRA/${{values.project_name}}
+    - url: https://snyk.io/test/github/DEFRA/${{values.service_name}}
       title: Snyk Analysis
       icon: policy
     - url: https://portal.azure.com/defradev.onmicrosoft.com

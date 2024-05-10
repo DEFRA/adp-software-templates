@@ -1,0 +1,2 @@
+{{- define "${{ values.service_name }}.container" -}}
+{{- end -}}

@@ -1,6 +1,0 @@
-{% if values.app_infra_postgres_db_check == 'yes' %}
-{{- include "adp-aso-helm-library.flexible-servers-db" (list . "${{ values.project_name }}.flexible-servers-db") -}}
-
-{{- define "${{ values.project_name }}.flexible-servers-db" }}
-{{ end -}}
-{% endif %}

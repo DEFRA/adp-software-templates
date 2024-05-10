@@ -9,8 +9,8 @@ metadata:
     github.com/project-slug: ${{values.repo_project_slug}}
     backstage.io/techdocs-ref: dir:.
     dev.azure.com/project: ${{ values.ado_project_name }}
-    dev.azure.com/build-definition: ${{values.project_name}}
-    backstage.io/kubernetes-id: ${{values.project_name}}
+    dev.azure.com/build-definition: ${{values.service_name}}
+    backstage.io/kubernetes-id: ${{values.service_name}}
   links:
     - url: https://github.com/${{values.repo_project_slug}}
       title: GitHub Repository

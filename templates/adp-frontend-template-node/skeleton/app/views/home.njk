@@ -19,12 +19,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 {% endraw %}
-      <h1 class="govuk-heading-xl">${{ values.project_name }}</h1>
+      <h1 class="govuk-heading-xl">${{ values.service_name }}</h1>
 
       <p class="govuk-body">
         This is a demo application for the technical investigation of patterns and practices
         in developing production quality containerised, cloud native, microservice based applications
-        within the ${{ values.project_name }}.
+        within the ${{ values.service_name }}.
       </p>
 {% raw %} {# Backstage scaffolder to render the file as is and to skip this content to interpret as template   #}
       {{ govukWarningText({

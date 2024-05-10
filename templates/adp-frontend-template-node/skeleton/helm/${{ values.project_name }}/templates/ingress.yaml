@@ -1,3 +1,0 @@
-{{- include "adp-helm-library.azure-ingress" (list . "${{ values.project_name }}.ingress") -}}
-{{- define "${{ values.project_name }}.ingress" -}}
-{{- end -}}

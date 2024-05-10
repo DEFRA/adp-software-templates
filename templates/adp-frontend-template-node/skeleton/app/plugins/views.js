@@ -35,8 +35,8 @@ module.exports = {
       appVersion: pkg.version,
       assetPath: '/static',
       govukAssetPath: '/assets',
-      serviceName: '${{ values.project_name }}',
-      pageTitle: '${{ values.project_name }} - GOV.UK'
+      serviceName: '${{ values.service_name }}',
+      pageTitle: '${{ values.service_name }} - GOV.UK'
     }
   }
 }

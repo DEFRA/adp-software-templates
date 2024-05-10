@@ -1,6 +1,6 @@
 apiVersion: v2
-description: A Helm Chart to deploy the ${{ values.project_name }} application to Kubernetes
-name: ${{ values.project_name }}
+description: A Helm Chart to deploy the ${{ values.service_name }} application to Kubernetes
+name: ${{ values.service_name }}
 # this version is automatically updated in the build pipeline
 version: 1.0.0
 dependencies:

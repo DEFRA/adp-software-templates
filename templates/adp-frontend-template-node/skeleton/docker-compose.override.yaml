@@ -2,11 +2,11 @@
 # to provide dependencies and expose ports for local testing
 
 services:
-  ${{ values.project_name }}:
+  ${{ values.service_name }}:
     build:
       target: development
-    image: ${{ values.project_name }}-development
-    container_name: ${{ values.project_name }}-development
+    image: ${{ values.service_name }}-development
+    container_name: ${{ values.service_name }}-development
     ports:
       - "3000:3000"
       - "9229:9229"
