@@ -1,0 +1,405 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: adp-backend-template-dotnet
+  title: "ADP Backend Template Dotnet"
+  description: "Template to support rapid delivery of microservices for ADP Platform. It contains the configuration needed to deploy a simple dotnet web API to the Azure Kubernetes Platform."
+  tags:
+    - dotnet
+    - aks
+    - backend
+spec:
+  owner: adp
+  type: backend
+
+  parameters:
+    - title: Component Information
+      description: Enter properties describing this component.
+      required:
+        - component_id
+        - description
+        - owner
+        - component_lifecycle
+        - app_infra_service_bus_check
+      properties:
+        component_id:
+          title: Component Name
+          type: string
+          description: Unique name of the component which will be used for the repository, package, and image names. This should be in the format <program>-<workstream>-<repo>. Maximum 64 characters.
+          ui:field: EntityNamePicker
+          ui:autofocus: true
+
+        description:
+          title: Description
+          type: string
+          description: Describe what this component does. This description will be used in the component's README and package.json.
+
+        system:
+          title: System
+          type: string
+          description: Select the system that this component will be a part of. Systems are a collection of related components and resources.
+          ui:field: EntityPicker
+          ui:options:
+            allowArbitraryValues: false
+            catalogFilter:
+              - kind: System
+
+        component_lifecycle:
+          title: Project Phase
+          type: string
+          description: Select the project phase which suits this component. Refer to the [GDS service manual](https://www.gov.uk/service-manual/agile-delivery) for more information.
+          default: alpha
+          enum:
+            - discovery
+            - alpha
+            - beta
+          enumNames:
+            - Discovery
+            - Alpha
+            - Beta
+
+        owner:
+          title: Owner
+          type: string
+          description: Select the team who will own this component
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              - kind: Group
+                spec.type: delivery-project
+
+        app_infra_service_bus_check:
+          title: Do you need an Azure Service Bus Queue or Topic?
+          type: string
+          description: Select the resource you need to get started. If not, select none. (These resources are just to get started. More resources can be added later to code by developers.)
+          default: none
+          enum:
+            - queue
+            - topic
+            - none
+          enumNames:
+            - Queue
+            - Topic
+            - None
+
+      dependencies:
+        app_infra_service_bus_check:
+          allOf:
+            - if:
+                properties:
+                  app_infra_service_bus_check:
+                    const: queue
+              then:
+                properties:
+                  app_infra_service_bus_resource_name:
+                    title: Azure Service Bus Queue Name
+                    type: string
+                    description: Provide the Azure Service Bus Queue name.
+                  app_infra_service_bus_resource_type:
+                    title: Pub-Sub Type
+                    type: string
+                    description: Select if it is a publisher or subscriber.
+                    default: none
+                    enum:
+                      - publisher
+                      - subscriber
+                    enumNames:
+                      - Publisher
+                      - Subscriber
+                required:
+                  - app_infra_service_bus_resource_name
+                  - app_infra_service_bus_resource_type
+            - if:
+                properties:
+                  app_infra_service_bus_check:
+                    const: topic
+              then:
+                properties:
+                  app_infra_service_bus_resource_name:
+                    title: Azure Service Bus Topic Name
+                    type: string
+                    description: Provide the Azure Service Bus Topic name.
+                  app_infra_service_bus_resource_type:
+                    title: Pub-Sub Type
+                    type: string
+                    description: Select if it is a publisher or subscriber.
+                    default: none
+                    enum:
+                      - publisher
+                      - subscriber
+                    enumNames:
+                      - Publisher
+                      - Subscriber
+                required:
+                  - app_infra_service_bus_resource_name
+                  - app_infra_service_bus_resource_type
+
+    - title: Git Repository
+      description: |
+        To encourage coding in the open the repository will be public by default. Refer to the [GDS service manual](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable) for more information.
+
+        The scaffolder will create a new repository and an associated team with write permissions.
+      required:
+        - repo_url
+      properties:
+        repo_url:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - defra
+              - defra-adp-sandpit
+
+    - title: CI/CD
+      description: CI/CD pipelines will be created in Azure DevOps
+      required:
+        - ado_organization
+        - ado_project
+        - service_connection_name
+        - pipeline_folder
+      properties:
+        ado_organization:
+          title: Azure DevOps Organization
+          type: string
+          default: defragovuk
+        ado_project:
+          title: Azure DevOps Project
+          type: string
+        service_connection_name:
+          title: Service Connection Name
+          type: string
+          description: Name of the Service Connection used to connect to GitHub.
+          default: DEFRA
+        pipeline_folder:
+          title: Pipeline Folder
+          type: string
+          description: Folder path where the pipeline will be created
+          default: /
+
+  steps:
+    - id: template
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          component_id: ${{ parameters.component_id }}
+          service_name: ${{ parameters.component_id }}
+          dotnet_solution_name: ${{ parameters.component_id | toDotnetProjectName }}
+          project_name: ${{ parameters.owner | parseEntityRef | pick('name') }}
+          ado_project_name: ${{ parameters.ado_project }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+          workstream: ${{ parameters.owner | parseEntityRef | pick('name') }}
+          repo_url: ${{ parameters.repo_url }}
+          repo_project_slug: ${{ parameters.repo_url | projectSlug }}
+          component_lifecycle: ${{ parameters.component_lifecycle }}
+          system: ${{ parameters.system }}
+          app_infra_service_bus_check: ${{ parameters.app_infra_service_bus_check }}
+          app_infra_service_bus_resource_name: ${{ parameters.app_infra_service_bus_resource_name }}
+          app_infra_service_bus_resource_type: ${{ parameters.app_infra_service_bus_resource_type }}
+
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ["github.com"]
+        description: ${{ parameters.description }}
+        repoUrl: ${{ parameters.repo_url }}
+        requireCodeOwnerReviews: true
+        dismissStaleReviews: true
+        requiredConversationResolution: true
+        requiredStatusCheckContexts: []
+        repoVisibility: public
+        defaultBranch: main
+        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+        gitAuthorName: ${{ user.entity.metadata.name }}
+        requiredCommitSigning: true
+
+    - id: addGitHubTeam
+      name: Add GitHub Teams to Repository
+      action: adp:github:team:add:deliveryproject
+      input:
+        projectName: ${{ parameters.owner | parseEntityRef | pick('name') }}
+        repoName: ${{ parameters.repo_url | parseRepoUrl | pick('repo') }}
+        orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+        owner: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+
+    - id: registerFluxService
+      name: Register Service in Flux config
+      action: http:backstage:request
+      input:
+        method: POST
+        path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/services
+        headers:
+          content-type: "application/json"
+        body:
+          name: ${{ parameters.component_id }}
+          isFrontEnd: false
+          environments:
+            - snd3
+            - dev1
+            - tst1
+            - tst2
+            - pre1
+            - prd1
+          configVariables: {}
+
+    - id: generateServiceManifests
+      name: Generate Service (Flux) Manifests
+      action: http:backstage:request
+      input:
+        method: POST
+        path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/generate?serviceName=${{ parameters.component_id }}
+        headers:
+          content-type: "application/json"
+
+    - id: configureAdoProject
+      name: Configure Azure DevOps Project
+      action: http:backstage:request
+      input:
+        method: PATCH
+        path: /proxy/adp-portal-api/AdoProject/${{ parameters.ado_project }}/onboard
+        headers:
+          content-type: "application/json"
+        body:
+          environments:
+            - name: SND3
+              description: SND environment
+            - name: DEV1
+              description: DEV1 environment
+            - name: TST1
+              description: TST1 environment
+            - name: TST2
+              description: TST2 environment
+            - name: PRE1
+              description: PRE1 environment
+            - name: PRD1
+              description: PRD1 environment
+          serviceConnections:
+            - AZD-ADP-SND1
+            - AZD-ADP-SND2
+            - AZD-ADP-SND3
+            - AZD-ADP-SSV3
+            - AZR-ADP-DEV1
+            - AZR-ADP-TST1
+            - AZR-ADP-PRE1
+            - AZR-ADP-PRD1
+            - AZD-ADP-SNYK
+            - Defra-ADP-Github
+            - DEFRA-ADP-SonarCloud
+          agentPools:
+            - DEFRA-ADP-SND1-ubuntu2204
+            - DEFRA-ADP-SND3-ubuntu2204
+            - DEFRA-ADP-DEV1-ubuntu2204
+            - DEFRA-ADP-TST1-ubuntu2204
+            - DEFRA-ADP-PRE1-ubuntu2204
+            - DEFRA-ADP-PRD1-ubuntu2204
+          variableGroups:
+            - name: ${{ parameters.component_id }}-snd3
+              description: Variables for the ${{ parameters.component_id }} service
+              variables:
+                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+                  value: TEST
+                  isSecret: true
+            - name: ${{ parameters.component_id }}-dev1
+              description: Variables for the ${{ parameters.component_id }} service
+              variables:
+                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+                  value: TEST
+                  isSecret: true
+            - name: ${{ parameters.component_id }}-tst1
+              description: Variables for the ${{ parameters.component_id }} service
+              variables:
+                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+                  value: TEST
+                  isSecret: true
+            - name: ${{ parameters.component_id }}-tst2
+              description: Variables for the ${{ parameters.component_id }} service
+              variables:
+                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+                  value: TEST
+                  isSecret: true
+            - name: ${{ parameters.component_id }}-pre1
+              description: Variables for the ${{ parameters.component_id }} service
+              variables:
+                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+                  value: TEST
+                  isSecret: true
+            - name: ${{ parameters.component_id }}-prd1
+              description: Variables for the ${{ parameters.component_id }} service
+              variables:
+                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+                  value: TEST
+                  isSecret: true
+
+    - id: logConfigureAdoProjectReponse
+      name: Log Azure DevOps Project Configuration
+      action: debug:log
+      input:
+        message: |
+          Response Code: ${{ steps.configureAdoProject.output.code }}
+          Response: ${{ steps.configureAdoProject.output.body | dump }}
+
+    - id: getServiceConnection
+      name: Get ADO Service Connection
+      action: adp:azure:serviceconnection:get
+      if: ${{ steps.configureAdoProject.output.code == 200 }}
+      input:
+        organization: ${{ parameters.ado_organization }}
+        project: ${{ parameters.ado_project }}
+        serviceConnectionName: ${{ parameters.service_connection_name }}
+
+    - id: createPipeline
+      name: Create CI Pipeline
+      action: adp:azure:pipeline:create
+      if: ${{ steps.configureAdoProject.output.code == 200 }}
+      input:
+        organization: ${{ parameters.ado_organization }}
+        project: ${{ parameters.ado_project }}
+        folder: ${{ parameters.pipeline_folder }}
+        repositoryName: ${{ parameters.repo_url | projectSlug }}
+        yamlPath: .azuredevops/build.yaml
+        serviceConnectionId: ${{ steps.getServiceConnection.output.serviceConnectionId }}
+        pipelineName: ${{ parameters.component_id }}
+
+    - id: permitResources
+      name: Permit Pipeline Resources
+      action: adp:azure:pipeline:permit
+      if: ${{ steps.configureAdoProject.output.code == 200 }}
+      input:
+        organization: ${{ parameters.ado_organization }}
+        project: ${{ parameters.ado_project }}
+        pipelineId: ${{ steps.createPipeline.output.pipelineId }}
+        resources: ${{ steps.configureAdoProject.output.body }}
+
+    - id: runPipeline
+      name: Run CI Pipeline
+      action: adp:azure:pipeline:run
+      if: ${{ steps.configureAdoProject.output.code == 200 }}
+      input:
+        organization: ${{ parameters.ado_organization }}
+        pipelineId: ${{ steps.createPipeline.output.pipelineId }}
+        project: ${{ parameters.ado_project }}
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: "/catalog-info.yaml"
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps.publish.output.remoteUrl }}
+        icon: github
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}
+      - title: CI Pipeline
+        url: ${{ steps.createPipeline.output.pipelineUrl }}
+        icon: pipeline
