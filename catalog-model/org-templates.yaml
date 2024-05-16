@@ -9,3 +9,4 @@ spec:
     - ../templates/adp-backend-template-node/template.yaml
     - ../templates/adp-empty-project-template/template.yaml
     - ../templates/adp-helm-only-template/template.yaml
+    - ../templates/adp-backend-template-dotnet/template.yaml
