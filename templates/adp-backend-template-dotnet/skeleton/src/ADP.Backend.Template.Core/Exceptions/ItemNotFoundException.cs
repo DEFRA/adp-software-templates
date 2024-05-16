@@ -1,4 +1,4 @@
-﻿namespace ADP.Backend.Template.Core.Exceptions;
+﻿namespace ${{ values.dotnet_solution_name }}.Core.Exceptions;
 
 public class ItemNotFoundException : Exception
 {

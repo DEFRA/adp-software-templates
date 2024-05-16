@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using ADP.Backend.Template.Api.Config;
-using ADP.Backend.Template.Api.Extensions;
-using ADP.Backend.Template.Api.HealthChecks;
+using ${{ values.dotnet_solution_name }}.Api.Config;
+using ${{ values.dotnet_solution_name }}.Api.Extensions;
+using ${{ values.dotnet_solution_name }}.Api.HealthChecks;
 using Asp.Versioning;
 using Azure.Identity;
 using Azure.Monitor.OpenTelemetry.AspNetCore;
@@ -10,7 +10,7 @@ using Microsoft.OpenApi.Models;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace ADP.Backend.Template.Api
+namespace ${{ values.dotnet_solution_name }}.Api
 {
     [ExcludeFromCodeCoverage]
     public static class Program
@@ -77,7 +77,7 @@ namespace ADP.Backend.Template.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(config =>
             {
-                config.SwaggerDoc("v1", new OpenApiInfo { Title = "ADP.Backend.Template", Version = "v1" });
+                config.SwaggerDoc("v1", new OpenApiInfo { Title = "${{ values.dotnet_solution_name }}", Version = "v1" });
             });
             builder.Services.AddApiVersioning(config =>
             {

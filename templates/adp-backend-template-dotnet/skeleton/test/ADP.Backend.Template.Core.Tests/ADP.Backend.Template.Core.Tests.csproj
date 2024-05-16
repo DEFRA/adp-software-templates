@@ -33,7 +33,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\ADP.Backend.Template.Core\ADP.Backend.Template.Core.csproj" />
+		<ProjectReference Include="..\..\src\${{ values.dotnet_solution_name }}.Core\${{ values.dotnet_solution_name }}.Core.csproj" />
 	</ItemGroup>
 
 </Project>

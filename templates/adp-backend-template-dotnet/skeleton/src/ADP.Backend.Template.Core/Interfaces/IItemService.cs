@@ -1,6 +1,6 @@
-﻿using ADP.Backend.Template.Core.Entities;
+﻿using ${{ values.dotnet_solution_name }}.Core.Entities;
 
-namespace ADP.Backend.Template.Core.Interfaces
+namespace ${{ values.dotnet_solution_name }}.Core.Interfaces
 {
     public interface IItemService
     {

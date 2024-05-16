@@ -1,4 +1,4 @@
-﻿namespace ADP.Backend.Template.Core.Entities;
+﻿namespace ${{ values.dotnet_solution_name }}.Core.Entities;
 
 public class Item
 {

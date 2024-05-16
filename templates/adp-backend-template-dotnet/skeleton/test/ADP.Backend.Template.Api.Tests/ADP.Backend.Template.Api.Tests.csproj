@@ -8,7 +8,7 @@
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
 		<!-- Exclude coverage from Core project. Outputs coverage only for Api projects -->
-		<Exclude>[ADP.Backend.Template.Core]*</Exclude>
+		<Exclude>[${{ values.dotnet_solution_name }}.Core]*</Exclude>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -34,7 +34,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\ADP.Backend.Template.Api\ADP.Backend.Template.Api.csproj" />
+		<ProjectReference Include="..\..\src\${{ values.dotnet_solution_name }}.Api\${{ values.dotnet_solution_name }}.Api.csproj" />
 	</ItemGroup>
 	
 </Project>

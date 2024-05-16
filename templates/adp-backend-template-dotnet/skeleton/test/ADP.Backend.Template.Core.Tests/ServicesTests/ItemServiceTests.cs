@@ -1,12 +1,12 @@
-using ADP.Backend.Template.Core.Entities;
-using ADP.Backend.Template.Core.Exceptions;
-using ADP.Backend.Template.Core.Services;
+using ${{ values.dotnet_solution_name }}.Core.Entities;
+using ${{ values.dotnet_solution_name }}.Core.Exceptions;
+using ${{ values.dotnet_solution_name }}.Core.Services;
 using AutoFixture;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 
-namespace ADP.Backend.Template.Core.Tests.ServicesTests;
+namespace ${{ values.dotnet_solution_name }}.Core.Tests.ServicesTests;
 
 [TestFixture]
 public class ItemServiceTests

@@ -2,7 +2,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 
-namespace ADP.Backend.Template.Api.Tests;
+namespace ${{ values.dotnet_solution_name }}.Api.Tests;
 
 [TestFixture]
 public class ProgramTests

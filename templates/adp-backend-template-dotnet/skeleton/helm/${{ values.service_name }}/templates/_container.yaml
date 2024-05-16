@@ -1,4 +1,4 @@
-{{- define "adp-backend-template-dotnet.container" -}}
+{{- define "${{ values.service_name }}.container" -}}
 ports:
 - containerPort: {{ .Values.container.port }}
 livenessProbe: {{ include "adp-helm-library.http-get-probe" (list . .Values.livenessProbe) | nindent 4}}

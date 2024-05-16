@@ -1,10 +1,10 @@
-@ADP.Backend.Template.Api_HostAddress = https://localhost:7118
+@${{ values.dotnet_solution_name }}.Api_HostAddress = https://localhost:7118
 
-GET {{ADP.Backend.Template.Api_HostAddress}}/api/demo
+GET {{${{ values.dotnet_solution_name }}.Api_HostAddress}}/api/demo
 
 ###
 
-POST {{ADP.Backend.Template.Api_HostAddress}}/api/demo
+POST {{${{ values.dotnet_solution_name }}.Api_HostAddress}}/api/demo
 Content-Type: application/json
 
 {
@@ -13,7 +13,7 @@ Content-Type: application/json
 
 ###
 
-PATCH {{ADP.Backend.Template.Api_HostAddress}}/api/demo
+PATCH {{${{ values.dotnet_solution_name }}.Api_HostAddress}}/api/demo
 Content-Type: application/json
 
 {
@@ -23,10 +23,10 @@ Content-Type: application/json
 
 ###
 
-GET {{ADP.Backend.Template.Api_HostAddress}}/api/demo/1
+GET {{${{ values.dotnet_solution_name }}.Api_HostAddress}}/api/demo/1
 
 ###
 
-DELETE {{ADP.Backend.Template.Api_HostAddress}}/api/demo/3
+DELETE {{${{ values.dotnet_solution_name }}.Api_HostAddress}}/api/demo/3
 
 ###

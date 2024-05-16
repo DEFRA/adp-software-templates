@@ -1,12 +1,12 @@
-﻿using ADP.Backend.Template.Api.Models;
-using ADP.Backend.Template.Core.Entities;
-using ADP.Backend.Template.Core.Exceptions;
-using ADP.Backend.Template.Core.Interfaces;
+﻿using ${{ values.dotnet_solution_name }}.Api.Models;
+using ${{ values.dotnet_solution_name }}.Core.Entities;
+using ${{ values.dotnet_solution_name }}.Core.Exceptions;
+using ${{ values.dotnet_solution_name }}.Core.Interfaces;
 using Asp.Versioning;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ADP.Backend.Template.Api.Controllers;
+namespace ${{ values.dotnet_solution_name }}.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiVersion("1.0")]

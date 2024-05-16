@@ -1,8 +1,8 @@
-using ADP.Backend.Template.Api.Controllers;
-using ADP.Backend.Template.Api.Models;
-using ADP.Backend.Template.Core.Entities;
-using ADP.Backend.Template.Core.Exceptions;
-using ADP.Backend.Template.Core.Interfaces;
+using ${{ values.dotnet_solution_name }}.Api.Controllers;
+using ${{ values.dotnet_solution_name }}.Api.Models;
+using ${{ values.dotnet_solution_name }}.Core.Entities;
+using ${{ values.dotnet_solution_name }}.Core.Exceptions;
+using ${{ values.dotnet_solution_name }}.Core.Interfaces;
 using AutoFixture;
 using FluentAssertions;
 using Mapster;
@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 
-namespace ADP.Backend.Template.Api.Tests.Controllers;
+namespace ${{ values.dotnet_solution_name }}.Api.Tests.Controllers;
 
 [TestFixture]
 public class DemoControllerTests

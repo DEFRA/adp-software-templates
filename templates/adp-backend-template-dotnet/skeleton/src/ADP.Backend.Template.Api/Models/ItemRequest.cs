@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ADP.Backend.Template.Api.Models;
+namespace ${{ values.dotnet_solution_name }}.Api.Models;
 
 public class ItemRequest
 {

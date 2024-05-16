@@ -1,8 +1,8 @@
-using ADP.Backend.Template.Api.HealthChecks;
+using ${{ values.dotnet_solution_name }}.Api.HealthChecks;
 using FluentAssertions;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace ADP.Backend.Template.Api.Tests.HealthChecksTests;
+namespace ${{ values.dotnet_solution_name }}.Api.Tests.HealthChecksTests;
 
 [TestFixture]
 public class LivenessCheckTests

@@ -25,7 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ADP.Backend.Template.Core\ADP.Backend.Template.Core.csproj" />
+	  <ProjectReference Include="..\${{ values.dotnet_solution_name }}.Core\${{ values.dotnet_solution_name }}.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

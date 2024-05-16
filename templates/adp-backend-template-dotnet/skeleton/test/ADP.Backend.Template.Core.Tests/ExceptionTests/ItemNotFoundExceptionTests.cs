@@ -1,7 +1,7 @@
-using ADP.Backend.Template.Core.Exceptions;
+using ${{ values.dotnet_solution_name }}.Core.Exceptions;
 using FluentAssertions;
 
-namespace ADP.Backend.Template.Core.Tests.ExceptionTests;
+namespace ${{ values.dotnet_solution_name }}.Core.Tests.ExceptionTests;
 
 [TestFixture]
 public class ItemNotFoundExceptionTests

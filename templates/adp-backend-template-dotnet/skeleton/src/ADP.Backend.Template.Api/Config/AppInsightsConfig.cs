@@ -1,4 +1,4 @@
-﻿namespace ADP.Backend.Template.Api.Config;
+﻿namespace ${{ values.dotnet_solution_name }}.Api.Config;
 
 public class AppInsightsConfig
 {

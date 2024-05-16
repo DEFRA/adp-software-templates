@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ADP.Backend.Template.Api
+namespace ${{ values.dotnet_solution_name }}.Api
 {
     public class GlobalExceptionHandler : IExceptionHandler
     {

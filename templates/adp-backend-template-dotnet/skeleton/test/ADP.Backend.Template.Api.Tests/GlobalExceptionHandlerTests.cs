@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 
-namespace ADP.Backend.Template.Api.Tests;
+namespace ${{ values.dotnet_solution_name }}.Api.Tests;
 
 [TestFixture]
 public class GlobalExceptionHandlerTests

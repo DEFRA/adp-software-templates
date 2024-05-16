@@ -1,7 +1,0 @@
-namespaceTopics:
-  - name: item
-    owner: "no"
-    roleAssignments:
-      - roleName: 'TopicReceiver'
-    topicSubscriptions:
-      - name: item-subscription
