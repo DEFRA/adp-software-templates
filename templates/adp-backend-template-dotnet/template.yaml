@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: ${{ values.service_name }}
+  name: adp-backend-template-dotnet
   title: "ADP Backend Template Dotnet"
   description: "Template to support rapid delivery of microservices for ADP Platform. It contains the configuration needed to deploy a simple dotnet web API to the Azure Kubernetes Platform."
   tags:
