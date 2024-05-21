@@ -305,6 +305,7 @@ spec:
             - AZD-ADP-SNYK
             - Defra-ADP-Github
             - DEFRA-ADP-SonarCloud
+            - DEFRA
           agentPools:
             - DEFRA-ADP-SND1-ubuntu2204
             - DEFRA-ADP-SND3-ubuntu2204
