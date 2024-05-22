@@ -11,7 +11,7 @@ services:
       APPINSIGHTS_CLOUDROLE: ${{ values.service_name }}-local
       APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}
 
-{%- if values.app_infra_postgres_db_check == 'yes' %}
+{% if values.app_infra_postgres_db_check == 'yes' %}
   ${{ values.service_name }}-postgres:
     image: postgres:15.6-alpine
     environment:

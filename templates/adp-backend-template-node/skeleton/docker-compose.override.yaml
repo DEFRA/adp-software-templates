@@ -16,7 +16,7 @@ services:
       - ./scripts:/home/node/scripts
       - ./package.json:/home/node/package.json
       
-{%- if values.app_infra_postgres_db_check == 'yes' %}
+{% if values.app_infra_postgres_db_check == 'yes' %}
   ${{ values.service_name }}-postgres:
     ports:
       - "5432:5432"
