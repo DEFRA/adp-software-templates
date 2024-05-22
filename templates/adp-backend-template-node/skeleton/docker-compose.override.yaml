@@ -1,4 +1,3 @@
-version: '3.8'
 # This override file should be used when running this service in isolation
 # to provide dependencies and expose ports for local testing
 
@@ -16,7 +15,8 @@ services:
       - ./test:/home/node/test
       - ./scripts:/home/node/scripts
       - ./package.json:/home/node/package.json
-
+      
+{%- if values.app_infra_postgres_db_check == 'yes' %}
   ${{ values.service_name }}-postgres:
     ports:
       - "5432:5432"
@@ -25,3 +25,4 @@ services:
 
 volumes:
   postgres_data:
+{%- endif %}
