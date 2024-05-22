@@ -20,7 +20,7 @@ The following environment variables are required by the application container. V
 | Name                         | Description                     | Required | Default | Valid | Notes                                                                                                                             |
 | ---------------------------- | ------------------------------- | -------- | ------- | ----- | --------------------------------------------------------------------------------------------------------------------------------- |
 | APPINSIGHTS_CONNECTIONSTRING | App Insights connection string  | no       |         |       | will log to Azure Application Insights if set in local development. During deployment to AKS it is automatically set by platform. |
-| APPINSIGHTS_CLOUDROLE        | Role used for filtering metrics | no       |         |       | Set to `adp-backend-template-dotnet-local` in docker compose files                                                                |
+| APPINSIGHTS_CLOUDROLE        | Role used for filtering metrics | no       |         |       | Set to `${{ values.service_name }}-local` in docker compose files                                                                |
 
 ## Test structure
 
