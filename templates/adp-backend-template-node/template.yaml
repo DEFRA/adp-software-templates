@@ -277,7 +277,7 @@ spec:
             - pre1
             - prd1
           configVariables:
-            POSTGRES_DB: ${{ parameters.app_infra_postgres_db_resource_name if parameters.app_infra_postgres_db_check == 'yes' else undefined }}
+            POSTGRES_DB: ${{ (parameters.owner | parseEntityRef | pick('name')) + '-' + parameters.app_infra_postgres_db_resource_name if parameters.app_infra_postgres_db_check == 'yes' else undefined }}
 
     - id: generateServiceManifests
       name: Generate Service (Flux) Manifests
