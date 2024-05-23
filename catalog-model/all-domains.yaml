@@ -14,3 +14,4 @@ spec:
     - ./domains/lap-mit-domain.yaml
     - ./domains/fcp-data-access-layer-domain.yaml
     - ./domains/fcp-sfd-domain.yaml
+    - ./domains/ea-wq-domain.yaml

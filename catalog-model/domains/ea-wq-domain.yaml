@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: ea-wq
+  description: Everything within the EA Walleys Quarry domain
+  title: Walleys Quarry
+spec:
+  owner: "group:default/fcp-ea-walleys-quarry"

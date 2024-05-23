@@ -13,3 +13,4 @@ spec:
     - ./systems/lap-mit-system.yaml
     - ./systems/fcp-data-access-layer.yaml
     - ./systems/fcp-sfd-system.yaml
+    - ./systems/ea-wq-system.yaml

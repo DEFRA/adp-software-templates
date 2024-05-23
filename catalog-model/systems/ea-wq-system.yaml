@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ea-wq-system
+  title: EA Walleys Quarry
+  description: Components and resources that make up the Walleys Quarry system.
+spec:
+  owner: "group:default/fcp-ea-walleys-quarry"
+  domain: "domain:default/ea-wq"
