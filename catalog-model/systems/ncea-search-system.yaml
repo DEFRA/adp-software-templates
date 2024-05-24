@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ncea-search-system
+  title: NCEA Search
+  description: Components and resources that make up the NCEA Search system.
+spec:
+  owner: "group:default/ncea-search"
+  domain: "domain:default/ncea-search"

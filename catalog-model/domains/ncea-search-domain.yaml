@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: ncea-search
+  description: Everything within the NCEA Search domain
+  title: Walleys Quarry
+spec:
+  owner: "group:default/ncea-search"

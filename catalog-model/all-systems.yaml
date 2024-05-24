@@ -14,3 +14,4 @@ spec:
     - ./systems/fcp-data-access-layer.yaml
     - ./systems/fcp-sfd-system.yaml
     - ./systems/ea-wq-system.yaml
+    - ./systems/ncea-search-system.yaml
