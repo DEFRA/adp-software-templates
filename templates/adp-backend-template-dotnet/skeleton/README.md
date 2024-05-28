@@ -12,6 +12,7 @@ Optional:
 - Kubernetes
 - Helm
 - Access to an instance of an [Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/)
+- AppConfig - KeyVault References
 
 ## Environment variables
 
@@ -104,17 +105,13 @@ Liveness: `/healthz`
 
 This service uses the [ADP Common Pipelines](https://github.com/DEFRA/adp-pipeline-common) for Builds and Deployments.
 
-### AppConfig - KeyVault References
+### AppConfig - KeyVault References (Optional)
 
 If the application uses `keyvault references` in `appConfig.env.yaml`, please make sure the variable to be added to keyvault is created in ADO Library variable groups and the reference for the variable groups and variables are provided in `build.yaml` like below.
 
 ```
 variableGroups:
-    - ${{ values.service_name }}-snd1
-    - ${{ values.service_name }}-snd2
-    - ${{ values.service_name }}-snd3
-variables:
-    - ${{ values.service_name }}-APPLICATION-SECRET
+    - ${{ values.service_name }}-<environment>
 ```
 
 ## Licence

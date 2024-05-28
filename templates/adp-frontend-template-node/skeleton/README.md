@@ -73,11 +73,7 @@ If the application uses `keyvault references` in `appConfig.env.yaml`, please ma
 
 ```
 variableGroups:
-    - ${{ values.service_name }}-snd1
-    - ${{ values.service_name }}-snd2
-    - ${{ values.service_name }}-snd3
-variables:
-    - ${{ values.service_name }}-APPINSIGHTS-CONNECTIONSTRING
+    - ${{ values.service_name }}-<environment>
 ```
 
 ## Licence
