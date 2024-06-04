@@ -248,6 +248,7 @@ spec:
       input:
         method: POST
         path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/services
+        credentials: forward
         headers:
           content-type: "application/json"
         body:
@@ -268,6 +269,7 @@ spec:
       input:
         method: POST
         path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/generate?serviceName=${{ parameters.component_id }}
+        credentials: forward
         headers:
           content-type: "application/json"
 
@@ -277,6 +279,7 @@ spec:
       input:
         method: PATCH
         path: /proxy/adp-portal-api/AdoProject/${{ parameters.ado_project }}/onboard
+        credentials: forward
         headers:
           content-type: "application/json"
         body:
