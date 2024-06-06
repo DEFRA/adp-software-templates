@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: org-templates-dev
+  description: Software templates available to the Backstage scaffolder DEV.
+spec:
+  targets:
+    - ../templates/adp-frontend-template-node/template.dev.yaml
+    - ../templates/adp-backend-template-node/template.dev.yaml
+    - ../templates/adp-empty-project-template/template.dev.yaml
+    - ../templates/adp-helm-only-template/template.dev.yaml
+    - ../templates/adp-backend-template-dotnet/template.dev.yaml

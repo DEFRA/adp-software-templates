@@ -1,0 +1,153 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: adp-helm-only-template-dev
+  title: ADP Helm Only Template DEV
+  description: Deploy a HELM Only repository for micro-frontends and mergeable ingresses. This creates a HELM only repository with some basic configuration and a pipeline without any app code. This allows you to use a single URL for multiple different frontend repositories
+  tags:
+    - helm
+spec:
+  owner: adp
+  type: helm
+  parameters:
+    - title: Component Information
+      description: Enter properties describing this component.
+      required:
+        - component_id
+        - description
+        - owner
+        - component_lifecycle
+      properties:
+        component_id:
+          title: Component Name
+          type: string
+          description: Unique name of the component which will be used for the repository and Helm Chart name. This should be in the format <program>-<workstream>-<repo>. Maximum 64 characters.
+          ui:field: EntityNamePicker
+          ui:autofocus: true
+
+        description:
+          title: Description
+          type: string
+          description: Describe what this component does. This description will be used in the component's README.
+
+        system:
+          title: System
+          type: string
+          description: Select the system that this component will be a part of. Systems are a collection of related components and resources.
+          ui:field: EntityPicker
+          ui:options:
+            allowArbitraryValues: false
+            catalogFilter:
+              - kind: System
+
+        component_lifecycle:
+          title: Project Phase
+          type: string
+          description: Select the project phase which suits this component. Refer to the [GDS service manual](https://www.gov.uk/service-manual/agile-delivery) for more information.
+          default: alpha
+          enum:
+            - discovery
+            - alpha
+            - beta
+          enumNames:
+            - Discovery
+            - Alpha
+            - Beta
+
+        owner:
+          title: Owner
+          type: string
+          description: Select the team who will own this component
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              - kind: Group
+                spec.type: delivery-project
+
+        endpoint:
+          title: Endpoint
+          type: string
+          description: This is a helm chart only repository. Please specify your applications Endpoint value for the master ingress. This will be the main ingress endpoint for your other micro-frontends which are the minions. If this field is left empty the Component Name will be used.
+
+        defaultPath:
+          title: Default Path
+          type: string
+          description: Please specify your defaultPath in the URL. All requests to this URL will be redirected to this path. This field is optional and can be left empty. Must start with a slash.
+          default: /
+          pattern: ^\/.*$
+
+    - title: Git Repository
+      description: |
+        To encourage coding in the open the repository will be public by default. Refer to the [GDS service manual](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable) for more information.
+
+        The scaffolder will create a new repository and an associated team with write permissions.
+      required:
+        - repo_url
+      properties:
+        repo_url:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - defra
+              - defra-adp-sandpit
+
+    - title: CI/CD
+      description: CI/CD pipelines will be created in Azure DevOps
+      required:
+        - ado_organization
+        - ado_project
+        - service_connection_name
+        - pipeline_folder
+      properties:
+        ado_organization:
+          title: Azure DevOps Organization
+          type: string
+          default: defragovuk
+        ado_project:
+          title: Azure DevOps Project
+          type: string
+        service_connection_name:
+          title: Service Connection Name
+          type: string
+          description: Name of the Service Connection used to connect to GitHub.
+          default: DEFRA
+        pipeline_folder:
+          title: Pipeline Folder
+          type: string
+          description: Folder path where the pipeline will be created
+          default: /
+
+  steps:
+    - id: template
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          component_id: ${{ parameters.component_id }}
+          service_name: ${{ parameters.component_id }}
+          project_name: ${{ parameters.owner | parseEntityRef | pick('name') }}
+          ado_project_name: ${{ parameters.ado_project }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+          workstream: ${{ parameters.owner | parseEntityRef | pick('name') }}
+          repo_url: ${{ parameters.repo_url }}
+          repo_project_slug: ${{ parameters.repo_url | projectSlug }}
+          component_lifecycle: ${{ parameters.component_lifecycle }}
+          system: ${{ parameters.system }}
+          endpoint: ${{ parameters.endpoint }}
+          default_path: ${{ parameters.defaultPath }}
+
+    - id: publish
+      name: Publish
+      action: publish:zip
+
+  output:
+    links:
+      - title: Download
+        url: ${{ steps.publish.output.dataUri }}
+        icon: github

@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: all-templates-dev
+  description: Common templates defined as part of the baseline catalog DEV.
+spec:
+  targets:
+    - ./org-templates.dev.yaml

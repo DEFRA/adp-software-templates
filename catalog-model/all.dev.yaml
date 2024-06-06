@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: baseline-catalog-dev
+  description: |
+    References to shared baseline entities to display in the Catalog. The locations referenced will populate the catalog with APIs, domains, systems, and resources.
+    Organisation data is defined in the defra-org location DEV.
+spec:
+  targets:
+    - ./all-templates.dev.yaml

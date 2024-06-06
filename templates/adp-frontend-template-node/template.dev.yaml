@@ -1,0 +1,227 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: adp-frontend-template-node-dev
+  title: ADP Frontend Template Node DEV
+  description: Template to support rapid delivery of microservices for ADP Platform. It contains the configuration needed to deploy a simple Hapi Node server to the Azure Kubernetes Platform.
+  tags:
+    - node
+    - hapi
+    - aks
+    - frontend
+spec:
+  owner: adp
+  type: frontend
+
+  parameters:
+    - title: Component Information
+      description: Enter properties describing this component.
+      required:
+        - component_id
+        - description
+        - component_type
+        - owner
+        - component_lifecycle
+        - app_infra_service_bus_check
+      properties:
+        component_id:
+          title: Component Name
+          type: string
+          description: Unique name of the component which will be used for the repository, package, and image names. This should be in the format <program>-<workstream>-<repo>. Maximum 64 characters.
+          ui:field: EntityNamePicker
+          ui:autofocus: true
+
+        description:
+          title: Description
+          type: string
+          description: Describe what this component does. This description will be used in the component's README and package.json.
+
+        component_type:
+          title: Frontend Type
+          type: string
+          description: Select the type of this frontend app. Allowed values - External UI (GOV.UK app), Internal UI (DEFRA app)
+          default: external
+          enum:
+            - internal
+            - external
+          enumNames:
+            - Internal UI
+            - External UI
+
+        system:
+          title: System
+          type: string
+          description: Select the system that this component will be a part of. Systems are a collection of related components and resources.
+          ui:field: EntityPicker
+          ui:options:
+            allowArbitraryValues: false
+            catalogFilter:
+              - kind: System
+
+        component_lifecycle:
+          title: Project Phase
+          type: string
+          description: Select the project phase which suits this component. Refer to the [GDS service manual](https://www.gov.uk/service-manual/agile-delivery) for more information.
+          default: alpha
+          enum:
+            - discovery
+            - alpha
+            - beta
+          enumNames:
+            - Discovery
+            - Alpha
+            - Beta
+
+        owner:
+          title: Owner
+          type: string
+          description: Select the team who will own this component
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              - kind: Group
+                spec.type: delivery-project
+
+        app_infra_service_bus_check:
+          title: Do you need an Azure Service Bus Queue or Topic?
+          type: string
+          description: Select the resource you need to get started. If not, select none. (These resources are just to get started. More resources can be added later to code by developers.)
+          default: none
+          enum:
+            - queue
+            - topic
+            - none
+          enumNames:
+            - Queue
+            - Topic
+            - None
+
+      dependencies:
+        app_infra_service_bus_check:
+          allOf:
+            - if:
+                properties:
+                  app_infra_service_bus_check:
+                    const: queue
+              then:
+                properties:
+                  app_infra_service_bus_resource_name:
+                    title: Azure Service Bus Queue Name
+                    type: string
+                    description: Provide the Azure Service Bus Queue name.
+                  app_infra_service_bus_resource_type:
+                    title: Queue Pub-Sub Type
+                    type: string
+                    description: Select if the queue is a publisher or subscriber.
+                    default: none
+                    enum:
+                      - publisher
+                      - subscriber
+                    enumNames:
+                      - Publisher
+                      - Subscriber
+                required:
+                  - app_infra_service_bus_resource_name
+                  - app_infra_service_bus_resource_type
+            - if:
+                properties:
+                  app_infra_service_bus_check:
+                    const: topic
+              then:
+                properties:
+                  app_infra_service_bus_resource_name:
+                    title: Azure Service Bus Topic Name
+                    type: string
+                    description: Provide the Azure Service Bus Topic name.
+                  app_infra_service_bus_resource_type:
+                    title: Topic Pub-Sub Type
+                    type: string
+                    description: Select if the topic is a publisher or subscriber.
+                    default: none
+                    enum:
+                      - publisher
+                      - subscriber
+                    enumNames:
+                      - Publisher
+                      - Subscriber
+                required:
+                  - app_infra_service_bus_resource_name
+                  - app_infra_service_bus_resource_type
+
+    - title: Git Repository
+      description: |
+        To encourage coding in the open the repository will be public by default. Refer to the [GDS service manual](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable) for more information.
+
+        The scaffolder will create a new repository and an associated team with write permissions.
+      required:
+        - repo_url
+      properties:
+        repo_url:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+            allowedOwners:
+              - defra
+              - defra-adp-sandpit
+
+    - title: CI/CD
+      description: CI/CD pipelines will be created in Azure DevOps
+      required:
+        - ado_organization
+        - ado_project
+        - service_connection_name
+        - pipeline_folder
+      properties:
+        ado_organization:
+          title: Azure DevOps Organization
+          type: string
+          default: defragovuk
+        ado_project:
+          title: Azure DevOps Project
+          type: string
+        service_connection_name:
+          title: Service Connection Name
+          type: string
+          description: Name of the Service Connection used to connect to GitHub.
+          default: DEFRA
+        pipeline_folder:
+          title: Pipeline Folder
+          type: string
+          description: Folder path where the pipeline will be created
+          default: /
+
+  steps:
+    - id: template
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          component_id: ${{ parameters.component_id }}
+          service_name: ${{ parameters.component_id }}
+          project_name: ${{ parameters.owner | parseEntityRef | pick('name') }}
+          ado_project_name: ${{ parameters.ado_project }}
+          description: ${{ parameters.description }}
+          component_type: ${{ parameters.component_type}}
+          owner: ${{ parameters.owner }}
+          workstream: ${{ parameters.owner | parseEntityRef | pick('name') }}
+          repo_url: ${{ parameters.repo_url }}
+          repo_project_slug: ${{ parameters.repo_url | projectSlug }}
+          component_lifecycle: ${{ parameters.component_lifecycle }}
+          system: ${{ parameters.system }}
+          app_infra_service_bus_check: ${{ parameters.app_infra_service_bus_check }}
+          app_infra_service_bus_resource_name: ${{ parameters.app_infra_service_bus_resource_name }}
+          app_infra_service_bus_resource_type: ${{ parameters.app_infra_service_bus_resource_type }}
+
+    - id: publish
+      name: Publish
+      action: publish:zip
+
+  output:
+    links:
+      - title: Download
+        url: ${{ steps.publish.output.dataUri }}
+        icon: github
