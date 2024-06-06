@@ -1,9 +1,9 @@
 apiVersion: v2
-description: A Helm Chart to deploy the ${{values.component_id}} application to Kubernetes
-name: ${{values.component_id}}
+description: ${{ ("A Helm Chart to deploy the " + values.component_id + " application to Kubernetes") | yaml }}
+name: ${{ values.component_id | yaml }}
 # this version is automatically updated in the build pipeline
 version: 0.1.0
 dependencies:
-- name: adp-helm-library
-  version: ^1.0.0
-  repository: https://raw.githubusercontent.com/defra/adp-helm-repository/main/adp-helm-library
+  - name: adp-helm-library
+    version: ^1.0.0
+    repository: https://raw.githubusercontent.com/defra/adp-helm-repository/main/adp-helm-library

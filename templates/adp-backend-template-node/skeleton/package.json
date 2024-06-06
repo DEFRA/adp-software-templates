@@ -1,8 +1,8 @@
 {
-  "name": "${{ values.service_name }}",
+  "name": "${{ (values.service_name | json).slice(1, -1) }}",
   "version": "0.1.0",
-  "description": "${{ values.project_description }}",
-  "homepage": "github.com?owner=defra&repo=${{ values.service_name }}&organization=defra",
+  "description": "${{ (values.description | json).slice(1, -1) }}",
+  "homepage": "github.com?owner=defra&repo=${{ (values.service_name | json).slice(1, -1) }}&organization=defra",
   "main": "app/index.js",
   "scripts": {
     "pretest": "npm run test:lint",

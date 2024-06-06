@@ -42,8 +42,8 @@ extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
   parameters:
     programmeName: ""
-    teamName: "${{ values.project_name }}"
-    serviceName: "${{ values.service_name }}"
+    teamName: ${{ values.project_name | yaml | indent(4) }}
+    serviceName: ${{ values.service_name | yaml | indent(4) }}
     deployFromFeature: {% raw %}${{ parameters.deployFromFeature }}{% endraw %}
     deployConfigOnly: {% raw %}${{ parameters.deployConfigOnly }}{% endraw %}
     appBuildConfig:
@@ -52,11 +52,11 @@ extends:
       projectPath: "./src/${{ values.dotnet_solution_name }}.Api/${{ values.dotnet_solution_name }}.Api.csproj"
       testProjectPath: "**/*.Tests.csproj" 
       manifestPath: "./src/obj/${{ values.dotnet_solution_name }}.Api/project.assets.json;./src/obj/${{ values.dotnet_solution_name }}.Core/project.assets.json"
-      imageRepoName: "${{ values.service_name }}"
+      imageRepoName: ${{ values.service_name | yaml | indent(6) }}
     appTestConfig:
       testFilePath: ""
     appDeployConfig:
       filepath: "./appConfig"
       filetype: "yaml" 
       # variableGroups: 
-      #   - ${{ values.service_name }}-<environment> 
+      #   - ${{ (values.service_name + "-<environment>") | yaml | indent(10) }}

@@ -41,19 +41,19 @@ resources:
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
   parameters:
-    teamName: "${{ values.project_name }}"
-    serviceName: "${{ values.service_name }}"
+    teamName: ${{ values.project_name | yaml | indent(4) }}
+    serviceName: ${{ values.service_name | yaml | indent(4) }}
     deployFromFeature: {% raw %}${{ parameters.deployFromFeature }}{% endraw %}
     deployConfigOnly: {% raw %}${{ parameters.deployConfigOnly }}{% endraw %}
     appBuildConfig:
       appFrameworkType: "nodejs"
       projectPath: "./package.json"
       manifestPath: "./package.json"
-      imageRepoName: "${{ values.service_name }}"
+      imageRepoName: ${{ values.service_name | yaml | indent(6) }}
     appTestConfig:
       testFilePath: "./docker-compose.test.yaml"
     appDeployConfig:
       filepath: "./appConfig"
       filetype: "yaml"
       variableGroups:
-        - ${{ values.service_name }}-<environment>
+        - ${{ (values.service_name + "-<environment>") | yaml | indent(10) }}

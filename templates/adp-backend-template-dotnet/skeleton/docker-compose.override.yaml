@@ -2,8 +2,8 @@
 # to provide required sibling services for local testing
 
 services:
-  ${{ values.service_name }}:
-    build:
+  ? ${{ values.service_name | yaml | indent(4) }}
+  : build:
       target: development
     ports:
       - "3007:3007"

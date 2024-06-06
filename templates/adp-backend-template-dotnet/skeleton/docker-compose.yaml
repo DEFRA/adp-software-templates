@@ -1,10 +1,10 @@
 services:
-  ${{ values.service_name }}:
-    build:
+  ? ${{ values.service_name | yaml | indent(4) }}
+  : build:
       context: .
       target: production
-    image: ${{ values.service_name }}
-    container_name: ${{ values.service_name }}
+    image: ${{ values.service_name | yaml | indent(4) }}
+    container_name: ${{ values.service_name | yaml | indent(4) }}
     environment:
       APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}
-      APPINSIGHTS_CLOUDROLE: ${{ values.service_name }}-local
+      APPINSIGHTS_CLOUDROLE: ${{ (values.service_name + "-local") | yaml | indent(6) }}

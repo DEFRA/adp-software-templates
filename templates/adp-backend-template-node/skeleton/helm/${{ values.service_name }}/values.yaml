@@ -1,8 +1,8 @@
 # These are populated when your service is created via the ADP Portal scaffolder. Do not change these, as they are abstracted from your service and are mandatory. They are for your reference here.
-name: ${{ values.service_name }}
-namespace: ${{ values.workstream }}
-workstream: ${{ values.workstream }}
-image: ${{ values.service_name }}
+name: ${{ values.service_name | yaml }}
+namespace: ${{ values.workstream | yaml }}
+workstream: ${{ values.workstream | yaml }}
+image: ${{ values.service_name | yaml }}
 
 # You may add further labels to identify the service or what your component does.
 labels:

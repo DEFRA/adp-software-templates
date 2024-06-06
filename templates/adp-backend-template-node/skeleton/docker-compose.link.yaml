@@ -1,4 +1,4 @@
 networks:
   default:
     external:
-      name: ${{ values.workstream }}
+      name: ${{ values.workstream | yaml | indent(6) }}

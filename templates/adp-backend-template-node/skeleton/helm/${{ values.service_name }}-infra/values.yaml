@@ -3,7 +3,7 @@
 {# Conditional rendering the resources based on the selections in backstage portal #}
 {%- if values.app_infra_service_bus_check == 'queue' %}
 namespaceQueues:
-  - name: ${{ values.app_infra_service_bus_resource_name }}
+  - name: ${{ values.app_infra_service_bus_resource_name | yaml | indent(4) }}
     {%- if values.app_infra_service_bus_resource_type == 'subscriber' %}
     owner: 'no'
     {%- endif %}
@@ -18,7 +18,7 @@ namespaceQueues:
 
 {%- if values.app_infra_service_bus_check == 'topic' %}
 namespaceTopics:
-  - name: ${{ values.app_infra_service_bus_resource_name }}
+  - name: ${{ values.app_infra_service_bus_resource_name | yaml | indent(4) }}
     {%- if values.app_infra_service_bus_resource_type == 'subscriber' %}
     owner: 'no'
     {%- endif %}
@@ -34,7 +34,7 @@ namespaceTopics:
 {%- if values.app_infra_postgres_db_check == 'yes' %}
 postgres:
   db:
-    name: ${{ values.app_infra_postgres_db_resource_name }}
+    name: ${{ values.app_infra_postgres_db_resource_name | yaml | indent(6) }}
     charset: UTF8
     collation: en_US.utf8
 {%- endif %}

@@ -1,28 +1,28 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: ${{values.component_id}}
+  name: ${{ values.component_id | yaml | indent(2) }}
   {% if values.description -%}
-  description: ${{values.description}}
+  description: ${{ values.description | yaml | indent(2) }}
   {%- endif %}
   annotations:
-    github.com/project-slug: ${{values.repo_project_slug}}
-    dev.azure.com/project: ${{ values.ado_project_name }}
-    dev.azure.com/build-definition: ${{values.service_name}}
-    sonarqube.org/project-key: ${{values.service_name}}
+    github.com/project-slug: ${{ values.repo_project_slug | yaml | indent(4) }}
+    dev.azure.com/project: ${{ values.ado_project_name | yaml | indent(4) }}
+    dev.azure.com/build-definition: ${{ values.service_name | yaml | indent(4) }}
+    sonarqube.org/project-key: ${{ values.service_name | yaml | indent(4) }}
     grafana/dashboard-selector: "folderTitle == 'Managed Prometheus'"
-    backstage.io/kubernetes-id: ${{values.service_name}}
+    backstage.io/kubernetes-id: ${{ values.service_name | yaml | indent(4) }}
   links:
-    - url: https://github.com/${{values.repo_project_slug}}
+    - url: ${{ "https://github.com" | path(values.repo_project_slug) | yaml | indent(8) }}
       title: GitHub Repository
       icon: github
-    - url: https://dev.azure.com/defragovuk/${{ values.ado_project_name }}/
+    - url: ${{ "https://dev.azure.com/defragovuk" | path(values.ado_project_name) | yaml | indent(8) }}
       title: Azure DevOps Project
       icon: project
-    - url: https://sonarcloud.io/project/overview?id=${{values.service_name}}
+    - url: ${{ "https://sonarcloud.io/project/overview" | queryparam("id", values.service_name) | yaml | indent(8) }}
       title: SonarCloud Analysis
       icon: check
-    - url: https://snyk.io/test/github/DEFRA/${{values.service_name}}
+    - url: ${{ "https://snyk.io/test/github/DEFRA" | path(values.service_name) | yaml | indent(8) }}
       title: Snyk Analysis
       icon: policy
     - url: https://portal.azure.com/defradev.onmicrosoft.com
@@ -31,18 +31,18 @@ metadata:
     - url: https://portal.azure.com/Defra.onmicrosoft.com
       title: Azure Portal - Defra
       icon: cloud
-    - url: https://${{values.service_name}}.snd3.adp.defra.gov.uk/
+    - url: ${{ "https://" + values.service_name + ".snd3.adp.defra.gov.uk/" | yaml | indent(8) }}
       title: SND3
-    - url: https://${{values.service_name}}.dev1.adp.defra.gov.uk/
+    - url: ${{ "https://" + values.service_name + ".dev1.adp.defra.gov.uk/" | yaml | indent(8) }}
       title: DEV1
-    - url: https://${{values.service_name}}.tst1.adp.defra.gov.uk/
+    - url: ${{ "https://" + values.service_name + ".tst1.adp.defra.gov.uk/" | yaml | indent(8) }}
       title: TST1
-    - url: https://${{values.service_name}}.pre1.adp.defra.gov.uk/
+    - url: ${{ "https://" + values.service_name + ".pre1.adp.defra.gov.uk/" | yaml | indent(8) }}
       title: PRE1
 spec:
   type: frontend
-  lifecycle: ${{ values.component_lifecycle }}
-  owner: ${{values.owner | dump}}
+  lifecycle: ${{ values.component_lifecycle | yaml | indent(2) }}
+  owner: ${{ values.owner | yaml | indent(2) }}
   {% if values.system -%}
-  system: ${{ values.system }}
+  system: ${{ values.system | yaml | indent(2) }}
   {%- endif %}

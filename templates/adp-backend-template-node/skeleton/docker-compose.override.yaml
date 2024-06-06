@@ -2,11 +2,11 @@
 # to provide dependencies and expose ports for local testing
 
 services:
-  ${{ values.service_name }}:
-    build:
+  ? ${{ values.service_name | yaml | indent(4) }}
+  : build:
       target: development
-    image: ${{ values.service_name }}-development
-    container_name: ${{ values.service_name }}-development
+    image: ${{ (values.service_name + "-development") | yaml | indent(4) }}
+    container_name: ${{ (values.service_name + "-development") | yaml | indent(4) }}
     ports:
       - "3000:3000"
       - "9229:9229"
@@ -17,8 +17,8 @@ services:
       - ./package.json:/home/node/package.json
       
 {% if values.app_infra_postgres_db_check == 'yes' %}
-  ${{ values.service_name }}-postgres:
-    ports:
+  ? ${{ (values.service_name + "-postgres") | yaml | indent(4) }}
+  : ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data

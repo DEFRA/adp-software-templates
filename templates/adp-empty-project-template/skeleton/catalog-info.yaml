@@ -1,22 +1,22 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: ${{values.component_id}}
+  name: ${{ values.component_id | yaml | indent(2) }}
   {% if values.description -%}
-  description: ${{values.description}}
+  description: ${{ values.description | yaml | indent(2) }}
   {%- endif %}
   annotations:
-    github.com/project-slug: ${{values.repo_project_slug}}
+    github.com/project-slug: ${{ values.repo_project_slug | yaml | indent(2) }}
     backstage.io/techdocs-ref: dir:.
   links:
-    - url: https://github.com/${{values.repo_project_slug}}
+    - url: ${{ "https://github.com" | path(values.repo_project_slug) | yaml | indent(8) }}
       title: GitHub Repository
       icon: github
 
 spec:
-  type: ${{ values.component_type }}
-  lifecycle: ${{ values.component_lifecycle }}
-  owner: ${{values.owner | dump}}
+  type: ${{ values.component_type | yaml | indent(2) }}
+  lifecycle: ${{ values.component_lifecycle | yaml | indent(2) }}
+  owner: ${{ values.owner | yaml | indent(2) }}
   {% if values.system -%}
-  system: ${{ values.system }}
+  system: ${{ values.system | yaml | indent(2) }}
   {%- endif %}

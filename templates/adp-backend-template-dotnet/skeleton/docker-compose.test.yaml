@@ -1,9 +1,9 @@
 services:
-  ${{ values.service_name }}:
-    build:
+  ? ${{ values.service_name | yaml | indent(4) }}
+  : build:
       target: development
-    image: ${{ values.service_name }}-development
-    container_name: ${{ values.service_name }}-test
+    image: ${{ (values.service_name + "-development") | yaml | indent(4) }}
+    container_name: ${{ (values.service_name + "-test") | yaml | indent(4) }}
     user: root
     entrypoint: sh -c "cd /home/dotnet && chown -R dotnet:dotnet . && su dotnet -c 'dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./test-output/'"
     volumes:

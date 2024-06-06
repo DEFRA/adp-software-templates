@@ -1,6 +1,6 @@
 services:
-  ${{ values.service_name }}:
-    command: >
+  ? ${{ values.service_name | yaml | indent(4) }}
+  : command: >
       sh -c "npm run test:watch"
     volumes:
       - ./.git:/home/node/.git
