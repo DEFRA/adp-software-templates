@@ -182,6 +182,7 @@ spec:
           isHelmOnly: true
           environments:
             - snd3
+            - snd4
             - dev1
             - tst1
             - tst2
@@ -211,6 +212,8 @@ spec:
           environments:
             - name: SND3
               description: SND3 environment
+            - name: SND4
+              description: SND4 environment
             - name: DEV1
               description: DEV1 environment
             - name: TST1
@@ -223,6 +226,7 @@ spec:
               description: PRD1 environment
           serviceConnections:
             - AZD-ADP-SND3
+            - AZD-ADP-SND4
             - AZD-ADP-SSV3
             - AZR-ADP-DEV1
             - AZR-ADP-TST1
@@ -234,12 +238,19 @@ spec:
             - DEFRA
           agentPools:
             - DEFRA-ADP-SND3-ubuntu2204
+            - DEFRA-ADP-SND4-ubuntu2204
             - DEFRA-ADP-DEV1-ubuntu2204
             - DEFRA-ADP-TST1-ubuntu2204
             - DEFRA-ADP-PRE1-ubuntu2204
             - DEFRA-ADP-PRD1-ubuntu2204
           variableGroups:
             - name: ${{ parameters.component_id }}-snd3
+              description: Variables for the ${{ parameters.component_id }} service
+              variables:
+                - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+                  value: TEST
+                  isSecret: true
+            - name: ${{ parameters.component_id }}-snd4
               description: Variables for the ${{ parameters.component_id }} service
               variables:
                 - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
