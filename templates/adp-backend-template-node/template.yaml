@@ -317,7 +317,7 @@ spec:
             - AZD-ADP-SND1
             - AZD-ADP-SND2
             - AZD-ADP-SND3
-            - AZD-ADP-SND4
+            - AZR-ADP-SND4
             - AZD-ADP-SSV3
             - AZR-ADP-DEV1
             - AZR-ADP-TST1
