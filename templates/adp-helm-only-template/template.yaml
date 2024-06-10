@@ -226,8 +226,9 @@ spec:
               description: PRD1 environment
           serviceConnections:
             - AZD-ADP-SND3
-            - AZD-ADP-SND4
+            - AZR-ADP-SND4
             - AZD-ADP-SSV3
+            - AZD-ADP-SSV5
             - AZR-ADP-DEV1
             - AZR-ADP-TST1
             - AZR-ADP-PRE1
