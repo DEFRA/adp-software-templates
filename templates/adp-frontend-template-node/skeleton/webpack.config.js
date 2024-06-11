@@ -2,22 +2,22 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const glob = require('glob')
 
 const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'
 
 console.log(`Running webpack in ${isDev ? 'development' : 'production'} mode`)
 
+const entrypointExtensionsDenyList = new Set([
+  '.scss',
+  '.css'
+])
+
 module.exports = {
   entry: {
-    core: [
-      './app/frontend/css/index.js',
-      './app/frontend/images/android-chrome-192x192.png',
-      './app/frontend/images/android-chrome-512x512.png',
-      './app/frontend/images/apple-touch-icon.png',
-      './app/frontend/images/defra-logo-black.png',
-      './app/frontend/images/defra-logo-white.png',
-      './app/frontend/images/favicon.ico'
-    ]
+    core: glob
+      .sync('./app/frontend/**', { nodir: true })
+      .filter(fileName => !entrypointExtensionsDenyList.has(path.extname(fileName)))
   },
   mode: isDev ? 'development' : 'production',
   module: {
@@ -57,7 +57,7 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'fonts/[name].[fullhash].[ext]'
+          filename: 'fonts/[name][ext]'
         }
       }
     ]

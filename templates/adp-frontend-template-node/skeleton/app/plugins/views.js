@@ -18,7 +18,7 @@ module.exports = {
           options.compileOptions.environment = nunjucks.configure(
             [
               path.join(options.relativeTo || process.cwd(), options.path),
-              'node_modules/govuk-frontend/'
+              'node_modules/govuk-frontend/dist/'
             ],
             {
               autoescape: true
@@ -35,8 +35,8 @@ module.exports = {
       appVersion: pkg.version,
       assetPath: '/static',
       govukAssetPath: '/assets',
-      serviceName: "${{ (values.service_name | json).slice(1, -1) }}",
-      pageTitle: "${{ (values.service_name | json).slice(1, -1) }} - GOV.UK"
+      serviceName: '${{ (values.service_name | json).slice(1, -1).replaceAll("\\\"", "\n").replaceAll("\'", "\\\'").replaceAll("\n", "\"") }}',
+      pageTitle: '${{ (values.service_name | json).slice(1, -1).replaceAll("\\\"", "\n").replaceAll("\'", "\\\'").replaceAll("\n", "\"") }} - GOV.UK'
     }
   }
 }

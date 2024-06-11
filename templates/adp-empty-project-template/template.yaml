@@ -116,7 +116,7 @@ spec:
           service_name: ${{ parameters.component_id }}
           project_name: ${{ parameters.owner | parseEntityRef | pick('name') }}
           description: ${{ parameters.description }}
-          component_type: ${{ parameters.component_type}}
+          component_type: ${{ parameters.component_type }}
           owner: ${{ parameters.owner }}
           repo_url: ${{ parameters.repo_url }}
           repo_project_slug: ${{ parameters.repo_url | projectSlug }}
