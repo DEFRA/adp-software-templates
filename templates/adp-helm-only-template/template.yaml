@@ -140,7 +140,7 @@ spec:
           component_lifecycle: ${{ parameters.component_lifecycle }}
           system: ${{ parameters.system }}
           endpoint: ${{ parameters.endpoint }}
-          default_path: ${{ parameters.defaultPath }}
+          default_path: ${{ parameters.defaultPath if parameters.defaultPath else "" }}
 
     - id: publish
       name: Publish
@@ -189,7 +189,7 @@ spec:
             - pre1
             - prd1
           configVariables:
-            INGRESS_ENDPOINT: ${{ parameters.endpoint }}${{ parameters.defaultPath }}
+            INGRESS_ENDPOINT: ${{ parameters.endpoint }}
 
     - id: generateServiceManifests
       name: Generate Service (Flux) Manifests
