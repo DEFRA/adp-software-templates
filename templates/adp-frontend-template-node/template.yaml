@@ -244,12 +244,10 @@ spec:
 
     - id: registerFluxService
       name: Register Service in Flux config
-      action: http:backstage:request
+      action: adp:registerFluxService
       input:
-        method: POST
-        path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/services
-        headers:
-          content-type: "application/json"
+        parameters:
+          teamName: ${{ parameters.owner | parseEntityRef | pick('name') }}
         body:
           name: ${{ parameters.component_id }}
           isFrontEnd: true
@@ -265,21 +263,18 @@ spec:
 
     - id: generateServiceManifests
       name: Generate Service (Flux) Manifests
-      action: http:backstage:request
+      action: adp:generateServiceManifests
       input:
-        method: POST
-        path: /proxy/adp-portal-api/FluxTeamConfig/${{ parameters.owner | parseEntityRef | pick('name') }}/generate?serviceName=${{ parameters.component_id }}
-        headers:
-          content-type: "application/json"
+        parameters:
+          teamName: ${{ parameters.owner | parseEntityRef | pick('name') }}
+          serviceName: ${{ parameters.component_id }}
 
     - id: configureAdoProject
       name: Configure Azure DevOps Project
-      action: http:backstage:request
+      action: adp:configureAdoProject
       input:
-        method: PATCH
-        path: /proxy/adp-portal-api/AdoProject/${{ parameters.ado_project }}/onboard
-        headers:
-          content-type: "application/json"
+        parameters:
+          adoProject: ${{ parameters.ado_project }}
         body:
           environments:
             - name: SND3
