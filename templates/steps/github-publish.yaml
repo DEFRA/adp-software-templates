@@ -1,0 +1,16 @@
+id: publish
+name: Publish
+action: publish:github
+input:
+  allowedHosts: ["github.com"]
+  description: ${{ parameters.description }}
+  repoUrl: ${{ parameters.repo_url }}
+  requireCodeOwnerReviews: true
+  dismissStaleReviews: true
+  requiredConversationResolution: true
+  requiredStatusCheckContexts: []
+  repoVisibility: public
+  defaultBranch: main
+  gitAuthorEmail: ${{ user.entity.spec.profile.email }}
+  gitAuthorName: ${{ user.entity.metadata.name }}
+  requiredCommitSigning: true

@@ -161,31 +161,9 @@ spec:
           app_infra_service_bus_resource_name: ${{ parameters.app_infra_service_bus_resource_name }}
           app_infra_service_bus_resource_type: ${{ parameters.app_infra_service_bus_resource_type }}
 
-    - id: publish
-      name: Publish
-      action: publish:github
-      input:
-        allowedHosts: ["github.com"]
-        description: ${{ parameters.description }}
-        repoUrl: ${{ parameters.repo_url }}
-        requireCodeOwnerReviews: true
-        dismissStaleReviews: true
-        requiredConversationResolution: true
-        requiredStatusCheckContexts: []
-        repoVisibility: public
-        defaultBranch: main
-        gitAuthorEmail: ${{ user.entity.spec.profile.email }}
-        gitAuthorName: ${{ user.entity.metadata.name }}
-        requiredCommitSigning: true
+    - $yaml: ../steps/github-publish.yaml
 
-    - id: addGitHubTeam
-      name: Add GitHub Teams to Repository
-      action: adp:github:team:add:deliveryproject
-      input:
-        projectName: ${{ parameters.owner | parseEntityRef | pick('name') }}
-        repoName: ${{ parameters.repo_url | parseRepoUrl | pick('repo') }}
-        orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
-        owner: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+    - $yaml: ../steps/github-team.yaml
 
     - id: registerFluxService
       name: Register Service in Flux config
