@@ -3,6 +3,6 @@ kind: Domain
 metadata:
   name: ncea-search
   description: Everything within the NCEA Search domain
-  title: Walleys Quarry
+  title: NCEA Search
 spec:
   owner: "group:default/ncea-search"
