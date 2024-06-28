@@ -1,0 +1,9 @@
+id: permitResources
+name: Permit Pipeline Resources
+action: adp:azure:pipeline:permit
+if: ${{ steps.configureAdoProject.output.code == 200 }}
+input:
+  organization: ${{ parameters.ado_organization }}
+  project: ${{ parameters.ado_project }}
+  pipelineId: ${{ steps.createPipeline.output.pipelineId }}
+  resources: ${{ steps.configureAdoProject.output.body }}

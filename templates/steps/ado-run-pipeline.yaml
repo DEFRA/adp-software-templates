@@ -1,0 +1,8 @@
+id: runPipeline
+name: Run CI Pipeline
+action: adp:azure:pipeline:run
+if: ${{ steps.configureAdoProject.output.code == 200 }}
+input:
+  organization: ${{ parameters.ado_organization }}
+  pipelineId: ${{ steps.createPipeline.output.pipelineId }}
+  project: ${{ parameters.ado_project }}

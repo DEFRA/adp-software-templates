@@ -1,0 +1,7 @@
+id: logConfigureAdoProjectReponse
+name: Log Azure DevOps Project Configuration
+action: debug:log
+input:
+  message: |
+    Response Code: ${{ steps.configureAdoProject.output.code }}
+    Response: ${{ steps.configureAdoProject.output.body | dump }}

@@ -1,0 +1,8 @@
+id: getServiceConnection
+name: Get ADO Service Connection
+action: adp:azure:serviceconnection:get
+if: ${{ steps.configureAdoProject.output.code == 200 }}
+input:
+  organization: ${{ parameters.ado_organization }}
+  project: ${{ parameters.ado_project }}
+  serviceConnectionName: ${{ parameters.service_connection_name }}

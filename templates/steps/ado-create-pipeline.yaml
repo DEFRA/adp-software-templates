@@ -1,0 +1,12 @@
+id: createPipeline
+name: Create CI Pipeline
+action: adp:azure:pipeline:create
+if: ${{ steps.configureAdoProject.output.code == 200 }}
+input:
+  organization: ${{ parameters.ado_organization }}
+  project: ${{ parameters.ado_project }}
+  folder: ${{ parameters.pipeline_folder }}
+  repositoryName: ${{ parameters.repo_url | projectSlug }}
+  yamlPath: .azuredevops/build.yaml
+  serviceConnectionId: ${{ steps.getServiceConnection.output.serviceConnectionId }}
+  pipelineName: ${{ parameters.component_id }}

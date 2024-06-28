@@ -109,12 +109,7 @@ spec:
 
     - $yaml: ../steps/github-team.yaml
 
-    - id: register
-      name: Register
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
-        catalogInfoPath: "/catalog-info.yaml"
+    - $yaml: ../steps/catalog-register.yaml
 
   output:
     links:

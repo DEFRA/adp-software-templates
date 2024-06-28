@@ -1,0 +1,88 @@
+id: configureAdoProject
+name: Configure Azure DevOps Project
+action: adp:configureAdoProject
+input:
+  parameters:
+    adoProject: ${{ parameters.ado_project }}
+  body:
+    environments:
+      - name: SND3
+        description: SND environment
+      - name: SND4
+        description: SND environment
+      - name: DEV1
+        description: DEV1 environment
+      - name: TST1
+        description: TST1 environment
+      - name: TST2
+        description: TST2 environment
+      - name: PRE1
+        description: PRE1 environment
+      - name: PRD1
+        description: PRD1 environment
+    serviceConnections:
+      - AZD-ADP-SND1
+      - AZD-ADP-SND2
+      - AZD-ADP-SND3
+      - AZR-ADP-SND4
+      - AZD-ADP-SSV3
+      - AZD-ADP-SSV5
+      - AZR-ADP-DEV1
+      - AZR-ADP-TST1
+      - AZR-ADP-PRE1
+      - AZR-ADP-PRD1
+      - AZD-ADP-SNYK
+      - Defra-ADP-Github
+      - DEFRA-ADP-SonarCloud
+      - DEFRA
+    agentPools:
+      - DEFRA-ADP-SND1-ubuntu2204
+      - DEFRA-ADP-SND3-ubuntu2204
+      - DEFRA-ADP-SND4-ubuntu2204
+      - DEFRA-ADP-DEV1-ubuntu2204
+      - DEFRA-ADP-TST1-ubuntu2204
+      - DEFRA-ADP-PRE1-ubuntu2204
+      - DEFRA-ADP-PRD1-ubuntu2204
+    variableGroups:
+      - name: ${{ parameters.component_id }}-snd3
+        description: Variables for the ${{ parameters.component_id }} service
+        variables:
+          - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+            value: TEST
+            isSecret: true
+      - name: ${{ parameters.component_id }}-snd4
+        description: Variables for the ${{ parameters.component_id }} service
+        variables:
+          - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+            value: TEST
+            isSecret: true
+      - name: ${{ parameters.component_id }}-dev1
+        description: Variables for the ${{ parameters.component_id }} service
+        variables:
+          - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+            value: TEST
+            isSecret: true
+      - name: ${{ parameters.component_id }}-tst1
+        description: Variables for the ${{ parameters.component_id }} service
+        variables:
+          - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+            value: TEST
+            isSecret: true
+      - name: ${{ parameters.component_id }}-tst2
+        description: Variables for the ${{ parameters.component_id }} service
+        variables:
+          - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+            value: TEST
+            isSecret: true
+      - name: ${{ parameters.component_id }}-pre1
+        description: Variables for the ${{ parameters.component_id }} service
+        variables:
+          - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+            value: TEST
+            isSecret: true
+      - name: ${{ parameters.component_id }}-prd1
+        description: Variables for the ${{ parameters.component_id }} service
+        variables:
+          - name: ${{ parameters.component_id }}-APPINSIGHTS-CONNECTIONSTRING
+            value: TEST
+            isSecret: true
