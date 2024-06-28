@@ -1,0 +1,25 @@
+title: CI/CD
+description: CI/CD pipelines will be created in Azure DevOps
+required:
+  - ado_organization
+  - ado_project
+  - service_connection_name
+  - pipeline_folder
+properties:
+  ado_organization:
+    title: Azure DevOps Organization
+    type: string
+    default: defragovuk
+  ado_project:
+    title: Azure DevOps Project
+    type: string
+  service_connection_name:
+    title: Service Connection Name
+    type: string
+    description: Name of the Service Connection used to connect to GitHub.
+    default: DEFRA
+  pipeline_folder:
+    title: Pipeline Folder
+    type: string
+    description: Folder path where the pipeline will be created
+    default: /

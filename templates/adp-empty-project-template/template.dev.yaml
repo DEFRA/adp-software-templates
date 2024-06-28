@@ -86,24 +86,7 @@ spec:
             - Alpha
             - Beta
 
-    - title: Git Repository
-      description: |
-        To encourage coding in the open the repository will be public by default. Refer to the [GDS service manual](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable) for more information.
-
-        The scaffolder will create a new repository and an associated team with write permissions.
-      required:
-        - repo_url
-      properties:
-        repo_url:
-          title: Repository Location
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - github.com
-            allowedOwners:
-              - defra
-              - defra-adp-sandpit
+    - $yaml: ../parameters/git-repository.yaml
 
   steps:
     - id: template

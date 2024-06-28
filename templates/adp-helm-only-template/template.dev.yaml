@@ -76,50 +76,9 @@ spec:
           default: /
           pattern: ^\/.*$
 
-    - title: Git Repository
-      description: |
-        To encourage coding in the open the repository will be public by default. Refer to the [GDS service manual](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable) for more information.
+    - $yaml: ../parameters/git-repository.yaml
 
-        The scaffolder will create a new repository and an associated team with write permissions.
-      required:
-        - repo_url
-      properties:
-        repo_url:
-          title: Repository Location
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - github.com
-            allowedOwners:
-              - defra
-              - defra-adp-sandpit
-
-    - title: CI/CD
-      description: CI/CD pipelines will be created in Azure DevOps
-      required:
-        - ado_organization
-        - ado_project
-        - service_connection_name
-        - pipeline_folder
-      properties:
-        ado_organization:
-          title: Azure DevOps Organization
-          type: string
-          default: defragovuk
-        ado_project:
-          title: Azure DevOps Project
-          type: string
-        service_connection_name:
-          title: Service Connection Name
-          type: string
-          description: Name of the Service Connection used to connect to GitHub.
-          default: DEFRA
-        pipeline_folder:
-          title: Pipeline Folder
-          type: string
-          description: Folder path where the pipeline will be created
-          default: /
+    - $yaml: ../parameters/ci-cd.yaml
 
   steps:
     - id: template
