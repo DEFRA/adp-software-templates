@@ -101,8 +101,8 @@ spec:
           description: ${{ parameters.description }}
           component_type: ${{ parameters.component_type }}
           owner: ${{ parameters.owner }}
-          repo_url: ${{ parameters.repo_url }}
-          repo_project_slug: ${{ parameters.repo_url | projectSlug }}
+          repo_url: ${{ parameters.repo_name | githubRepoUrl }}
+          repo_project_slug: ${{ parameters.repo_name | githubRepoUrl | projectSlug }}
           component_lifecycle: ${{ parameters.component_lifecycle }}
 
     - id: publish

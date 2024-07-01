@@ -6,7 +6,7 @@ input:
   organization: ${{ parameters.ado_organization }}
   project: ${{ parameters.ado_project }}
   folder: ${{ parameters.pipeline_folder }}
-  repositoryName: ${{ parameters.repo_url | projectSlug }}
+  repositoryName: ${{ parameters.repo_name | githubRepoUrl | projectSlug }}
   yamlPath: .azuredevops/build.yaml
   serviceConnectionId: ${{ steps.getServiceConnection.output.serviceConnectionId }}
   pipelineName: ${{ parameters.component_id }}

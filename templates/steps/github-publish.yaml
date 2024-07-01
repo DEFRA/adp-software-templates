@@ -4,7 +4,7 @@ action: publish:github
 input:
   allowedHosts: ["github.com"]
   description: ${{ parameters.description }}
-  repoUrl: ${{ parameters.repo_url }}
+  repoUrl: ${{ parameters.repo_name | githubRepoUrl }}
   requireCodeOwnerReviews: true
   dismissStaleReviews: true
   requiredConversationResolution: true

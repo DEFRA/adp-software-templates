@@ -3,6 +3,6 @@ name: Add GitHub Teams to Repository
 action: adp:github:team:add:deliveryproject
 input:
   projectName: ${{ parameters.owner | parseEntityRef | pick('name') }}
-  repoName: ${{ parameters.repo_url | parseRepoUrl | pick('repo') }}
-  orgName: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
-  owner: ${{ parameters.repo_url | parseRepoUrl | pick('owner') }}
+  repoName: ${{ parameters.repo_name | githubRepoUrl | parseRepoUrl | pick('repo') }}
+  orgName: ${{ parameters.repo_name | githubRepoUrl | parseRepoUrl | pick('owner') }}
+  owner: ${{ parameters.repo_name | githubRepoUrl | parseRepoUrl | pick('owner') }}

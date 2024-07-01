@@ -181,8 +181,8 @@ spec:
           description: ${{ parameters.description }}
           owner: ${{ parameters.owner }}
           workstream: ${{ parameters.owner | parseEntityRef | pick('name') }}
-          repo_url: ${{ parameters.repo_url }}
-          repo_project_slug: ${{ parameters.repo_url | projectSlug }}
+          repo_url: ${{ parameters.repo_name | githubRepoUrl }}
+          repo_project_slug: ${{ parameters.repo_name | githubRepoUrl | projectSlug }}
           component_lifecycle: ${{ parameters.component_lifecycle }}
           system: ${{ parameters.system }}
           app_infra_service_bus_check: ${{ parameters.app_infra_service_bus_check }}

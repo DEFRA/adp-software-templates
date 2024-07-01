@@ -4,15 +4,10 @@ description: |
 
   The scaffolder will create a new repository and an associated team with write permissions.
 required:
-  - repo_url
+  - repo_name
 properties:
-  repo_url:
-    title: Repository Location
+  repo_name:
+    title: Repository Name
     type: string
-    ui:field: RepoUrlPicker
-    ui:options:
-      allowedHosts:
-        - github.com
-      allowedOwners:
-        - defra
-        - defra-adp-sandpit
+    pattern: "^[a-zA-Z0-9._-]+$"
+    ui:autofocus: true
