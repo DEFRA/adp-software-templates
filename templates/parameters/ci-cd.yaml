@@ -10,14 +10,10 @@ properties:
     title: Azure DevOps Organization
     type: string
     default: defragovuk
+    ui:readonly: true
   ado_project:
     title: Azure DevOps Project
     type: string
-  service_connection_name:
-    title: Service Connection Name
-    type: string
-    description: Name of the Service Connection used to connect to GitHub.
-    default: DEFRA
   pipeline_folder:
     title: Pipeline Folder
     type: string
