@@ -3,7 +3,6 @@ description: CI/CD pipelines will be created in Azure DevOps
 required:
   - ado_organization
   - ado_project
-  - service_connection_name
   - pipeline_folder
 properties:
   ado_organization:
