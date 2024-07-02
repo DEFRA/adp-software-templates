@@ -8,7 +8,7 @@ metadata:
     - empty-project
     - repository
 spec:
-  owner: adp
+  owner: ccts-adp
   type: empty-project
 
   parameters:

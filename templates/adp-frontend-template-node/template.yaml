@@ -10,7 +10,7 @@ metadata:
     - aks
     - frontend
 spec:
-  owner: adp
+  owner: ccts-adp
   type: frontend
 
   parameters:

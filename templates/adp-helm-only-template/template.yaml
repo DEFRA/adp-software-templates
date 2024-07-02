@@ -7,7 +7,7 @@ metadata:
   tags:
     - helm
 spec:
-  owner: adp
+  owner: ccts-adp
   type: helm
   parameters:
     - title: Component Information

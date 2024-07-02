@@ -10,7 +10,7 @@ metadata:
     - aks
     - backend
 spec:
-  owner: adp
+  owner: ccts-adp
   type: backend
 
   parameters:
