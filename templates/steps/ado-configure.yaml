@@ -34,7 +34,7 @@ input:
       - AZD-ADP-SNYK
       - Defra-ADP-Github
       - DEFRA-ADP-SonarCloud
-      - DEFRA
+      - DEFRA-ADP
     agentPools:
       - DEFRA-ADP-SND1-ubuntu2204
       - DEFRA-ADP-SND3-ubuntu2204
