@@ -58,11 +58,7 @@ spec:
           title: Owner
           type: string
           description: Select the team who will own this component
-          ui:field: OwnerPicker
-          ui:options:
-            catalogFilter:
-              - kind: Group
-                spec.type: delivery-project
+          ui:field: DeliveryProjectPicker
 
         endpoint:
           title: Endpoint
