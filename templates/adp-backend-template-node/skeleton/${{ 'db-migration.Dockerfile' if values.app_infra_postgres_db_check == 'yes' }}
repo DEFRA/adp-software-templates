@@ -1,5 +1,5 @@
 # Use ADP PostgreSql migration image as base image
-FROM ssvadpinfcr5401.azurecr.io/image/adp-postgres-migration:1.0.0
+FROM {{adpSharedAcrName}}.azurecr.io/image/adp-postgres-migration:1.0.0
 
 # Copy migration changelog files
 COPY --chown=liquibase:liquibase --chmod=755 changelog ./changelog
