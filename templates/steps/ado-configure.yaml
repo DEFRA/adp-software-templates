@@ -37,8 +37,8 @@ input:
       - DEFRA-ADP
       - AZD-ADP-AdoCallbackApi-DEV
       - AZD-ADP-AdoCallbackApi-TST
-      - AZD-ADP-AdoCallbackApi-PRE
-      - AZD-ADP-AdoCallbackApi-PRD
+      - AZR-ADP-AdoCallbackApi-PRE
+      - AZR-ADP-AdoCallbackApi-PRD
     agentPools:
       - DEFRA-ADP-SND1-ubuntu2204
       - DEFRA-ADP-SND3-ubuntu2204
