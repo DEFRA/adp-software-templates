@@ -7,7 +7,7 @@ input:
   repoUrl: ${{ parameters.repo_name | githubRepoUrl }}
   requireCodeOwnerReviews: true
   dismissStaleReviews: true
-  requiredConversationResolution: true
+  requiredConversationResolution: false
   requiredStatusCheckContexts: []
   repoVisibility: public
   defaultBranch: main
