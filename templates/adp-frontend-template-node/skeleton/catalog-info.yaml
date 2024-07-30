@@ -31,8 +31,8 @@ metadata:
     - url: https://portal.azure.com/Defra.onmicrosoft.com
       title: Azure Portal - Defra
       icon: cloud
-    - url: ${{ "https://" + values.service_name + ".snd3.adp.defra.gov.uk/" | yaml | indent(8) }}
-      title: SND3
+    - url: ${{ "https://" + values.service_name + ".snd4.adp.defra.gov.uk/" | yaml | indent(8) }}
+      title: SND4
     - url: ${{ "https://" + values.service_name + ".dev1.adp.defra.gov.uk/" | yaml | indent(8) }}
       title: DEV1
     - url: ${{ "https://" + values.service_name + ".tst1.adp.defra.gov.uk/" | yaml | indent(8) }}

@@ -11,7 +11,7 @@ services:
 
   zap-baseline-scan:
     image: softwaresecurityproject/zap-bare:2.14.0
-    command: zap.sh -cmd -quickurl ${TEST_ENVIRONMENT_ROOT_URL:-${{ values.service_name | yaml | indent(4) }}:3000} -zapit ${TEST_ENVIRONMENT_ROOT_URL:-${{ values.service_name | yaml | indent(4) }}:3000} -configfile config/zap.conf -quickout test-output/zap-report.html -silent -quickprogress
+    command: zap.sh -cmd -quickurl ${TEST_ENVIRONMENT_ROOT_URL:-http://${{ values.service_name | yaml | indent(4) }}:3000} -zapit ${TEST_ENVIRONMENT_ROOT_URL:-http://${{ values.service_name | yaml | indent(4) }}:3000} -configfile config/zap.conf -quickout test-output/zap-report.html -silent -quickprogress
     depends_on:
       - ${{ values.service_name | yaml | indent(4) }}
     volumes:
