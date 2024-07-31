@@ -55,7 +55,7 @@
       "timeline": [
         {
           "moved": 0,
-          "ringId": "adopt",
+          "ringId": "hold",
           "date": "2024-01-01",
           "description": "This technology is recommended for use by the majority of teams with a specific use case."
         }
@@ -416,11 +416,17 @@
     {
       "id": "nUnit",
       "title": "nUnit",
-      "description": "NUnit is a unit-testing framework for all .Net languages.",
+      "description": "NUnit is a unit-testing framework for all .Net languages",
       "key": "nUnit",
       "url": "#nUnit",
       "quadrant": "tooling",
       "timeline": [
+        {
+          "moved": 0,
+          "ringId": "adopt",
+          "date": "2024-07-01",
+          "description": "XUnit is perferred"
+        },
         {
           "moved": 0,
           "ringId": "adopt",
@@ -815,7 +821,7 @@
       "description": "Fully managed, distributed NoSQL & relational database for modern app development. High performance, high availability, and support for open-source PostgreSQL, MongoDB, and Apache Cassandra.",
       "key": "azureSQL",
       "url": "#azureSQL",
-      "quadrant": "tooling",
+      "quadrant": "infrastructure",
       "timeline": [
         {
           "moved": 0,
@@ -837,11 +843,11 @@
       "description": "Azure Cosmos DB is a fully managed NoSQL and relational database for modern app development. Azure Cosmos DB for MongoDB makes it easy to use Azure Cosmos DB as if it were a MongoDB database. ",
       "key": "azureMongo",
       "url": "#azureMongo",
-      "quadrant": "tooling",
+      "quadrant": "infrastructure",
       "timeline": [
         {
           "moved": 0,
-          "ringId": "adopt",
+          "ringId": "hold",
           "date": "2024-01-01",
           "description": "This technology is recommended for use by the majority of teams with a specific use case."
         }
@@ -863,7 +869,7 @@
       "timeline": [
         {
           "moved": 0,
-          "ringId": "assess",
+          "ringId": "adopt",
           "date": "2024-01-01",
           "description": "This technology has the potential to be beneficial for the organisation. Some teams are evaluating it and using it in experimental projects. Using it in production comes with a high cost and risk due to lack of in-house knowledge, maintenance, and support."
         }
@@ -1042,6 +1048,28 @@
           "ringId": "adopt",
           "date": "2024-01-01",
           "description": "This technology is recommended for use by the majority of teams with a specific use case."
+        }
+      ],
+      "links": [
+        {
+          "title": "Link to Azure Service Bus",
+          "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview"
+        }
+      ]
+    },
+    {
+      "id": "azureOpenAI",
+      "title": "Azure Service Bus",
+      "description": "Azure Service Bus is a fully managed enterprise message broker with message queues and publish-subscribe topics (in a namespace).",
+      "key": "azureOpenAI",
+      "url": "#azureOpenAI",
+      "quadrant": "infrastructure",
+      "timeline": [
+        {
+          "moved": 0,
+          "ringId": "trail",
+          "date": "2024-07-01",
+          "description": "Mutiple projects are activing trailing OpenAI in SND and looking to move to DEV+"
         }
       ],
       "links": [
@@ -1235,6 +1263,12 @@
       "url": "#azureAISearch",
       "quadrant": "infrastructure",
       "timeline": [
+        {
+          "moved": 1,
+          "ringId": "trail",
+          "date": "2024-07-01",
+          "description": "Activing adopting AI Search on platform."
+        },
         {
           "moved": 0,
           "ringId": "assess",
