@@ -22,4 +22,4 @@ If this PR closes an issue, add '<AB#123456>' somewhere in the PR summary. As a 
 - [ ] This PR contains tests
 
 ## How does this PR make you feel:
-![gif]([https://giphy.com/)
+![gif](https://giphy.com/)
