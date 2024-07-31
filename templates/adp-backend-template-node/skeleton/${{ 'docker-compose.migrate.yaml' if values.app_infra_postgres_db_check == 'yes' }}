@@ -1,5 +1,5 @@
 x-common-migration: &common-migration
-  POSTGRES_HOST: ${{ ("${POSTGRES_HOST:-" + values.service_name + "-postgres}") | yaml | indent(2) }}
+  POSTGRES_HOST: ${{ ("${POSTGRES_HOST:-" + values.service_name + "-postgres}") | yaml | indent(4) }}
   SCHEMA_ROLE: ${POSTGRES_SCHEMA_ROLE:-postgres}
   SCHEMA_USERNAME: ${POSTGRES_SCHEMA_USERNAME:-postgres}
   SCHEMA_PASSWORD: ${POSTGRES_SCHEMA_PASSWORD:-ppp}
@@ -7,7 +7,7 @@ x-common-migration: &common-migration
 
 x-common-postgres: &common-postgres
   POSTGRES_PORT: 5432
-  POSTGRES_DB: ${{ ("${POSTGRES_DB:-" + values.service_name + "}") | yaml | indent(2) }}
+  POSTGRES_DB: ${{ ("${POSTGRES_DB:-" + values.service_name + "}") | yaml | indent(4) }}
   POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD:-ppp}
   POSTGRES_USERNAME: ${POSTGRES_ADMIN_USERNAME:-postgres}
 
@@ -19,7 +19,7 @@ services:
     entrypoint: >
       sh -c "/scripts/migration/database-up $${SCHEMA_PASSWORD}"
     depends_on:
-      - ${{ (values.service_name + "-postgres") | yaml | indent(8) }}
+      - ${{ (values.service_name + "-postgres") | yaml | indent(10) }}
     volumes:
       - ./changelog:/liquibase/changelog
       - ./scripts:/scripts
@@ -31,12 +31,12 @@ services:
     entrypoint: >
       sh -c "/scripts/migration/database-down"
     depends_on:
-      - ${{ (values.service_name + "-postgres") | yaml | indent(8) }}
+      - ${{ (values.service_name + "-postgres") | yaml | indent(10) }}
     volumes:
       - ./changelog:/liquibase/changelog
       - ./scripts:/scripts
 
-  ? ${{ (values.service_name + "-postgres") | yaml | indent(4) }}
+  ? ${{ (values.service_name + "-postgres") | yaml | indent(6) }}
   : image: postgres:15.6-alpine
     environment: *common-postgres
     volumes:

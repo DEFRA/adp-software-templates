@@ -1,9 +1,9 @@
 services:
-  ? ${{ values.service_name | yaml | indent(4) }}
+  ? ${{ values.service_name | yaml | indent(6) }}
   : command: npm run start:watch
     build:
       target: development
-    image: ${{ (values.service_name + "-development") | yaml | indent(4) }}
+    image: ${{ (values.service_name + "-development") | yaml | indent(6) }}
     environment:
       NODE_ENV: test
     volumes:
@@ -12,13 +12,13 @@ services:
   axe:
     image: defradigital/ffc-axe
     depends_on:
-      - ${{ values.service_name | yaml | indent(4) }}
+      - ${{ values.service_name | yaml | indent(10) }}
     command:
       - /bin/sh
       - -c
       - |
         sleep 10
-        /scripts/wait ${TEST_ENVIRONMENT_ROOT_URL:-${{ values.service_name | yaml | indent(4) }}:3000} -- axe --dir=test-output -s axe.json --report=test-output --format=junit --exclude ".govuk-skip-link,.govuk-breadcrumbs"  --chrome-options="no-sandbox,disable-setuid-sandbox,disable-dev-shm-usage" --chromedriver-path=/usr/bin/chromedriver --exit  ${TEST_ENVIRONMENT_ROOT_URL:-${{ values.service_name | yaml | indent(4) }}:3000}
+        /scripts/wait ${TEST_ENVIRONMENT_ROOT_URL:-${{ values.service_name | yaml | indent(10) }}:3000} -- axe --dir=test-output -s axe.json --report=test-output --format=junit --exclude ".govuk-skip-link,.govuk-breadcrumbs"  --chrome-options="no-sandbox,disable-setuid-sandbox,disable-dev-shm-usage" --chromedriver-path=/usr/bin/chromedriver --exit  ${TEST_ENVIRONMENT_ROOT_URL:-${{ values.service_name | yaml | indent(4) }}:3000}
     volumes:
       - ./test-output/axe:/home/node/test-output
       - ./scripts:/scripts

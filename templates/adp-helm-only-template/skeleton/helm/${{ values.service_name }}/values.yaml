@@ -17,7 +17,7 @@ container:
 
 # These may be changed. See here: https://github.com/DEFRA/adp-helm-library?tab=readme-ov-file#container-template
 livenessProbe:
-  path: ${{ values.default_path | path("healthz") | yaml | indent(2) }}
+  path: ${{ values.default_path | path("healthz") | yaml | indent(4) }}
   port: 3001
   initialDelaySeconds: 20
   periodSeconds: 10
@@ -26,7 +26,7 @@ livenessProbe:
 
 # These may be changed. See here: https://github.com/DEFRA/adp-helm-library?tab=readme-ov-file#container-template
 readinessProbe:
-  path: ${{ values.default_path | path("healthy") | yaml | indent(2) }}
+  path: ${{ values.default_path | path("healthy") | yaml | indent(4) }}
   port: 3001
   initialDelaySeconds: 30
   periodSeconds: 10
@@ -37,8 +37,8 @@ readinessProbe:
 # Your URL will be your <service-name>.<environment>.adp.defra.gov.uk for a front-end Web UI component. Azure Front Door is the Global Load Balancer, CDN and WAF. Nginx is the in-cluster ingress controller.
 ingress:
   class: nginx
-  endpoint: ${{ (values.endpoint if values.endpoint else values.component_id) | yaml | indent(2) }}
+  endpoint: ${{ (values.endpoint if values.endpoint else values.component_id) | yaml | indent(4) }}
   server: adp.defra.gov.uk
   type: minion
-  path: ${{ values.default_path | yaml | indent(2) }}
-  defaultPath: ${{ values.default_path | yaml | indent(2) }}
+  path: ${{ values.default_path | yaml | indent(4) }}
+  defaultPath: ${{ values.default_path | yaml | indent(4) }}

@@ -1,17 +1,17 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: ${{ values.component_id | yaml | indent(2) }}
+  name: ${{ values.component_id | yaml | indent(4) }}
   {% if values.description -%}
-  description: ${{ values.description | yaml | indent(2) }}
+  description: ${{ values.description | yaml | indent(4) }}
   {%- endif %}
   annotations:
-    github.com/project-slug: ${{ values.repo_project_slug | yaml | indent(4) }}
-    dev.azure.com/project: ${{ values.ado_project_name | yaml | indent(4) }}
-    dev.azure.com/build-definition: ${{ values.service_name | yaml | indent(4) }}
-    sonarqube.org/project-key: ${{ values.service_name | yaml | indent(4) }}
+    github.com/project-slug: ${{ values.repo_project_slug | yaml | indent(6) }}
+    dev.azure.com/project: ${{ values.ado_project_name | yaml | indent(6) }}
+    dev.azure.com/build-definition: ${{ values.service_name | yaml | indent(6) }}
+    sonarqube.org/project-key: ${{ values.service_name | yaml | indent(6) }}
     grafana/dashboard-selector: "folderTitle == 'Managed Prometheus'"
-    backstage.io/kubernetes-id: ${{ values.service_name | yaml | indent(4) }}
+    backstage.io/kubernetes-id: ${{ values.service_name | yaml | indent(6) }}
   links:
     - url: ${{ "https://github.com" | path(values.repo_project_slug) | yaml | indent(8) }}
       title: GitHub Repository
@@ -33,8 +33,8 @@ metadata:
       icon: cloud
 spec:
   type: backend
-  lifecycle: ${{ values.component_lifecycle | yaml | indent(2) }}
-  owner: ${{ values.owner | yaml | indent(2) }}
+  lifecycle: ${{ values.component_lifecycle | yaml | indent(4) }}
+  owner: ${{ values.owner | yaml | indent(4) }}
   {% if values.system -%}
-  system: ${{ values.system | yaml | indent(2) }}
+  system: ${{ values.system | yaml | indent(4) }}
   {%- endif %}

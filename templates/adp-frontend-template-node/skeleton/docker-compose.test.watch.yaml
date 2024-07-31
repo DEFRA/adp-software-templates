@@ -1,5 +1,5 @@
 services:
-  ? ${{ values.service_name | yaml | indent(4) }}
+  ? ${{ values.service_name | yaml | indent(6) }}
   : command: >
       sh -c "npm run test:watch"
     volumes:

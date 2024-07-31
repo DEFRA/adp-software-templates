@@ -26,11 +26,11 @@ resources:
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
   parameters:
-    teamName: ${{ values.project_name | yaml | indent(4) }}
-    serviceName: ${{ values.service_name | yaml | indent(4) }}
+    teamName: ${{ values.project_name | yaml | indent(6) }}
+    serviceName: ${{ values.service_name | yaml | indent(6) }}
     deployFromFeature: {% raw %}${{ parameters.deployFromFeature }}{% endraw %}
     appBuildConfig:
       appFrameworkType: "helm"
       projectPath: "helm/${{values.service_name}}/Chart.yaml"
-      imageRepoName: ${{ values.service_name | yaml | indent(6) }}
+      imageRepoName: ${{ values.service_name | yaml | indent(8) }}
 

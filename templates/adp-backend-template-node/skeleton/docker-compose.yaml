@@ -1,21 +1,21 @@
 services:
-  ? ${{ values.service_name | yaml | indent(4) }}
+  ? ${{ values.service_name | yaml | indent(6) }}
   : build:
       context: .
       target: production
-    image: ${{ values.service_name | yaml | indent(4) }}
-    container_name: ${{ values.service_name | yaml | indent(4) }}
+    image: ${{ values.service_name | yaml | indent(6) }}
+    container_name: ${{ values.service_name | yaml | indent(6) }}
     depends_on:
-      - ${{ (values.service_name + "-postgres") | yaml | indent(8) }}
+      - ${{ (values.service_name + "-postgres") | yaml | indent(10) }}
     environment:
-      APPINSIGHTS_CLOUDROLE: ${{ (values.service_name + "-local") | yaml | indent(6) }}
+      APPINSIGHTS_CLOUDROLE: ${{ (values.service_name + "-local") | yaml | indent(8) }}
       APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}
 
 {% if values.app_infra_postgres_db_check == 'yes' %}
-  ? ${{ (values.service_name + "-postgres") | yaml | indent(4) }}
+  ? ${{ (values.service_name + "-postgres") | yaml | indent(6) }}
   : image: postgres:15.6-alpine
     environment:
-      POSTGRES_DB: ${{ values.service_name | yaml | indent(6) }}
+      POSTGRES_DB: ${{ values.service_name | yaml | indent(8) }}
       POSTGRES_PASSWORD: ppp
       POSTGRES_USERNAME: postgres
 {%- endif %}
