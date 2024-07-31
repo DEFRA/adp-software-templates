@@ -1067,9 +1067,9 @@
       "timeline": [
         {
           "moved": 0,
-          "ringId": "trail",
+          "ringId": "trial",
           "date": "2024-07-01",
-          "description": "Mutiple projects are activing trailing OpenAI in SND and looking to move to DEV+"
+          "description": "Mutiple projects are activing trialing OpenAI in SND and looking to move to DEV+"
         }
       ],
       "links": [
@@ -1265,7 +1265,7 @@
       "timeline": [
         {
           "moved": 1,
-          "ringId": "trail",
+          "ringId": "trial",
           "date": "2024-07-01",
           "description": "Activing adopting AI Search on platform."
         },
