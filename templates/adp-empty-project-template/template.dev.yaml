@@ -52,12 +52,6 @@ spec:
             - Website
             - Other
 
-        owner:
-          title: Owner
-          type: string
-          description: Select the team who will own this component
-          ui:field: DeliveryProjectPicker
-
         system:
           title: System
           type: string
@@ -81,6 +75,12 @@ spec:
             - Discovery
             - Alpha
             - Beta
+
+        owner:
+          title: Owner
+          type: string
+          description: Select the team who will own this component
+          ui:field: DeliveryProjectPicker
 
     - $yaml: ../parameters/git-repository.yaml
 
