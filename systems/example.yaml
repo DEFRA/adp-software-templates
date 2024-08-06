@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: example-system
+  description: An example system, intended to be used to help projects to create their own systems.
+spec:
+  owner: "group:default/adp"
+  

@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: project-systems
+  description: Systems defined and owned by projects using ADP.
+spec:
+  targets:
+    # - ./example.yaml # Reference a system by a relative path like this.
