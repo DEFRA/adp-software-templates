@@ -10,6 +10,7 @@ input:
     ado_project_name: ${{ parameters.ado_project }}
     description: ${{ parameters.description }}
     component_type: ${{ parameters.component_type}}
+    ingress_type: ${{ parameters.ingress_type}}
     owner: ${{ parameters.owner }}
     workstream: ${{ parameters.owner | parseEntityRef | pick('name') }}
     repo_url: ${{ parameters.repo_name | githubRepoUrl }}
