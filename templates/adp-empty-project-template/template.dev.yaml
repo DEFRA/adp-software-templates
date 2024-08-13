@@ -10,97 +10,10 @@ metadata:
 spec:
   owner: ccts-adp
   type: empty-project
-
   parameters:
-    - title: Component Information
-      description: Enter properties describing this component.
-      required:
-        - component_id
-        - description
-        - component_type
-        - owner
-        - system
-        - component_lifecycle
-      properties:
-        component_id:
-          title: Component Name
-          type: string
-          description: Unique name of the component which will be used for the repository, package, and image names. This should be in the format <program>-<workstream>-<repo>. Maximum 64 characters.
-          ui:field: EntityNamePicker
-          ui:autofocus: true
-
-        description:
-          title: Description
-          type: string
-          description: Describe what this component does. This description will be used in the component's README and package.json.
-
-        component_type:
-          title: Component Type
-          type: string
-          description: Select the type of this frontend app. Allowed values - Frontend, Backend, Library, Website, Other
-          default: frontend
-          enum:
-            - frontend
-            - backend
-            - library
-            - website
-            - Other
-          enumNames:
-            - Frontend
-            - Backend
-            - Library
-            - Website
-            - Other
-
-        system:
-          title: System
-          type: string
-          description: Select the system that this component will be a part of. Systems are a collection of related components and resources.
-          ui:field: EntityPicker
-          ui:options:
-            allowArbitraryValues: false
-            catalogFilter:
-              - kind: System
-
-        component_lifecycle:
-          title: Project Phase
-          type: string
-          description: Select the project phase which suits this component. Refer to the [GDS service manual](https://www.gov.uk/service-manual/agile-delivery) for more information.
-          default: alpha
-          enum:
-            - discovery
-            - alpha
-            - beta
-          enumNames:
-            - Discovery
-            - Alpha
-            - Beta
-
-        owner:
-          title: Owner
-          type: string
-          description: Select the team who will own this component
-          ui:field: DeliveryProjectPicker
-
-    - $yaml: ../parameters/git-repository.yaml
-
+    $yaml: ./parameters.yaml
   steps:
-    - id: template
-      name: Fetch Skeleton + Template
-      action: fetch:template
-      input:
-        url: ./skeleton
-        values:
-          component_id: ${{ parameters.component_id }}
-          service_name: ${{ parameters.component_id }}
-          project_name: ${{ parameters.owner | parseEntityRef | pick('name') }}
-          description: ${{ parameters.description }}
-          component_type: ${{ parameters.component_type }}
-          owner: ${{ parameters.owner }}
-          repo_url: ${{ parameters.repo_name | githubRepoUrl }}
-          repo_project_slug: ${{ parameters.repo_name | githubRepoUrl | projectSlug }}
-          component_lifecycle: ${{ parameters.component_lifecycle }}
-
+    - $yaml: ./run-template.yaml
     - id: publish
       name: Publish
       action: publish:zip

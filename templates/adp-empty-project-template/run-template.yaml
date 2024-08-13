@@ -1,0 +1,15 @@
+id: template
+name: Fetch Skeleton + Template
+action: fetch:template
+input:
+  url: ./skeleton
+  values:
+    component_id: ${{ parameters.component_id }}
+    service_name: ${{ parameters.component_id }}
+    project_name: ${{ parameters.owner | parseEntityRef | pick('name') }}
+    description: ${{ parameters.description }}
+    component_type: ${{ parameters.component_type }}
+    owner: ${{ parameters.owner }}
+    repo_url: ${{ parameters.repo_name | githubRepoUrl }}
+    repo_project_slug: ${{ parameters.repo_name | githubRepoUrl | projectSlug }}
+    component_lifecycle: ${{ parameters.component_lifecycle }}
