@@ -40,7 +40,8 @@ spec:
             - tst2
             - pre1
             - prd1
-          configVariables: {}
+          configVariables: 
+            INGRESS_TYPE: ${{ parameters.ingress_type }}
 
     - $yaml: ../steps/generate-service-manifests.yaml
 
