@@ -1,133 +1,129 @@
-- title: Component Information
-  description: Enter properties describing this component.
-  required:
-    - component_id
-    - description
-    - component_type
-    - owner
-    - component_lifecycle
-    - app_infra_service_bus_check
-  properties:
-    component_id:
-      title: Component Name
-      type: string
-      description: Unique name of the component which will be used for the repository, package, and image names. This should be in the format <program>-<workstream>-<repo>. Maximum 64 characters.
-      ui:field: EntityNamePicker
-      ui:autofocus: true
+title: Component Information
+description: Enter properties describing this component.
+required:
+  - component_id
+  - description
+  - component_type
+  - owner
+  - component_lifecycle
+  - app_infra_service_bus_check
+properties:
+  component_id:
+    title: Component Name
+    type: string
+    description: Unique name of the component which will be used for the repository, package, and image names. This should be in the format <program>-<workstream>-<repo>. Maximum 64 characters.
+    ui:field: EntityNamePicker
+    ui:autofocus: true
 
-    description:
-      title: Description
-      type: string
-      description: Describe what this component does. This description will be used in the component's README and package.json.
+  description:
+    title: Description
+    type: string
+    description: Describe what this component does. This description will be used in the component's README and package.json.
 
-    component_type:
-      title: Frontend Type
-      type: string
-      description: Select the type of this frontend app. Allowed values - External UI (GOV.UK app), Internal UI (DEFRA app)
-      default: external
-      enum:
-        - internal
-        - external
-      enumNames:
-        - Internal UI
-        - External UI
+  component_type:
+    title: Frontend Type
+    type: string
+    description: Select the type of this frontend app. Allowed values - External UI (GOV.UK app), Internal UI (DEFRA app)
+    default: external
+    enum:
+      - internal
+      - external
+    enumNames:
+      - Internal UI
+      - External UI
 
-    system:
-      title: System
-      type: string
-      description: Select the system that this component will be a part of. Systems are a collection of related components and resources.
-      ui:field: EntityPicker
-      ui:options:
-        allowArbitraryValues: false
-        catalogFilter:
-          - kind: System
+  system:
+    title: System
+    type: string
+    description: Select the system that this component will be a part of. Systems are a collection of related components and resources.
+    ui:field: EntityPicker
+    ui:options:
+      allowArbitraryValues: false
+      catalogFilter:
+        - kind: System
 
-    component_lifecycle:
-      title: Project Phase
-      type: string
-      description: Select the project phase which suits this component. Refer to the [GDS service manual](https://www.gov.uk/service-manual/agile-delivery) for more information.
-      default: alpha
-      enum:
-        - discovery
-        - alpha
-        - beta
-      enumNames:
-        - Discovery
-        - Alpha
-        - Beta
+  component_lifecycle:
+    title: Project Phase
+    type: string
+    description: Select the project phase which suits this component. Refer to the [GDS service manual](https://www.gov.uk/service-manual/agile-delivery) for more information.
+    default: alpha
+    enum:
+      - discovery
+      - alpha
+      - beta
+    enumNames:
+      - Discovery
+      - Alpha
+      - Beta
 
-    owner:
-      title: Owner
-      type: string
-      description: Select the team who will own this component
-      ui:field: DeliveryProjectPicker
+  owner:
+    title: Owner
+    type: string
+    description: Select the team who will own this component
+    ui:field: DeliveryProjectPicker
 
-    app_infra_service_bus_check:
-      title: Do you need an Azure Service Bus Queue or Topic?
-      type: string
-      description: Select the resource you need to get started. If not, select none. (These resources are just to get started. More resources can be added later to code by developers.)
-      default: none
-      enum:
-        - queue
-        - topic
-        - none
-      enumNames:
-        - Queue
-        - Topic
-        - None
+  app_infra_service_bus_check:
+    title: Do you need an Azure Service Bus Queue or Topic?
+    type: string
+    description: Select the resource you need to get started. If not, select none. (These resources are just to get started. More resources can be added later to code by developers.)
+    default: none
+    enum:
+      - queue
+      - topic
+      - none
+    enumNames:
+      - Queue
+      - Topic
+      - None
 
-  dependencies:
-    app_infra_service_bus_check:
-      allOf:
-        - if:
-            properties:
-              app_infra_service_bus_check:
-                const: queue
-          then:
-            properties:
-              app_infra_service_bus_resource_name:
-                title: Azure Service Bus Queue Name
-                type: string
-                description: Provide the Azure Service Bus Queue name.
-              app_infra_service_bus_resource_type:
-                title: Queue Pub-Sub Type
-                type: string
-                description: Select if the queue is a publisher or subscriber.
-                default: none
-                enum:
-                  - publisher
-                  - subscriber
-                enumNames:
-                  - Publisher
-                  - Subscriber
-            required:
-              - app_infra_service_bus_resource_name
-              - app_infra_service_bus_resource_type
-        - if:
-            properties:
-              app_infra_service_bus_check:
-                const: topic
-          then:
-            properties:
-              app_infra_service_bus_resource_name:
-                title: Azure Service Bus Topic Name
-                type: string
-                description: Provide the Azure Service Bus Topic name.
-              app_infra_service_bus_resource_type:
-                title: Topic Pub-Sub Type
-                type: string
-                description: Select if the topic is a publisher or subscriber.
-                default: none
-                enum:
-                  - publisher
-                  - subscriber
-                enumNames:
-                  - Publisher
-                  - Subscriber
-            required:
-              - app_infra_service_bus_resource_name
-              - app_infra_service_bus_resource_type
-
-- $yaml: ../parameters/git-repository.yaml
-
-- $yaml: ../parameters/ci-cd.yaml
+dependencies:
+  app_infra_service_bus_check:
+    allOf:
+      - if:
+          properties:
+            app_infra_service_bus_check:
+              const: queue
+        then:
+          properties:
+            app_infra_service_bus_resource_name:
+              title: Azure Service Bus Queue Name
+              type: string
+              description: Provide the Azure Service Bus Queue name.
+            app_infra_service_bus_resource_type:
+              title: Queue Pub-Sub Type
+              type: string
+              description: Select if the queue is a publisher or subscriber.
+              default: none
+              enum:
+                - publisher
+                - subscriber
+              enumNames:
+                - Publisher
+                - Subscriber
+          required:
+            - app_infra_service_bus_resource_name
+            - app_infra_service_bus_resource_type
+      - if:
+          properties:
+            app_infra_service_bus_check:
+              const: topic
+        then:
+          properties:
+            app_infra_service_bus_resource_name:
+              title: Azure Service Bus Topic Name
+              type: string
+              description: Provide the Azure Service Bus Topic name.
+            app_infra_service_bus_resource_type:
+              title: Topic Pub-Sub Type
+              type: string
+              description: Select if the topic is a publisher or subscriber.
+              default: none
+              enum:
+                - publisher
+                - subscriber
+              enumNames:
+                - Publisher
+                - Subscriber
+          required:
+            - app_infra_service_bus_resource_name
+            - app_infra_service_bus_resource_type

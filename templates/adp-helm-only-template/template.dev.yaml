@@ -10,7 +10,9 @@ spec:
   owner: ccts-adp
   type: helm
   parameters:
-    $yaml: ./parameters.yaml
+    - $yaml: ./parameters.yaml
+    - $yaml: ../parameters/git-repository.yaml
+    - $yaml: ../parameters/ci-cd.yaml
   steps:
     - $yaml: ./run-template.yaml
     - id: publish
